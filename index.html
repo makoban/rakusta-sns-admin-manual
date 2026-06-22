@@ -290,6 +290,45 @@
       .pattern-table td:nth-child(2)::before { content: "有無: "; font-weight: 800; color: var(--muted); }
       .pattern-table td:nth-child(3)::before { content: "最初にやること: "; display: block; font-weight: 800; color: var(--muted); }
       .pattern-table td:nth-child(4)::before { content: "その後: "; display: block; font-weight: 800; color: var(--muted); }
+      .sample-table,
+      .permission-table {
+        display: block;
+        overflow: visible;
+      }
+      .sample-table thead,
+      .permission-table thead { display: none; }
+      .sample-table,
+      .sample-table tbody,
+      .sample-table tr,
+      .sample-table td,
+      .permission-table,
+      .permission-table tbody,
+      .permission-table tr,
+      .permission-table td {
+        width: 100%;
+        display: block;
+      }
+      .sample-table tr,
+      .permission-table tr {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin: 10px 0;
+        background: #fff;
+      }
+      .sample-table td,
+      .permission-table td {
+        border: 0;
+        padding: 7px 0;
+      }
+      .sample-table td:first-child,
+      .permission-table td:first-child {
+        font-weight: 800;
+        color: var(--blue-dark);
+      }
+      .sample-table td:nth-child(2)::before { content: "例: "; font-weight: 800; color: var(--muted); }
+      .sample-table td:nth-child(3)::before { content: "注意: "; display: block; font-weight: 800; color: var(--muted); }
+      .permission-table td:nth-child(2)::before { content: "理由: "; display: block; font-weight: 800; color: var(--muted); }
     }
     @media print {
       body { background: #fff; }
@@ -309,8 +348,10 @@
       <nav>
         <a href="#time">所要時間</a>
         <a href="#pattern">3項目チェック</a>
+        <a href="#sample-all-new">村上さんサンプル</a>
         <a href="#prepare">用意するもの</a>
         <a href="#credential">認証情報の渡し方</a>
+        <a href="#customer-permission">お客様側の権限付与</a>
         <a href="#flow">全体の順番</a>
         <a href="#mail">店舗メール</a>
         <a href="#facebook-personal">Facebook個人</a>
@@ -383,6 +424,37 @@
         </div>
       </section>
 
+      <section id="sample-all-new">
+        <h2>サンプル作成: 3つ全部ない場合</h2>
+        <p class="lead">社内練習用に、BANTEX村上さんが実在する個人Facebookで、検証用の店舗資産をゼロから作るパターンです。表のHパターンとして進めます。</p>
+        <div class="danger">
+          個人Facebookだけは架空で作りません。村上さん本人の実在Facebookを使います。Facebook店舗ページ、Instagram、LINE公式は「検証用」「デモ」と分かる名前にして、実在店舗や実在医療介護施設と誤認される名称は使わないでください。
+        </div>
+        <h3>サンプル名の例</h3>
+        <table class="sample-table">
+          <thead><tr><th>項目</th><th>例</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>Facebook個人</td><td>村上さん本人の実在Facebook</td><td>新規作成しない。本人ログイン、SMS、2FAは村上さんが対応</td></tr>
+            <tr><td>Facebook店舗ページ</td><td>楽スタデモ村上店</td><td>実在店舗に見えないよう「デモ」または「検証用」を入れる</td></tr>
+            <tr><td>店舗Instagram</td><td><code>rakusta_demo_murakami</code></td><td>プロ/ビジネス化し、Facebook店舗ページとリンク</td></tr>
+            <tr><td>公式LINE</td><td>楽スタデモ村上店</td><td>Messaging APIを有効化し、Webhookを楽スタBotに向ける</td></tr>
+            <tr><td>店舗メール</td><td>BANTEX管理の検証用メール</td><td>認証メールを受け取れるもの。HTMLには実値を書かない</td></tr>
+          </tbody>
+        </table>
+        <h3>村上さんが体験する順番</h3>
+        <div class="steps">
+          <div class="step"><strong>検証用メールと電話番号を用意</strong><br>Instagram、LINE、Meta通知を受け取れる状態にします。</div>
+          <div class="step"><strong>村上さん本人のFacebookにログイン</strong><br>本人確認、SMS、2FAが出たら村上さん本人が処理します。</div>
+          <div class="step"><strong>Facebook店舗ページを作成</strong><br>ページ名は「楽スタデモ村上店」など、検証用と分かる名前にします。</div>
+          <div class="step"><strong>店舗Instagramを作成してビジネス化</strong><br>Instagramをプロ/ビジネス化し、Facebook店舗ページとリンクします。</div>
+          <div class="step"><strong>公式LINEを作成してMessaging APIを有効化</strong><br>Webhook URL、Channel Access Token、Channel Secretを楽スタ管理画面に登録します。</div>
+          <div class="step"><strong>BANTEX側Meta Businessへ権限追加</strong><br>Facebook店舗ページとInstagramをBANTEX側から扱える状態にします。</div>
+          <div class="step"><strong>楽スタ管理画面へ登録</strong><br>LINE情報、Instagram User ID、Token運用方式、投稿時間、画像設定を保存します。</div>
+          <div class="step"><strong>LINE投稿テスト</strong><br>公式LINEへ写真とメモを送り、投稿案生成、ダッシュボード確認、必要ならInstagram投稿まで行います。</div>
+        </div>
+        <div class="note">このサンプルは社内練習用です。本番店舗へ流用しないよう、楽スタ管理画面の店舗名にも「デモ」「検証用」を残します。</div>
+      </section>
+
       <section id="prepare">
         <h2>最初に用意するもの</h2>
         <div class="grid two">
@@ -421,7 +493,7 @@
           <strong>BANTEX側が個人Facebookのパスワードを預かることは原則不要です。</strong><br>
           必要なのは、個人Facebookのログイン情報ではなく、店舗Facebookページと店舗InstagramをBANTEX側Meta Business / BANTEX投稿Botから扱える権限です。
         </div>
-        <table>
+        <table class="permission-table">
           <thead><tr><th>渡すもの</th><th>用途</th><th>渡し方</th></tr></thead>
           <tbody>
             <tr><td>楽スタ管理画面URL・ユーザーID・パスワード</td><td>店舗設定、LINE/Instagram情報登録</td><td>1Password / Bitwarden / 社内の安全な共有</td></tr>
@@ -435,6 +507,30 @@
         </div>
         <div class="danger">
           パスワード、LINE Channel secret、Instagram access token、Meta App SecretはGitHub・チャット・通常メモ・スクショ説明に残さないでください。
+        </div>
+      </section>
+
+      <section id="customer-permission">
+        <h2>お客様側の個人Facebookで権限付与する</h2>
+        <p class="lead">お客様がすでにFacebook店舗ページやInstagramを持っている場合、BANTEXが個人Facebookのパスワードを預かるのではなく、お客様本人がログインしてBANTEXへの権限付与を承認します。</p>
+        <div class="steps">
+          <div class="step"><strong>BANTEX側から権限リクエストを出す</strong><br>Meta Business設定で、お客様のFacebook店舗ページとInstagramへのアクセスをリクエストします。</div>
+          <div class="step"><strong>お客様が個人Facebookでログイン</strong><br>ページ管理者になっている実在個人Facebookで、Meta Business SuiteまたはFacebook通知を開きます。</div>
+          <div class="step"><strong>BANTEXからのリクエストを確認</strong><br>対象がBANTEXのBusiness Portfolio / BANTEX投稿Botであること、対象資産が該当店舗ページとInstagramだけであることを確認します。</div>
+          <div class="step"><strong>必要な権限だけ承認</strong><br>投稿作成、コンテンツ管理、Instagram連携に必要な権限を承認します。不要なページや既存店舗の権限は触りません。</div>
+          <div class="step"><strong>BANTEX側で疎通確認</strong><br>対象Instagramのprofile取得、content publishing limit取得、楽スタ管理画面のInstagram User ID保存を確認します。</div>
+        </div>
+        <table>
+          <thead><tr><th>お客様に伝えること</th><th>理由</th></tr></thead>
+          <tbody>
+            <tr><td>個人FacebookのパスワードはBANTEXへ渡さなくてよい</td><td>本人がログインして承認すれば、BANTEXはページ/Instagram権限だけ取得できるため</td></tr>
+            <tr><td>承認する対象はBANTEXのBusiness Portfolio / BANTEX投稿Bot</td><td>知らない相手に権限を渡さないため</td></tr>
+            <tr><td>承認対象は該当店舗ページと店舗Instagramだけ</td><td>別店舗や個人資産を誤って渡さないため</td></tr>
+            <tr><td>SMS、2FA、本人確認は本人が画面上で処理</td><td>コードや本人確認情報をチャットに残さないため</td></tr>
+          </tbody>
+        </table>
+        <div class="warn">
+          画面名はMeta側の更新で変わることがあります。見つからない場合は「Business設定」「ページアクセス」「Instagramアカウント」「パートナー」「リクエスト」などの表示を探します。
         </div>
       </section>
 
