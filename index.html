@@ -417,15 +417,22 @@
       <section id="credential">
         <h2>認証情報の渡し方</h2>
         <p>遠方の社内管理者が作業する場合、以下を別紙またはパスワード管理ツールで渡します。このHTMLやGitHubには実値を書かないでください。</p>
+        <div class="ok">
+          <strong>BANTEX側が個人Facebookのパスワードを預かることは原則不要です。</strong><br>
+          必要なのは、個人Facebookのログイン情報ではなく、店舗Facebookページと店舗InstagramをBANTEX側Meta Business / BANTEX投稿Botから扱える権限です。
+        </div>
         <table>
           <thead><tr><th>渡すもの</th><th>用途</th><th>渡し方</th></tr></thead>
           <tbody>
             <tr><td>楽スタ管理画面URL・ユーザーID・パスワード</td><td>店舗設定、LINE/Instagram情報登録</td><td>1Password / Bitwarden / 社内の安全な共有</td></tr>
             <tr><td>店舗メールアドレスのログイン</td><td>Instagram、LINE、Facebook通知確認</td><td>安全な共有。作業後に変更してもよい</td></tr>
             <tr><td>LINE Business ID</td><td>LINE公式、LINE Developers</td><td>安全な共有</td></tr>
-            <tr><td>Meta/Facebook管理者ログイン</td><td>Facebookページ、Instagramリンク、Meta Business追加</td><td>本人が入力または管理者へ安全共有</td></tr>
+            <tr><td>Meta/Facebookの承認・管理権限</td><td>Facebookページ、Instagramリンク、Meta Business追加</td><td>店舗責任者本人がログインして承認。代行時のみ安全な方法で一時共有</td></tr>
           </tbody>
         </table>
+        <div class="warn">
+          代行作業でどうしても個人Facebookにログインする必要がある場合だけ、店舗側の許可を取って一時的に共有します。チャットや通常メモには書かず、作業後にパスワード変更と2段階認証の確認を行います。
+        </div>
         <div class="danger">
           パスワード、LINE Channel secret、Instagram access token、Meta App SecretはGitHub・チャット・通常メモ・スクショ説明に残さないでください。
         </div>
@@ -460,7 +467,10 @@
 
       <section id="facebook-personal">
         <h2>2. Facebook個人アカウントを作成または確認</h2>
-        <p>Facebook個人は店舗ページを作るための入口です。店舗名ではなく、実在する個人で作ります。</p>
+        <p>Facebook個人は店舗ページを作るための入口です。店舗名ではなく、実在する個人で作ります。個人名がInstagram投稿に表示されるわけではありません。</p>
+        <div class="note">
+          BANTEXが欲しいのは個人FacebookのID・パスワードではありません。店舗責任者がログインして承認し、BANTEXには店舗Facebookページと店舗Instagramへの管理・投稿権限を付与します。
+        </div>
         <figure class="shot">
           <img src="assets/screenshots/facebook_create_account_entry.png" alt="Facebook個人アカウント作成画面">
           <span class="pin" style="--x:18%;--y:16%;">1</span>
