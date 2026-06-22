@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>村上さん専用 楽スタデモ店舗作成手順</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #657084;
+      --line: #d7dce6;
+      --paper: #ffffff;
+      --bg: #f3f6fb;
+      --blue: #2364d2;
+      --blue-dark: #17428d;
+      --green: #15803d;
+      --orange: #c2410c;
+      --red: #dc2626;
+      --soft-blue: #eaf2ff;
+      --soft-green: #eaf8ef;
+      --soft-orange: #fff3e8;
+      --soft-red: #fff1f1;
+      --shadow: 0 18px 48px rgba(23, 32, 51, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .layout { display: grid; grid-template-columns: 292px minmax(0, 1fr); min-height: 100vh; }
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      padding: 24px 18px;
+      background: #101827;
+      color: #fff;
+      border-right: 1px solid #0b1020;
+    }
+    aside h1 { font-size: 18px; line-height: 1.4; margin: 0 0 14px; }
+    aside .version { color: #b7c3d7; font-size: 12px; margin-bottom: 18px; }
+    aside nav a {
+      display: block;
+      color: #dbe6ff;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    aside nav a:hover { background: rgba(255,255,255,.09); text-decoration: none; }
+    main { padding: 32px; max-width: 1180px; width: 100%; }
+    .hero {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+    .hero h2 { font-size: 32px; line-height: 1.25; margin: 0 0 12px; }
+    .hero p { margin: 0; color: var(--muted); max-width: 860px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      border: 1px solid #c6dcff;
+    }
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 26px;
+      margin: 18px 0;
+      box-shadow: 0 10px 30px rgba(23, 32, 51, .05);
+    }
+    h2 { font-size: 25px; line-height: 1.35; margin: 0 0 16px; }
+    h3 { font-size: 18px; line-height: 1.45; margin: 22px 0 10px; }
+    p { margin: 0 0 12px; }
+    .lead { font-size: 17px; color: #334155; }
+    .grid { display: grid; gap: 14px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      background: #fff;
+    }
+    .card h3 { margin-top: 0; }
+    .note, .warn, .ok, .danger {
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      border: 1px solid;
+    }
+    .note { background: var(--soft-blue); border-color: #bad4ff; color: #15366f; }
+    .warn { background: var(--soft-orange); border-color: #fed7aa; color: #7c2d12; }
+    .ok { background: var(--soft-green); border-color: #bbf7d0; color: #14532d; }
+    .danger { background: var(--soft-red); border-color: #fecaca; color: #7f1d1d; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 10px 12px; vertical-align: top; }
+    th { background: #f8fafc; text-align: left; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: #eef2f7;
+      padding: 2px 5px;
+      border-radius: 5px;
+    }
+    .steps { counter-reset: steps; }
+    .step {
+      counter-increment: steps;
+      position: relative;
+      padding-left: 44px;
+      margin: 18px 0;
+    }
+    .step::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .shot {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f8fafc;
+      overflow: hidden;
+      margin: 14px 0 18px;
+    }
+    .shot img { display: block; width: 100%; height: auto; }
+    .shot figcaption {
+      padding: 10px 12px;
+      color: var(--muted);
+      background: #fff;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .pin {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      transform: translate(-50%, -50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,.24);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 15px;
+    }
+    .callout {
+      display: inline-grid;
+      place-items: center;
+      min-width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      font-weight: 900;
+      font-size: 12px;
+      margin-right: 5px;
+    }
+    .checklist { padding-left: 0; list-style: none; }
+    .checklist li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+    .checklist li::before {
+      content: "□";
+      color: var(--blue);
+      font-weight: 900;
+    }
+    .mini-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .mini-flow div {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 800;
+      color: #23314d;
+    }
+    .small { color: var(--muted); font-size: 13px; }
+    .print-note { display: none; }
+    @media (max-width: 960px) {
+      .layout { display: block; }
+      aside { position: static; height: auto; }
+      main {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 18px;
+      }
+      section, .hero {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 22px 18px;
+      }
+      .grid.two, .grid.three, .mini-flow { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 25px; }
+      h2, h3, p, li, th, td, .badge, .card, .mini-flow div {
+        overflow-wrap: anywhere;
+      }
+      table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .card-table {
+        display: block;
+        overflow: visible;
+      }
+      .card-table thead { display: none; }
+      .card-table,
+      .card-table tbody,
+      .card-table tr,
+      .card-table td {
+        width: 100%;
+        display: block;
+      }
+      .card-table tr {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin: 10px 0;
+        background: #fff;
+      }
+      .card-table td {
+        border: 0;
+        padding: 7px 0;
+      }
+      .card-table td:first-child {
+        font-weight: 800;
+        color: var(--blue-dark);
+      }
+      .card-table td:nth-child(2)::before { content: "入力・選択: "; display: block; font-weight: 800; color: var(--muted); }
+      .card-table td:nth-child(3)::before { content: "注意: "; display: block; font-weight: 800; color: var(--muted); }
+    }
+    @media print {
+      body { background: #fff; }
+      .layout { display: block; }
+      aside { display: none; }
+      main { padding: 0; max-width: none; }
+      section, .hero { box-shadow: none; page-break-inside: avoid; }
+      .print-note { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <h1>村上さん専用<br>楽スタデモ店舗作成手順</h1>
+      <div class="version">2026-06-22 / 社内練習用</div>
+      <nav>
+        <a href="#goal">ゴール</a>
+        <a href="#rules">最初のルール</a>
+        <a href="#values">使う名前</a>
+        <a href="#prepare">準備</a>
+        <a href="#flow">全体の流れ</a>
+        <a href="#facebook">Facebook</a>
+        <a href="#instagram">Instagram</a>
+        <a href="#line">公式LINE</a>
+        <a href="#meta">BANTEX Meta</a>
+        <a href="#rakusta">楽スタ登録</a>
+        <a href="#test">LINE投稿テスト</a>
+        <a href="#finish">完了チェック</a>
+        <a href="index.html">全体マニュアルへ戻る</a>
+      </nav>
+    </aside>
+    <main>
+      <div class="hero" id="goal">
+        <h2>村上さんの個人Facebookから、LINEでInstagram投稿できるデモ店舗を作る</h2>
+        <p>このページだけを上から順番に進めると、検証用のFacebook店舗ページ、店舗Instagram、公式LINEを作成し、楽スタ管理画面へ登録して、LINEから投稿案を作るところまで確認できます。</p>
+        <div class="badges">
+          <span class="badge">個人Facebookは村上さん本人</span>
+          <span class="badge">店舗資産は検証用名</span>
+          <span class="badge">パスワードやtokenは書かない</span>
+          <span class="badge">ゴールはLINE投稿テスト</span>
+        </div>
+      </div>
+
+      <section id="rules">
+        <h2>最初のルール</h2>
+        <div class="danger">
+          <strong>個人Facebookだけは架空で作りません。</strong><br>
+          村上さん本人の実在Facebookでログインします。SMS、2段階認証、本人確認が出たら、村上さん本人が画面上で処理してください。コードやパスワードをチャットに貼らないでください。
+        </div>
+        <div class="ok">
+          Facebook店舗ページ、Instagram、公式LINEは検証用として作ります。実在店舗に見えないよう、名前に「デモ」または「検証用」を入れます。
+        </div>
+        <ul class="checklist">
+          <li>実在する医療介護施設名、実在店舗名、実在住所は使わない</li>
+          <li>本番店舗のInstagramやLINEにログインしない</li>
+          <li>token、Channel Secret、Meta App SecretはこのHTMLにもメモにも残さない</li>
+          <li>途中で本人確認や制限が出たら、無理に連続操作せず画面の指示に従う</li>
+        </ul>
+      </section>
+
+      <section id="values">
+        <h2>今回使うサンプル名</h2>
+        <p class="lead">入力欄で迷わないよう、以下の名前で統一します。すでに使われているユーザー名だけ、末尾に数字を付けます。</p>
+        <table class="card-table">
+          <thead><tr><th>項目</th><th>入力・選択</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>Facebook個人</td><td>村上さん本人のFacebook</td><td>新規作成しない。本人ログイン、SMS、2FAは村上さんが対応</td></tr>
+            <tr><td>Facebook店舗ページ</td><td>楽スタデモ村上店</td><td>「デモ」と分かる名前にする</td></tr>
+            <tr><td>Instagramユーザー名</td><td><code>rakusta_demo_murakami</code></td><td>使えなければ <code>rakusta_demo_murakami01</code> などにする</td></tr>
+            <tr><td>Instagram表示名</td><td>楽スタデモ村上店</td><td>Facebook店舗ページと同じ名前にする</td></tr>
+            <tr><td>公式LINE名</td><td>楽スタデモ村上店</td><td>LINEから写真とメモを送る入口</td></tr>
+            <tr><td>楽スタ店舗名</td><td>楽スタデモ村上店</td><td>本番店舗と混ざらないよう「デモ」を残す</td></tr>
+            <tr><td>テスト投稿メモ</td><td>テスト投稿です。楽スタデモ村上店の投稿確認です。</td><td>実投稿する場合もデモだと分かる文面にする</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="prepare">
+        <h2>作業前に用意するもの</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>村上さんが使うもの</h3>
+            <ul class="checklist">
+              <li>村上さん本人のFacebookログイン</li>
+              <li>FacebookのSMS/2FAを受け取れるスマホ</li>
+              <li>検証用メールアドレス</li>
+              <li>検証用電話番号、または連絡先として使う番号</li>
+              <li>プロフィール画像に使うロゴや仮画像</li>
+              <li>テスト投稿用の写真1枚</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>BANTEX管理者権限</h3>
+            <ul class="checklist">
+              <li>楽スタ管理画面の管理者ログイン</li>
+              <li>LINE Official Account Managerのログイン</li>
+              <li>LINE Developersの操作権限</li>
+              <li>Meta Business Suite / Business設定の管理権限</li>
+              <li>BANTEX投稿Botを扱えるMeta管理者権限</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn">上記の管理者ログイン情報は、1Passwordなど安全な方法で共有してください。このページには実値を書きません。</div>
+      </section>
+
+      <section id="flow">
+        <h2>全体の流れ</h2>
+        <div class="mini-flow">
+          <div>村上個人Facebook</div>
+          <div>Facebook店舗ページ</div>
+          <div>店舗Instagram</div>
+          <div>公式LINE</div>
+          <div>BANTEX Meta追加</div>
+          <div>楽スタ管理画面登録</div>
+          <div>LINEで写真+メモ</div>
+          <div>Instagram投稿確認</div>
+        </div>
+      </section>
+
+      <section id="facebook">
+        <h2>1. 村上さん本人のFacebookでログイン</h2>
+        <p>Facebookを開き、村上さん本人の個人Facebookでログインします。新しい個人Facebookは作りません。</p>
+        <figure class="shot">
+          <img src="assets/screenshots/facebook_create_account_entry.png" alt="Facebook個人アカウント作成画面">
+          <span class="pin" style="--x:18%;--y:16%;">1</span>
+          <span class="pin" style="--x:15%;--y:42%;">2</span>
+          <span class="pin" style="--x:15%;--y:78%;">3</span>
+          <figcaption><span class="callout">1</span>新規作成ではなく、村上さん本人アカウントでログインします。本人確認が出たら村上さんが処理します。</figcaption>
+        </figure>
+        <div class="warn">個人Facebook名は投稿に表示されません。投稿先として表に出るのは、このあと作る「楽スタデモ村上店」のInstagramです。</div>
+
+        <h2>2. Facebook店舗ページを作る</h2>
+        <p>Facebookにログインした状態で、店舗ページ作成に進みます。</p>
+        <figure class="shot">
+          <img src="assets/screenshots/facebook_page_create.png" alt="Facebookページ作成画面">
+          <span class="pin" style="--x:58%;--y:51%;">1</span>
+          <span class="pin" style="--x:80%;--y:72%;">2</span>
+          <figcaption><span class="callout">1</span>店舗やブランドのページ作成を選択。<span class="callout">2</span>ページ名は「楽スタデモ村上店」にします。</figcaption>
+        </figure>
+        <table class="card-table">
+          <thead><tr><th>項目</th><th>入力・選択</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>ページ名</td><td>楽スタデモ村上店</td><td>「デモ」を消さない</td></tr>
+            <tr><td>カテゴリ</td><td>店舗、サービス、ローカルサービスなど近いもの</td><td>厳密でなくてよい。後で修正可能</td></tr>
+            <tr><td>住所</td><td>検証用なので空欄、またはBANTEX管理の情報</td><td>実在店舗の住所を勝手に入れない</td></tr>
+            <tr><td>電話番号</td><td>検証用に使う番号</td><td>SMSや通知を受けられる番号が望ましい</td></tr>
+            <tr><td>プロフィール画像</td><td>仮ロゴ、検証用画像</td><td>実在店舗ロゴを使わない</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="instagram">
+        <h2>3. 店舗Instagramを作る</h2>
+        <figure class="shot">
+          <img src="assets/screenshots/instagram_signup_entry.png" alt="Instagram登録画面">
+          <span class="pin" style="--x:17%;--y:16%;">1</span>
+          <span class="pin" style="--x:14%;--y:47%;">2</span>
+          <span class="pin" style="--x:13%;--y:76%;">3</span>
+          <figcaption><span class="callout">1</span>検証用メール。<span class="callout">2</span>生年月日。<span class="callout">3</span>表示名とユーザー名を入れます。</figcaption>
+        </figure>
+        <table class="card-table">
+          <thead><tr><th>項目</th><th>入力・選択</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>表示名</td><td>楽スタデモ村上店</td><td>Facebookページと合わせる</td></tr>
+            <tr><td>ユーザー名</td><td><code>rakusta_demo_murakami</code></td><td>使えなければ末尾に数字を付ける</td></tr>
+            <tr><td>アカウント種別</td><td>プロアカウント / ビジネス</td><td>個人アカウントのままだとAPI投稿できない</td></tr>
+            <tr><td>リンク先</td><td>Facebookページ「楽スタデモ村上店」</td><td>Instagram単体ではなくFacebookページとリンクする</td></tr>
+          </tbody>
+        </table>
+        <div class="steps">
+          <div class="step"><strong>Instagramを作成</strong><br>検証用メールで登録します。</div>
+          <div class="step"><strong>プロアカウントに切り替え</strong><br>カテゴリを選び、ビジネスアカウントにします。</div>
+          <div class="step"><strong>Facebookページとリンク</strong><br>「楽スタデモ村上店」のFacebookページを選びます。</div>
+        </div>
+      </section>
+
+      <section id="line">
+        <h2>4. 公式LINEを作る</h2>
+        <figure class="shot">
+          <img src="assets/screenshots/line_official_entry.png" alt="LINE公式アカウント入口">
+          <span class="pin" style="--x:17%;--y:59%;">1</span>
+          <span class="pin" style="--x:90%;--y:23%;">2</span>
+          <figcaption><span class="callout">1</span>LINE公式アカウントをはじめる。<span class="callout">2</span>ログイン済みなら管理画面へ進みます。</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/line_manager_login.png" alt="LINE Business IDログイン画面">
+          <span class="pin" style="--x:70%;--y:41%;">1</span>
+          <span class="pin" style="--x:70%;--y:48%;">2</span>
+          <figcaption><span class="callout">1</span>LINEアカウントでログイン。<span class="callout">2</span>ビジネスアカウントでログイン。</figcaption>
+        </figure>
+        <table class="card-table">
+          <thead><tr><th>項目</th><th>入力・選択</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>公式LINE名</td><td>楽スタデモ村上店</td><td>Instagramと同じ名前にする</td></tr>
+            <tr><td>Messaging API</td><td>有効化</td><td>有効化後、LINE Developers側でChannel情報を確認</td></tr>
+            <tr><td>Webhook URL</td><td><code>https://kokotomo-toc-bot.onrender.com/callback</code></td><td>Use webhookをONにしてVerify成功を確認</td></tr>
+            <tr><td>Channel Access Token</td><td>楽スタ管理画面に直接貼り付け</td><td>このHTML、チャット、通常メモに残さない</td></tr>
+            <tr><td>Channel Secret</td><td>楽スタ管理画面に直接貼り付け</td><td>このHTML、チャット、通常メモに残さない</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="meta">
+        <h2>5. BANTEX側Meta Businessへ追加</h2>
+        <p>BANTEX側のMeta Business設定で、作成したFacebookページとInstagramをBANTEX投稿Botから見える状態にします。</p>
+        <figure class="shot">
+          <img src="assets/screenshots/meta_business_home.png" alt="Meta Business Suiteログイン画面">
+          <span class="pin" style="--x:68%;--y:43%;">1</span>
+          <span class="pin" style="--x:67%;--y:50%;">2</span>
+          <figcaption><span class="callout">1</span>BANTEX管理者でログイン。<span class="callout">2</span>Instagram再認証が出たら、検証用Instagramで承認します。</figcaption>
+        </figure>
+        <ul class="checklist">
+          <li>Facebookページ「楽スタデモ村上店」をBANTEX側Business Portfolioへ追加</li>
+          <li>Instagram「rakusta_demo_murakami」を同じBusiness Portfolioへ追加</li>
+          <li>FacebookページとInstagramがリンク済みか確認</li>
+          <li>BANTEX投稿Botの権限で対象Instagramが見えるか確認</li>
+          <li>既存店舗のページ/Instagram権限を外さない</li>
+        </ul>
+        <div class="note">店舗ごとにGraph API Explorerでtokenは発行しません。楽スタ側はBANTEX共通token方式にします。</div>
+      </section>
+
+      <section id="rakusta">
+        <h2>6. 楽スタ管理画面に登録</h2>
+        <p>楽スタ管理画面にログインし、検証用店舗を作成または検索して、LINE/Instagram/投稿設定を保存します。</p>
+        <figure class="shot">
+          <img src="assets/screenshots/rakusta_dashboard_login.png" alt="楽スタ管理画面ログイン">
+          <span class="pin" style="--x:66%;--y:40%;">1</span>
+          <span class="pin" style="--x:66%;--y:50%;">2</span>
+          <span class="pin" style="--x:66%;--y:62%;">3</span>
+          <figcaption><span class="callout">1</span>ユーザーID。<span class="callout">2</span>パスワード。<span class="callout">3</span>ログイン。</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/rakusta_admin_search_rakusta.png" alt="楽スタSNS管理画面 店舗検索">
+          <span class="pin" style="--x:46%;--y:18%;">1</span>
+          <span class="pin" style="--x:72%;--y:18%;">2</span>
+          <figcaption><span class="callout">1</span>店舗検索。<span class="callout">2</span>「楽スタデモ村上店」を開きます。なければ新規作成します。</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/rakusta_admin_line_instagram_visible.png" alt="楽スタ管理画面 LINEとInstagram設定">
+          <span class="pin" style="--x:26%;--y:35%;">1</span>
+          <span class="pin" style="--x:70%;--y:35%;">2</span>
+          <span class="pin" style="--x:74%;--y:54%;">3</span>
+          <span class="pin" style="--x:89%;--y:83%;">4</span>
+          <figcaption><span class="callout">1</span>LINE Channel情報。<span class="callout">2</span>Instagram名/User ID。<span class="callout">3</span>Token運用方式はBANTEX共通。<span class="callout">4</span>保存。</figcaption>
+        </figure>
+        <table class="card-table">
+          <thead><tr><th>項目</th><th>入力・選択</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>店舗名</td><td>楽スタデモ村上店</td><td>「デモ」を残す</td></tr>
+            <tr><td>LINE Channel Access Token / Secret</td><td>LINE Developersから取得して貼り付け</td><td>保存後、HTMLやメモには残さない</td></tr>
+            <tr><td>Instagramアカウント名</td><td><code>rakusta_demo_murakami</code></td><td>実際に取れたユーザー名を入れる</td></tr>
+            <tr><td>Instagram User ID</td><td>Meta Graph APIで確認した <code>1784...</code></td><td>BANTEX側tokenから見えるIDを入れる</td></tr>
+            <tr><td>Token運用方式</td><td>BANTEX共通System User token</td><td>店舗個別tokenは発行しない</td></tr>
+            <tr><td>投稿時間</td><td>検証しやすい時間</td><td>予約投稿も試すなら数分後にする</td></tr>
+          </tbody>
+        </table>
+        <figure class="shot">
+          <img src="assets/screenshots/rakusta_admin_contract_schedule_visible.png" alt="楽スタ管理画面 投稿時間設定">
+          <span class="pin" style="--x:31%;--y:22%;">1</span>
+          <span class="pin" style="--x:66%;--y:30%;">2</span>
+          <figcaption><span class="callout">1</span>契約や有効状態。<span class="callout">2</span>投稿時間を確認します。</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/rakusta_admin_image_save_visible.png" alt="楽スタ管理画面 画像加工と保存">
+          <span class="pin" style="--x:35%;--y:36%;">1</span>
+          <span class="pin" style="--x:89%;--y:84%;">2</span>
+          <figcaption><span class="callout">1</span>画像加工設定。<span class="callout">2</span>最後に保存します。</figcaption>
+        </figure>
+      </section>
+
+      <section id="test">
+        <h2>7. LINEから投稿テスト</h2>
+        <div class="steps">
+          <div class="step"><strong>公式LINEにテスト写真を送る</strong><br>村上さんのスマホまたはテスト端末から、公式LINE「楽スタデモ村上店」に写真1枚を送ります。</div>
+          <div class="step"><strong>メモを送る</strong><br>「テスト投稿です。楽スタデモ村上店の投稿確認です。」と送ります。</div>
+          <div class="step"><strong>楽スタSNSダッシュボードを確認</strong><br>投稿案が作られているか確認します。</div>
+          <div class="step"><strong>必要ならInstagramへ投稿</strong><br>実投稿する場合は、デモだと分かる文面になっていることを確認してから投稿します。</div>
+          <div class="step"><strong>Instagramで表示確認</strong><br>「rakusta_demo_murakami」に投稿が出たことを確認します。</div>
+        </div>
+        <div class="warn">本番店舗ではないので、実投稿した場合は検証後に削除しても構いません。削除する場合も、楽スタ側の投稿履歴とInstagram側の表示を確認してから行います。</div>
+      </section>
+
+      <section id="finish">
+        <h2>完了チェック</h2>
+        <ul class="checklist">
+          <li>村上さん本人のFacebookでログインできた</li>
+          <li>Facebookページ「楽スタデモ村上店」を作成した</li>
+          <li>Instagram「rakusta_demo_murakami」を作成した</li>
+          <li>Instagramをプロ/ビジネス化した</li>
+          <li>FacebookページとInstagramをリンクした</li>
+          <li>公式LINE「楽スタデモ村上店」を作成した</li>
+          <li>Messaging APIを有効化し、Webhook Verifyが成功した</li>
+          <li>BANTEX Meta Business / BANTEX投稿Botから対象Instagramが見える</li>
+          <li>楽スタ管理画面にLINE情報とInstagram User IDを保存した</li>
+          <li>Token運用方式がBANTEX共通になっている</li>
+          <li>LINEから写真とメモを送り、投稿案ができた</li>
+          <li>必要に応じてInstagram投稿まで確認した</li>
+        </ul>
+      </section>
+
+      <section id="trouble">
+        <h2>止まったとき</h2>
+        <table class="card-table">
+          <thead><tr><th>症状</th><th>見る場所</th><th>対応</th></tr></thead>
+          <tbody>
+            <tr><td>Facebookで本人確認が出る</td><td>村上さん本人のFacebook画面</td><td>村上さん本人がSMS/2FA/本人確認を処理。コードをチャットに貼らない</td></tr>
+            <tr><td>Instagramがビジネス化できない</td><td>Instagram設定、Facebookページリンク</td><td>Facebookページ「楽スタデモ村上店」とリンクしているか確認</td></tr>
+            <tr><td>LINEから送っても投稿案が出ない</td><td>LINE Developers、楽スタ管理画面</td><td>Webhook URL、Use webhook、Channel Token、Channel Secretを確認</td></tr>
+            <tr><td>投稿案は出るがInstagram投稿できない</td><td>BANTEX Meta、Instagram User ID</td><td>BANTEX投稿Botから対象Instagramが見えているか確認</td></tr>
+            <tr><td>Unsupported get request</td><td>BANTEX Meta資産</td><td>InstagramがBANTEX共通tokenの権限範囲に入っていない可能性</td></tr>
+          </tbody>
+        </table>
+        <p class="small">このページはGitHub Pages上で公開されていますが、検索避け設定を入れています。アクセス制限ではないため、実パスワードやtokenは絶対に書かないでください。</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
