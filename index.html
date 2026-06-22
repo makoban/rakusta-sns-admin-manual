@@ -212,12 +212,84 @@
     }
     .timebox strong { background: #f8fafc; padding: 12px; border-right: 1px solid var(--line); }
     .timebox span { padding: 12px; }
+    pre {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+    .asset {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      background: #f8fafc;
+    }
+    .asset strong { display: block; font-size: 16px; margin-bottom: 6px; }
+    .pattern-table td:first-child { font-weight: 800; white-space: nowrap; }
     .print-note { display: none; }
     @media (max-width: 960px) {
       .layout { display: block; }
       aside { position: static; height: auto; }
-      main { padding: 18px; }
-      .grid.two, .grid.three { grid-template-columns: 1fr; }
+      main {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 18px;
+      }
+      section, .hero {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      section, .hero { padding: 22px 18px; }
+      .grid.two, .grid.three, .asset-grid { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 25px; }
+      h2, h3, p, li, th, td, .badge, .timebox span, .asset {
+        overflow-wrap: anywhere;
+      }
+      .timebox {
+        grid-template-columns: 92px minmax(0, 1fr);
+      }
+      table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .pattern-table {
+        display: block;
+        overflow: visible;
+      }
+      .pattern-table thead { display: none; }
+      .pattern-table,
+      .pattern-table tbody,
+      .pattern-table tr,
+      .pattern-table td {
+        width: 100%;
+        display: block;
+      }
+      .pattern-table tr {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin: 10px 0;
+        background: #fff;
+      }
+      .pattern-table td {
+        border: 0;
+        padding: 7px 0;
+      }
+      .pattern-table td:first-child {
+        font-size: 18px;
+        color: var(--blue-dark);
+      }
+      .pattern-table td:nth-child(2)::before { content: "有無: "; font-weight: 800; color: var(--muted); }
+      .pattern-table td:nth-child(3)::before { content: "最初にやること: "; display: block; font-weight: 800; color: var(--muted); }
+      .pattern-table td:nth-child(4)::before { content: "その後: "; display: block; font-weight: 800; color: var(--muted); }
     }
     @media print {
       body { background: #fff; }
@@ -233,9 +305,10 @@
   <div class="layout">
     <aside>
       <h1>楽スタ 新店舗SNS連携マニュアル</h1>
-      <div class="version">2026-06-21 / 社内管理者向け</div>
+      <div class="version">2026-06-22 / 社内管理者向け</div>
       <nav>
         <a href="#time">所要時間</a>
+        <a href="#pattern">3項目チェック</a>
         <a href="#prepare">用意するもの</a>
         <a href="#credential">認証情報の渡し方</a>
         <a href="#flow">全体の順番</a>
@@ -253,7 +326,7 @@
     <main>
       <div class="hero">
         <h2>新しい店舗アカウントで、LINEからInstagram投稿できる状態まで作る</h2>
-        <p>このページは、遠方の社内管理者が一人で作業できるようにした操作マニュアルです。実パスワードやtokenはこのHTMLには書かず、別の安全な方法で共有してください。</p>
+        <p>このページは、遠方の社内管理者が一人で作業できるようにした操作マニュアルです。最初に「Facebook店舗ページ」「店舗Instagram」「公式LINE」の有無を確認し、足りないものだけ作ります。実パスワードやtokenはこのHTMLには書かず、別の安全な方法で共有してください。</p>
         <div class="badges">
           <span class="badge">店舗側のLINE運用は今まで通り</span>
           <span class="badge">Instagram tokenは店舗ごとに発行しない</span>
@@ -265,10 +338,49 @@
       <section id="time">
         <h2>人間が作業すると何分かかるか</h2>
         <p class="lead">初心者が初回でやるなら、全体で <strong>2時間から3時間</strong> を見てください。Meta/Facebookの認証やSMSで止まると、その場で終わらない場合もあります。</p>
-        <div class="timebox"><strong>最短</strong><span>45分から75分。Facebook個人、Instagram、LINE公式がすでにあり、ログインも通る場合。</span></div>
+        <div class="timebox"><strong>最短</strong><span>45分から75分。Facebookページ、Instagram、LINE公式がすでにあり、ログインも通る場合。</span></div>
         <div class="timebox"><strong>通常</strong><span>90分から150分。メール、Facebook個人、Facebookページ、Instagram、LINE公式を順に作る場合。</span></div>
         <div class="timebox"><strong>初心者初回</strong><span>120分から180分。迷い・認証・画面差分・Metaログイン確認を含む現実的な時間。</span></div>
         <div class="timebox"><strong>止まるケース</strong><span>Facebook個人の本人確認、Instagramログイン制限、SMS未着、Metaの一時ロック。数時間から数日待つことがあります。</span></div>
+      </section>
+
+      <section id="pattern">
+        <h2>最初に確認する3項目</h2>
+        <p class="lead">新規のお客様は、ここから始めます。すでに持っているものは作り直さず、足りないものだけ作成します。</p>
+        <div class="asset-grid">
+          <div class="asset">
+            <strong>1. Facebook店舗ページ</strong>
+            <span>店舗名で存在するページ。個人Facebookではありません。</span>
+          </div>
+          <div class="asset">
+            <strong>2. 店舗Instagram</strong>
+            <span>投稿先になる店舗のInstagram。プロ/ビジネス化が必要です。</span>
+          </div>
+          <div class="asset">
+            <strong>3. 公式LINE</strong>
+            <span>店舗が写真とメモを送るLINE公式アカウントです。</span>
+          </div>
+        </div>
+        <div class="warn">
+          <strong>紐づけ先は「Facebookページ楽スタ」ではありません。</strong> お客様のFacebook店舗ページと店舗Instagramを、BANTEX側のMeta Business / BANTEX投稿Botから見える状態にします。Facebookページ「楽スタ」は、楽スタ自身のページであり、お客様店舗をぶら下げる親ページではありません。
+        </div>
+        <h3>3項目の有無別スタート位置</h3>
+        <table class="pattern-table">
+          <thead><tr><th>パターン</th><th>有無</th><th>最初にやること</th><th>その後</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>3つ全部あり</td><td>BANTEX Meta Businessへページ/Instagramを追加</td><td>楽スタ管理画面登録、LINE投稿テスト</td></tr>
+            <tr><td>B</td><td>Facebookページあり / Instagramあり / LINEなし</td><td>公式LINEを作成し、Messaging APIを有効化</td><td>BANTEX Meta追加、楽スタ管理画面登録</td></tr>
+            <tr><td>C</td><td>Facebookページあり / Instagramなし / LINEあり</td><td>店舗Instagramを作成し、Facebookページとリンク</td><td>BANTEX Meta追加、楽スタ管理画面登録</td></tr>
+            <tr><td>D</td><td>Facebookページなし / Instagramあり / LINEあり</td><td>Facebook店舗ページを作成し、Instagramをリンク</td><td>BANTEX Meta追加、楽スタ管理画面登録</td></tr>
+            <tr><td>E</td><td>Facebookページあり / Instagramなし / LINEなし</td><td>店舗Instagramを作成し、Facebookページとリンク</td><td>公式LINE作成、楽スタ管理画面登録</td></tr>
+            <tr><td>F</td><td>Facebookページなし / Instagramあり / LINEなし</td><td>Facebook店舗ページを作成し、Instagramをリンク</td><td>公式LINE作成、楽スタ管理画面登録</td></tr>
+            <tr><td>G</td><td>Facebookページなし / Instagramなし / LINEあり</td><td>Facebook店舗ページと店舗Instagramを作成</td><td>Instagramリンク、BANTEX Meta追加</td></tr>
+            <tr><td>H</td><td>3つ全部なし</td><td>店舗メール、Facebook店舗ページ、Instagram、公式LINEを順に作成</td><td>BANTEX Meta追加、楽スタ管理画面登録</td></tr>
+          </tbody>
+        </table>
+        <div class="note">
+          Facebook個人アカウントはこの3項目とは別の「管理者の入口」です。既存の実在個人アカウントで管理できるなら新規作成は不要です。ない場合だけ、店舗責任者または社内管理者の実在名で用意します。
+        </div>
       </section>
 
       <section id="prepare">
@@ -279,7 +391,7 @@
             <ul class="checklist">
               <li>店舗名、住所、電話番号</li>
               <li>店舗メールアドレス</li>
-              <li>店舗責任者の実在Facebook個人アカウント</li>
+              <li>店舗責任者または社内管理者の実在Facebook個人アカウント</li>
               <li>店舗Instagram用ユーザー名候補を3つ</li>
               <li>プロフィール画像、ロゴ、カバー画像</li>
               <li>テスト投稿用の写真1枚と短いメモ</li>
@@ -321,12 +433,13 @@
 
       <section id="flow">
         <h2>全体の順番</h2>
+        <p class="lead">上の3項目チェックで「ない」と分かったものだけ作ります。すでにあるFacebookページ、Instagram、公式LINEは作り直しません。</p>
         <div class="steps">
           <div class="step"><strong>店舗メール・電話番号を確定</strong><br>このあと全部の認証で使います。</div>
-          <div class="step"><strong>Facebook個人アカウントを作成またはログイン確認</strong><br>FacebookページとMeta管理の入口です。</div>
-          <div class="step"><strong>Facebook店舗ページを作成</strong><br>Instagram API投稿にはFacebookページ連携が必要です。</div>
-          <div class="step"><strong>店舗Instagramを作成し、プロ/ビジネス化</strong><br>Instagram単体ではなく、Facebookページとリンクします。</div>
-          <div class="step"><strong>店舗LINE公式を作成し、Messaging APIを有効化</strong><br>店舗が写真とメモを送る入口です。</div>
+          <div class="step"><strong>Facebook個人アカウントを作成またはログイン確認</strong><br>既存の実在個人アカウントで管理できるなら作成不要です。</div>
+          <div class="step"><strong>Facebook店舗ページを確認または作成</strong><br>Instagram API投稿にはFacebookページ連携が必要です。</div>
+          <div class="step"><strong>店舗Instagramを確認または作成し、プロ/ビジネス化</strong><br>Instagram単体ではなく、Facebookページとリンクします。</div>
+          <div class="step"><strong>店舗LINE公式を確認または作成し、Messaging APIを有効化</strong><br>店舗が写真とメモを送る入口です。</div>
           <div class="step"><strong>BANTEX側Meta Businessへページ/Instagramを追加</strong><br>ここでBANTEX共通tokenの投稿権限範囲に入れます。</div>
           <div class="step"><strong>楽スタ管理画面に店舗情報を登録</strong><br>Instagram User ID、LINE Channel情報、投稿時間、画像加工方針を入れます。</div>
           <div class="step"><strong>LINEから投稿テスト</strong><br>写真+メモ送信、ダッシュボード確認、必要ならInstagramへ1回だけ投稿します。</div>
