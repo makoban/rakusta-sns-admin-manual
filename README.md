@@ -4,7 +4,9 @@
 
 ## 開くファイル
 
-`index.html`
+- まず迷ったら: `simple-customer-onboarding.html`
+- 全体版: `index.html`
+- 村上さん練習用: `murakami.html`
 
 ## 重要
 
