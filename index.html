@@ -482,7 +482,7 @@
               <li>LINE Official Account Managerのログイン</li>
               <li>LINE Developersの操作権限</li>
               <li>Meta Business Suite / Business設定の管理権限</li>
-              <li>BANTEX投稿Botを扱えるMeta管理者権限</li>
+              <li>楽スタ管理のページ/Instagramを追加できるMeta管理者権限</li>
               <li>Render / 本番環境は通常触らない。token更新時だけBANTEX側で扱う</li>
             </ul>
           </div>
@@ -714,7 +714,8 @@
             <tr><td>LINE Channel Access Token / Secret</td><td>LINE Developersから取得して直接貼り付け</td></tr>
             <tr><td>Instagramアカウント名</td><td>例: <code>sample_shop</code></td></tr>
             <tr><td>Instagram User ID</td><td>Meta Business SuiteのInstagram詳細、またはBANTEX側の安全な確認で取得した <code>1784...</code></td></tr>
-            <tr><td>Token運用方式</td><td><strong>BANTEX共通System User token</strong> を選ぶ</td></tr>
+            <tr><td>Token運用方式</td><td><strong>BANTEX共通 / global</strong> を選ぶ</td></tr>
+            <tr><td>Instagram Access Token</td><td>空欄。店舗別tokenは貼らない</td></tr>
             <tr><td>投稿方式</td><td>通常は予約投稿</td></tr>
             <tr><td>投稿時間</td><td>例: <code>14:00</code> と <code>20:00</code></td></tr>
             <tr><td>画像加工</td><td>業種に合わせる。医療介護は顔ぼかし・個人情報配慮を確認</td></tr>
@@ -735,6 +736,12 @@
         <p>作業者がターミナルを使える場合は、BANTEX側で以下を実行します。</p>
         <pre><code>uv run --with requests --with sqlalchemy --with psycopg2-binary \
   python scripts/check_instagram_health.py --franchise-id &lt;NEW_FRANCHISE_ID&gt;</code></pre>
+        <p>既存環境を壊していない確認をする場合は、既存の主要店舗も同時に見ます。</p>
+        <pre><code>uv run --with requests --with sqlalchemy --with psycopg2-binary \
+  python scripts/check_instagram_health.py \
+  --franchise-id &lt;NEW_FRANCHISE_ID&gt; \
+  --franchise-id 104 \
+  --franchise-id 105</code></pre>
         <div class="ok">OK条件は、<code>graph_status=ok</code>、profile取得200、<code>content_publishing_limit</code> 200です。</div>
       </section>
 

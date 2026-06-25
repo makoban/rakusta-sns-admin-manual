@@ -11,3 +11,5 @@
 - 実パスワード、Meta token、LINE Channel secret、App Secretはこのリポジトリに入れない。
 - GitHub Pagesに置く場合、URLを知っている人が閲覧できる前提で扱う。
 - 認証情報は1Password、Bitwarden、社内の安全な共有手段で別途渡す。
+- 新規顧客追加の通常作業ではGraph API Explorerのtoken生成画面を開かない。
+- 新規顧客追加の通常作業ではRenderの `INSTAGRAM_ACCESS_TOKEN` を変更しない。
