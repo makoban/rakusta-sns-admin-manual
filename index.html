@@ -406,7 +406,7 @@
           </div>
         </div>
         <div class="warn">
-          <strong>紐づけ先は「Facebookページ楽スタ」ではありません。</strong> お客様のFacebook店舗ページと店舗Instagramを、BANTEX側のMeta Business / BANTEX投稿Botから見える状態にします。Facebookページ「楽スタ」は、楽スタ自身のページであり、お客様店舗をぶら下げる親ページではありません。
+          <strong>紐づけ先は「Facebookページ楽スタ」ではありません。</strong> お客様のFacebook店舗ページと店舗Instagramを、BANTEX側のMeta Business「楽スタ管理」の資産として追加します。Facebookページ「楽スタ」は、楽スタ自身のページであり、お客様店舗をぶら下げる親ページではありません。
         </div>
         <h3>3項目の有無別スタート位置</h3>
         <table class="pattern-table">
@@ -647,7 +647,7 @@
 
       <section id="meta">
         <h2>6. BANTEX側Meta Businessへ追加</h2>
-        <p>店舗のFacebookページとInstagramをBANTEX側Business Portfolioに追加し、BANTEX投稿Botから見える状態にします。</p>
+        <p>店舗のFacebookページとInstagramをBANTEX側Business Portfolioに追加します。新規店舗追加の通常作業では、既存の共通tokenやRender設定は変更しません。</p>
         <div class="warn">Meta画面上のBusiness Portfolio名は <strong>楽スタ管理</strong> を選びます。これはBANTEX側で楽スタのSNS資産を管理している箱です。</div>
         <figure class="shot">
           <img src="assets/screenshots/meta_business_home.png" alt="Meta Business Suiteログイン画面">
@@ -660,10 +660,10 @@
           <li>Business PortfolioにFacebook店舗ページを追加</li>
           <li>同じBusiness Portfolioに店舗Instagramを追加</li>
           <li>FacebookページとInstagramがリンク済みか確認</li>
-          <li>BANTEX投稿Botの権限で対象Instagramが見えるか確認</li>
+          <li>対象FacebookページとInstagramが「楽スタ管理」の資産として見えるか確認</li>
           <li>既存店舗のページ/Instagram権限を外さない</li>
         </ul>
-        <div class="note">今後の新店舗では、店舗ごとにGraph API Explorerでtokenを作りません。Meta側で投稿先資産をBANTEX管理下に入れ、楽スタ側は <code>instagram_token_source=global</code> にします。</div>
+        <div class="note">今後の新店舗では、店舗ごとにGraph API Explorerでtokenを作りません。通常作業ではGraph API Explorerのtoken生成画面も開きません。Meta側で投稿先資産をBANTEX管理下に入れ、楽スタ側は <code>instagram_token_source=global</code> にします。</div>
       </section>
 
       <section id="rakusta">
@@ -713,7 +713,7 @@
             <tr><td>SNS投稿を有効化</td><td>ON</td></tr>
             <tr><td>LINE Channel Access Token / Secret</td><td>LINE Developersから取得して直接貼り付け</td></tr>
             <tr><td>Instagramアカウント名</td><td>例: <code>sample_shop</code></td></tr>
-            <tr><td>Instagram User ID</td><td>Meta Graph APIで確認した <code>1784...</code></td></tr>
+            <tr><td>Instagram User ID</td><td>Meta Business SuiteのInstagram詳細、またはBANTEX側の安全な確認で取得した <code>1784...</code></td></tr>
             <tr><td>Token運用方式</td><td><strong>BANTEX共通System User token</strong> を選ぶ</td></tr>
             <tr><td>投稿方式</td><td>通常は予約投稿</td></tr>
             <tr><td>投稿時間</td><td>例: <code>14:00</code> と <code>20:00</code></td></tr>
@@ -746,8 +746,8 @@
             <tr><td>LINEから送ったのに投稿案が出ない</td><td>LINE Webhook / Channel token</td><td>LINE Developers、楽スタ管理画面のLINE欄</td></tr>
             <tr><td>投稿案は出るがInstagram投稿できない</td><td>Instagram権限 / Meta資産 / User ID</td><td>Meta Business、楽スタInstagram欄、ヘルスチェック</td></tr>
             <tr><td><code>Invalid OAuth access token</code></td><td>古い個別token</td><td>Token運用方式をglobalにする</td></tr>
-            <tr><td><code>Unsupported get request</code></td><td>BANTEX共通tokenからそのInstagramが見えていない</td><td>Meta Businessにページ/Instagramを追加</td></tr>
-            <tr><td><code>Application does not have permission</code></td><td>BANTEX投稿Botの権限不足</td><td>Meta OAuth権限、Instagramリンク、ページ選択</td></tr>
+            <tr><td><code>Unsupported get request</code></td><td>BANTEX共通tokenからそのInstagramが見えていない</td><td>tokenを触らず、Meta Businessのページ/Instagram追加、Instagramリンク、承認状態を確認</td></tr>
+            <tr><td><code>Application does not have permission</code></td><td>Instagram連携または資産権限不足</td><td>tokenを触らず、Instagramリンク、プロアカウント化、ページ/Instagramの資産追加を確認</td></tr>
             <tr><td>Facebook/Instagramが途中で止まる</td><td>本人確認、SMS、2FA、Meta制限</td><td>本人または管理者がブラウザ上で対応</td></tr>
           </tbody>
         </table>

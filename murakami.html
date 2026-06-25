@@ -474,7 +474,7 @@
 
       <section id="bantex">
         <h2>5. BANTEXでInstagramを使えるようにする</h2>
-        <p class="lead">村上さんが作ったFacebookページとInstagramを、BANTEX投稿Botから見える状態にします。</p>
+        <p class="lead">村上さんが作ったFacebookページとInstagramを、楽スタ管理の資産として追加します。通常作業ではGraph API Explorerのtoken生成画面は開きません。</p>
         <div class="note">ログイン画面が出たら、ID欄には村上さん本人のFacebook/Metaログインを入れます。事前に村上さんを <strong>楽スタ管理</strong> の管理者へ追加しておきます。</div>
         <div class="warn">Meta Business Suiteの左上では <strong>楽スタ管理</strong> を選びます。これはBANTEX側で楽スタのFacebookページとInstagramを管理しているBusiness Portfolioです。新しい箱は作りません。</div>
         <figure class="shot">
@@ -490,7 +490,7 @@
             <tr><td>Meta Business Suite</td><td><a href="https://business.facebook.com/" target="_blank" rel="noopener">business.facebook.com</a></td><td>ID欄とパスワード欄は早見表どおりに入れる。左上の箱は「楽スタ管理」を選ぶ</td></tr>
             <tr><td>ページ</td><td>設定 → アカウント → ページ</td><td>Facebookページ「楽スタデモ村上店」を追加する</td></tr>
             <tr><td>Instagramアカウント</td><td>設定 → アカウント → Instagramアカウント</td><td>Instagram「rakusta_demo_murakami」を追加する</td></tr>
-            <tr><td>BANTEX投稿Bot確認</td><td>BANTEX投稿BotまたはGraph API Explorer</td><td>Instagram User IDの数字を確認する</td></tr>
+            <tr><td>Instagram ID確認</td><td>Meta Business SuiteのInstagram詳細、またはBANTEX側確認</td><td>Instagram User IDの数字を確認する。Graph API Explorerのtoken生成画面は開かない</td></tr>
           </tbody>
         </table>
         <div class="steps">
@@ -499,8 +499,8 @@
           <div class="step"><strong>左上の箱を確認する</strong><br>画面左上のBusiness Portfolioは「楽スタ管理」を使います。</div>
           <div class="step"><strong>Facebookページを追加する</strong><br>設定の「ページ」で「追加」を押し、「楽スタデモ村上店」を選びます。承認確認が出たら画面の案内どおりに進みます。</div>
           <div class="step"><strong>Instagramを追加する</strong><br>設定の「Instagramアカウント」で「追加」を押し、「rakusta_demo_murakami」でログインします。SMSや2段階認証が出たら、村上さんが画面で入力します。</div>
-          <div class="step"><strong>BANTEX投稿Botから見えるか確認する</strong><br>BANTEX投稿Botで、追加したFacebookページとInstagramが選べることを確認します。既存店舗のページやInstagramは外しません。</div>
-          <div class="step"><strong>Instagram User IDを確認する</strong><br>Graph API Explorerを使う場合は、BANTEX投稿Botを選んで <code>/me/accounts?fields=id,name,instagram_business_account{id,username}&amp;limit=100</code> を実行します。</div>
+          <div class="step"><strong>既存店舗を触っていないか確認する</strong><br>既存店舗のページやInstagramは外しません。共通tokenやRender設定も変更しません。</div>
+          <div class="step"><strong>Instagram User IDを確認する</strong><br>Meta Business SuiteのInstagramアカウント詳細、またはBANTEX側の安全な確認で <code>1784...</code> の数字を確認します。</div>
         </div>
         <table class="card-table">
           <thead><tr><th>確認するもの</th><th>正しい例</th><th>注意</th></tr></thead>
@@ -575,7 +575,7 @@
             <tr><td>FacebookページURL</td><td>Facebookページを開いたURL</td><td>分かる場合だけ入れます</td></tr>
             <tr><td>Facebook Page ID</td><td>Metaで確認した数字</td><td>分からなければ空欄でも進め、後で確認します</td></tr>
             <tr><td>Meta App ID</td><td><code>1157880256443341</code></td><td>BANTEX投稿BotのApp IDです。画面の指示が違う場合だけBANTEX側で確認します</td></tr>
-            <tr><td>Instagram User ID</td><td>手順5で確認した <code>1784...</code> の数字</td><td>ユーザー名ではなく数字を入れます</td></tr>
+            <tr><td>Instagram User ID</td><td>Meta Business SuiteまたはBANTEX側確認で取得した <code>1784...</code> の数字</td><td>ユーザー名ではなく数字を入れます</td></tr>
             <tr><td>Instagram API base</td><td>通常は表示された初期値のまま</td><td>変更が必要な場合だけBANTEX担当に確認します</td></tr>
             <tr><td>Token運用方式</td><td>BANTEX共通System User token</td><td>店舗別tokenは選びません</td></tr>
             <tr><td>Instagram Access Token</td><td>空欄</td><td>BANTEX共通方式ではここにtokenを貼りません</td></tr>
@@ -637,7 +637,7 @@
             <tr><td>店舗が検索に出ない</td><td>店舗管理</td><td>サービス提供者権限で新規店舗追加してからSNS管理へ戻る</td></tr>
             <tr><td>LINEから送っても反応しない</td><td>LINE DevelopersとココトモSNS管理画面</td><td>Webhook、Token、Secret、SNS投稿ONを確認</td></tr>
             <tr><td>Instagram User IDが分からない</td><td>BANTEX側Meta確認</td><td><code>rakusta_demo_murakami</code> ではなく <code>1784...</code> の数字を探す</td></tr>
-            <tr><td>Instagram投稿だけ失敗する</td><td>Meta BusinessとToken運用方式</td><td>InstagramがBANTEX投稿Botから見えるか、Token運用方式がBANTEX共通か確認</td></tr>
+            <tr><td>Instagram投稿だけ失敗する</td><td>Meta BusinessとToken運用方式</td><td>既存tokenは触らず、ページ/Instagramの資産追加、Instagramリンク、Token運用方式がBANTEX共通か確認</td></tr>
           </tbody>
         </table>
         <div class="danger">パスワード、SMSコード、Secret、tokenをチャットに貼らないでください。</div>
