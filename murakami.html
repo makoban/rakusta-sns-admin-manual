@@ -99,7 +99,7 @@
     .danger { background: var(--soft-red); border-color: #fecaca; color: #7f1d1d; }
     .make-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
       margin-top: 14px;
     }
@@ -276,7 +276,7 @@
   <div class="layout">
     <aside>
       <h1>村上さん専用<br>いちばん簡単な作成手順</h1>
-      <div class="version">2026-06-22 / 初心者用</div>
+      <div class="version">2026-06-25 / 初心者用</div>
       <nav>
         <a href="#start">最初に見る</a>
         <a href="#what">作るもの</a>
@@ -286,8 +286,8 @@
         <a href="#facebook-page">2. Facebookページ</a>
         <a href="#instagram">3. Instagram</a>
         <a href="#line">4. 公式LINE</a>
-        <a href="#bantex">5. BANTEX確認</a>
-        <a href="#rakusta">6. 楽スタ登録</a>
+        <a href="#bantex">5. BANTEX/Meta</a>
+        <a href="#rakusta">6. ココトモSNS登録</a>
         <a href="#test">7. LINEテスト</a>
         <a href="#stop">止まったとき</a>
         <a href="index.html">全体マニュアルへ戻る</a>
@@ -296,24 +296,26 @@
     <main>
       <div class="hero" id="start">
         <h2>村上さんが作るものだけを、上から順番に作るページです</h2>
-        <p>むずかしい説明は飛ばします。このページの順番どおりに作ると、最後にLINEへ写真と文を送って、Instagram投稿テストができます。</p>
+        <p>むずかしい言葉はできるだけ言い換えます。Facebook、Instagram、LINE、BANTEX確認、ココトモSNS管理画面まで、順番に進めるページです。</p>
         <div class="badges">
           <span class="badge">Facebookも新しく作る</span>
           <span class="badge">名前はデモ用</span>
+          <span class="badge">管理画面も飛ばさない</span>
           <span class="badge">パスワードはここに書かない</span>
           <span class="badge">困ったら止める</span>
         </div>
       </div>
 
       <section id="what">
-        <h2>まず大きく見る: 作るものは4つ、最後に登録</h2>
-        <p class="lead">今日やることはこれだけです。上から順番に進みます。</p>
+        <h2>まず大きく見る: 作るものは4つ、最後に2つの管理画面へ登録</h2>
+        <p class="lead">今日やることはこれだけです。上から順番に進みます。途中で出てくる管理画面も、このページの中で扱います。</p>
         <div class="make-grid">
           <div class="make-card"><strong>1</strong><span>Facebook個人</span><small>村上さん本人のアカウント</small></div>
           <div class="make-card"><strong>2</strong><span>Facebookページ</span><small>楽スタデモ村上店</small></div>
           <div class="make-card"><strong>3</strong><span>Instagram</span><small>投稿が出る場所</small></div>
           <div class="make-card"><strong>4</strong><span>公式LINE</span><small>写真と文を送る場所</small></div>
-          <div class="make-card"><strong>5</strong><span>BANTEX確認と楽スタ登録</span><small>LINEとInstagramをつなぐ</small></div>
+          <div class="make-card"><strong>5</strong><span>BANTEX/Meta確認</span><small>InstagramをBANTEXから見えるようにする</small></div>
+          <div class="make-card"><strong>6</strong><span>ココトモSNS登録</span><small>LINEとInstagramをつなぐ</small></div>
         </div>
         <div class="ok">
           最後は、公式LINEに「写真」と「文」を送って、楽スタに投稿案が出るか見ます。
@@ -345,7 +347,8 @@
           <li>Instagram用に決めたパスワード</li>
           <li>LINEにログインできるアカウント</li>
           <li>テスト投稿に使う写真1枚</li>
-          <li>楽スタ管理画面のログイン情報</li>
+          <li>BANTEX管理者でMeta Business Suiteに入れるログイン情報</li>
+          <li>ココトモSNS管理画面に入れるログイン情報</li>
         </ul>
         <div class="danger">
           パスワード、SMSコード、LINEのSecret、tokenは、このページやチャットに書かないでください。画面に直接入力します。
@@ -445,24 +448,46 @@
 
       <section id="bantex">
         <h2>5. BANTEXでInstagramを使えるようにする</h2>
-        <p class="lead">ここはBANTEX管理者ログインが必要です。作ったInstagramをBANTEXから見える状態にします。</p>
+        <p class="lead">ここはBANTEX管理者ログインを使います。村上さんが作ったFacebookページとInstagramを、BANTEX投稿Botから見える状態にします。</p>
+        <div class="warn">BANTEX管理者ログインを持っていない場合は、この章だけ担当者に代わってもらいます。持っている場合は、このまま進めます。</div>
         <figure class="shot">
           <img src="assets/screenshots/meta_business_home.png" alt="Meta Business Suiteログイン画面">
           <span class="pin" style="--x:68%;--y:43%;">1</span>
           <span class="pin" style="--x:67%;--y:50%;">2</span>
           <figcaption><span class="callout">1</span>BANTEX管理者でログイン。<span class="callout">2</span>Instagram確認が出たら、作ったInstagramを選びます。</figcaption>
         </figure>
-        <div class="do-list">
-          <div class="do-item"><strong>やること:</strong> Facebookページ「楽スタデモ村上店」をBANTEXに追加します。</div>
-          <div class="do-item"><strong>やること:</strong> Instagram「rakusta_demo_murakami」をBANTEXに追加します。</div>
-          <div class="do-item"><strong>確認:</strong> BANTEX投稿Botから、このInstagramが見えるか確認します。</div>
+        <h3>開く画面</h3>
+        <table class="card-table">
+          <thead><tr><th>画面</th><th>開く場所</th><th>やること</th></tr></thead>
+          <tbody>
+            <tr><td>Meta Business Suite</td><td><a href="https://business.facebook.com/" target="_blank" rel="noopener">business.facebook.com</a></td><td>BANTEX管理者でログインする</td></tr>
+            <tr><td>ページ</td><td>設定 → アカウント → ページ</td><td>Facebookページ「楽スタデモ村上店」を追加する</td></tr>
+            <tr><td>Instagramアカウント</td><td>設定 → アカウント → Instagramアカウント</td><td>Instagram「rakusta_demo_murakami」を追加する</td></tr>
+            <tr><td>BANTEX投稿Bot確認</td><td>BANTEX投稿BotまたはGraph API Explorer</td><td>Instagram User IDの数字を確認する</td></tr>
+          </tbody>
+        </table>
+        <div class="steps">
+          <div class="step"><strong>Meta Business Suiteを開く</strong><br>BANTEX管理者でログインし、BANTEX用のBusiness Portfolioを選びます。</div>
+          <div class="step"><strong>Facebookページを追加する</strong><br>設定の「ページ」で「追加」を押し、「楽スタデモ村上店」を選びます。承認確認が出たら画面の案内どおりに進みます。</div>
+          <div class="step"><strong>Instagramを追加する</strong><br>設定の「Instagramアカウント」で「追加」を押し、「rakusta_demo_murakami」でログインします。SMSや2段階認証が出たら、村上さんが画面で入力します。</div>
+          <div class="step"><strong>BANTEX投稿Botから見えるか確認する</strong><br>BANTEX投稿Botで、追加したFacebookページとInstagramが選べることを確認します。既存店舗のページやInstagramは外しません。</div>
+          <div class="step"><strong>Instagram User IDを確認する</strong><br>Graph API Explorerを使う場合は、BANTEX投稿Botを選んで <code>/me/accounts?fields=id,name,instagram_business_account{id,username}&amp;limit=100</code> を実行します。</div>
         </div>
-        <div class="warn">ここで分からなければ止めてください。Instagram User IDはBANTEX側で確認してから、次の楽スタ管理画面に入れます。</div>
+        <table class="card-table">
+          <thead><tr><th>確認するもの</th><th>正しい例</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>Instagramユーザー名</td><td><code>rakusta_demo_murakami</code></td><td>ユーザー名は文字です</td></tr>
+            <tr><td>Instagram User ID</td><td><code>1784...</code> で始まる数字</td><td>ココトモSNS管理画面に入れるのはこの数字です</td></tr>
+            <tr><td>Facebookページ</td><td>楽スタデモ村上店</td><td>Instagramと同じデモ店舗用ページを選びます</td></tr>
+          </tbody>
+        </table>
+        <div class="ok">ここまでできたら、次はココトモSNS管理画面に登録します。</div>
       </section>
 
       <section id="rakusta">
-        <h2>6. 楽スタ管理画面に登録する</h2>
-        <p class="lead">ここで、作ったLINEとInstagramを楽スタに登録します。</p>
+        <h2>6. ココトモSNS管理画面に登録する</h2>
+        <p class="lead">マニュアル内で「楽スタ管理画面」と呼んでいた画面です。画面上の名前は「ココトモSNS 管理画面」と出ます。</p>
+        <div class="note">開くURL: <a href="https://kokotomo-sns.bantex.jp/sns-admin?q=%E6%A5%BD%E3%82%B9%E3%82%BF" target="_blank" rel="noopener">https://kokotomo-sns.bantex.jp/sns-admin?q=楽スタ</a></div>
         <figure class="shot">
           <img src="assets/screenshots/rakusta_dashboard_login.png" alt="楽スタ管理画面ログイン">
           <span class="pin" style="--x:66%;--y:40%;">1</span>
@@ -470,12 +495,29 @@
           <span class="pin" style="--x:66%;--y:62%;">3</span>
           <figcaption><span class="callout">1</span>ユーザーID。<span class="callout">2</span>パスワード。<span class="callout">3</span>ログイン。</figcaption>
         </figure>
+        <div class="steps">
+          <div class="step"><strong>ココトモSNS管理画面を開く</strong><br>上のURLを開き、ユーザーIDとパスワードでログインします。パスワードはチャットに書かず、画面に直接入力します。</div>
+          <div class="step"><strong>店舗を検索する</strong><br>検索欄に「楽スタデモ村上店」または「楽スタ」と入れて検索します。</div>
+          <div class="step"><strong>店舗がない場合は作る</strong><br>「店舗管理」画面で「新規店舗追加」を押し、店舗名を「楽スタデモ村上店」にして登録します。所属組織を選ぶ画面が出たら、検証用は <code>TEST</code> などBANTEX側の検証用組織を選びます。新規追加はサービス提供者権限のログインだけでできます。</div>
+          <div class="step"><strong>SNS管理へ戻る</strong><br>もう一度 <code>/sns-admin?q=楽スタ</code> を開き、「楽スタデモ村上店」を選びます。</div>
+        </div>
         <figure class="shot">
           <img src="assets/screenshots/rakusta_admin_search_rakusta.png" alt="楽スタSNS管理画面 店舗検索">
           <span class="pin" style="--x:46%;--y:18%;">1</span>
           <span class="pin" style="--x:72%;--y:18%;">2</span>
           <figcaption><span class="callout">1</span>店舗検索。<span class="callout">2</span>「楽スタデモ村上店」を開きます。なければ新しく作ります。</figcaption>
         </figure>
+        <h3>公開・ログイン欄</h3>
+        <table class="card-table">
+          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>店舗名</td><td>楽スタデモ村上店</td><td>「デモ」を残します</td></tr>
+            <tr><td>SNS店舗URL slug</td><td><code>rakusta_demo_murakami</code></td><td>英数字とアンダーバーだけにします</td></tr>
+            <tr><td>SNSログインID</td><td><code>rakusta_demo_murakami</code></td><td>迷ったらslugと同じにします</td></tr>
+            <tr><td>SNS投稿を有効化</td><td>ON</td><td>OFFだとLINEから送っても投稿対象になりません</td></tr>
+            <tr><td>ログイン必須</td><td>ON</td><td>お客様用画面を外部から見せないためです</td></tr>
+          </tbody>
+        </table>
         <figure class="shot">
           <img src="assets/screenshots/rakusta_admin_line_instagram_visible.png" alt="楽スタ管理画面 LINEとInstagram設定">
           <span class="pin" style="--x:26%;--y:35%;">1</span>
@@ -484,14 +526,29 @@
           <span class="pin" style="--x:89%;--y:83%;">4</span>
           <figcaption><span class="callout">1</span>LINE情報。<span class="callout">2</span>Instagram情報。<span class="callout">3</span>Token運用方式。<span class="callout">4</span>保存。</figcaption>
         </figure>
+        <h3>LINE Bot連携欄</h3>
         <table class="card-table">
           <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
           <tbody>
-            <tr><td>店舗名</td><td>楽スタデモ村上店</td><td>「デモ」を残す</td></tr>
-            <tr><td>LINE情報</td><td>LINE DevelopersのTokenとSecret</td><td>貼ったら保存。メモに残さない</td></tr>
-            <tr><td>Instagram名</td><td><code>rakusta_demo_murakami</code></td><td>実際に取れた名前を入れる</td></tr>
-            <tr><td>Instagram User ID</td><td>BANTEX側で確認したID</td><td>分からなければここで止める</td></tr>
-            <tr><td>Token運用方式</td><td>BANTEX共通</td><td>店舗ごとのtokenは作らない</td></tr>
+            <tr><td>Channel Access Token</td><td>LINE Developersで発行した長い文字列</td><td>貼ったらメモに残しません</td></tr>
+            <tr><td>Channel Secret</td><td>LINE Developersに表示されるSecret</td><td>貼ったらメモに残しません</td></tr>
+            <tr><td>Webhook URL</td><td><code>https://kokotomo-toc-bot.onrender.com/callback</code></td><td>LINE側にも同じURLを入れます</td></tr>
+          </tbody>
+        </table>
+        <h3>Instagram / Meta API連携欄</h3>
+        <table class="card-table">
+          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>Instagramアカウント名</td><td><code>rakusta_demo_murakami</code></td><td>実際に取れたユーザー名を入れます</td></tr>
+            <tr><td>Instagram URL</td><td><code>https://www.instagram.com/rakusta_demo_murakami/</code></td><td>末尾にスラッシュがあっても大丈夫です</td></tr>
+            <tr><td>Facebookページ名</td><td>楽スタデモ村上店</td><td>手順2で作ったページ名です</td></tr>
+            <tr><td>FacebookページURL</td><td>Facebookページを開いたURL</td><td>分かる場合だけ入れます</td></tr>
+            <tr><td>Facebook Page ID</td><td>Metaで確認した数字</td><td>分からなければ空欄でも進め、後で確認します</td></tr>
+            <tr><td>Meta App ID</td><td><code>1157880256443341</code></td><td>BANTEX投稿BotのApp IDです。画面の指示が違う場合だけBANTEX側で確認します</td></tr>
+            <tr><td>Instagram User ID</td><td>手順5で確認した <code>1784...</code> の数字</td><td>ユーザー名ではなく数字を入れます</td></tr>
+            <tr><td>Instagram API base</td><td>通常は表示された初期値のまま</td><td>変更が必要な場合だけBANTEX担当に確認します</td></tr>
+            <tr><td>Token運用方式</td><td>BANTEX共通System User token</td><td>店舗別tokenは選びません</td></tr>
+            <tr><td>Instagram Access Token</td><td>空欄</td><td>BANTEX共通方式ではここにtokenを貼りません</td></tr>
           </tbody>
         </table>
         <figure class="shot">
@@ -500,12 +557,28 @@
           <span class="pin" style="--x:66%;--y:30%;">2</span>
           <figcaption><span class="callout">1</span>有効状態。<span class="callout">2</span>投稿時間。</figcaption>
         </figure>
+        <h3>契約・投稿設定欄</h3>
+        <table class="card-table">
+          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td>契約状態</td><td>デモまたは有効</td><td>練習ならデモと分かる状態にします</td></tr>
+            <tr><td>LINE投稿依頼時の扱い</td><td>通常は予約投稿</td><td>すぐ投稿したい検証だけ即時投稿にします</td></tr>
+            <tr><td>予約投稿時刻</td><td><code>14:00</code> と <code>20:00</code></td><td>1日2回の例です</td></tr>
+            <tr><td>LINE完了通知</td><td>ON</td><td>テスト時に結果が分かりやすくなります</td></tr>
+          </tbody>
+        </table>
         <figure class="shot">
           <img src="assets/screenshots/rakusta_admin_image_save_visible.png" alt="楽スタ管理画面 画像加工と保存">
           <span class="pin" style="--x:35%;--y:36%;">1</span>
           <span class="pin" style="--x:89%;--y:84%;">2</span>
           <figcaption><span class="callout">1</span>画像設定。<span class="callout">2</span>最後に保存。</figcaption>
         </figure>
+        <h3>最後に保存して確認</h3>
+        <div class="steps">
+          <div class="step"><strong>保存する</strong><br>画面の下または右下にある保存ボタンを押します。</div>
+          <div class="step"><strong>設定済み表示を見る</strong><br>上部の状態表示で、LINEが設定済、Instagram APIがOKまたはBANTEX共通方式になっていることを見ます。</div>
+          <div class="step"><strong>SNSダッシュボードを開く</strong><br>店舗名の近くにある「SNSダッシュボード」を開き、投稿案を見る画面へ進めることを確認します。</div>
+        </div>
       </section>
 
       <section id="test">
@@ -529,8 +602,11 @@
             <tr><td>SMSが来ない</td><td>FacebookまたはInstagramの画面</td><td>電話番号を確認。何度も押しすぎない</td></tr>
             <tr><td>本人確認が出た</td><td>Facebook画面</td><td>村上さん本人が処理。分からなければ止める</td></tr>
             <tr><td>Instagram名が使えない</td><td>Instagram登録画面</td><td><code>rakusta_demo_murakami01</code> などにする</td></tr>
-            <tr><td>LINEから送っても反応しない</td><td>LINE Developersと楽スタ管理画面</td><td>Webhook、Token、Secretを確認</td></tr>
-            <tr><td>Instagram User IDが分からない</td><td>BANTEX側Meta確認</td><td>ここは1人で進めず、BANTEX管理者に確認</td></tr>
+            <tr><td>ココトモSNS管理画面に入れない</td><td>ログイン画面</td><td>BANTEX側の管理者ログイン情報を確認。パスワードはチャットに書かない</td></tr>
+            <tr><td>店舗が検索に出ない</td><td>店舗管理</td><td>サービス提供者権限で新規店舗追加してからSNS管理へ戻る</td></tr>
+            <tr><td>LINEから送っても反応しない</td><td>LINE DevelopersとココトモSNS管理画面</td><td>Webhook、Token、Secret、SNS投稿ONを確認</td></tr>
+            <tr><td>Instagram User IDが分からない</td><td>BANTEX側Meta確認</td><td><code>rakusta_demo_murakami</code> ではなく <code>1784...</code> の数字を探す</td></tr>
+            <tr><td>Instagram投稿だけ失敗する</td><td>Meta BusinessとToken運用方式</td><td>InstagramがBANTEX投稿Botから見えるか、Token運用方式がBANTEX共通か確認</td></tr>
           </tbody>
         </table>
         <div class="danger">パスワード、SMSコード、Secret、tokenをチャットに貼らないでください。</div>
