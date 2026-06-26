@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>楽スタ 店舗用設定 スマホ操作マニュアル</title>
+    <style>
+        :root {
+            --ink: #172026;
+            --text: #34404a;
+            --muted: #66737e;
+            --line: #dfe6ec;
+            --soft: #f5f8fa;
+            --blue: #1463ff;
+            --green: #08784f;
+            --orange: #b45a00;
+            --red: #b42318;
+            --card: #fff;
+            --radius: 8px;
+            --shadow: 0 12px 34px rgba(21, 32, 43, .08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: #edf2f6;
+            font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.75;
+            letter-spacing: 0;
+        }
+        a { color: var(--blue); }
+        .wrap { width: min(980px, calc(100% - 28px)); margin: 0 auto; }
+        header {
+            background: #101820;
+            color: #fff;
+            padding: 34px 0 28px;
+        }
+        .eyebrow {
+            margin: 0 0 10px;
+            color: #9bc2ff;
+            font-size: .84rem;
+            font-weight: 800;
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(1.9rem, 8vw, 2.8rem);
+            line-height: 1.18;
+            overflow-wrap: anywhere;
+        }
+        .lead {
+            margin: 14px 0 0;
+            color: #dbe6f0;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 4px 10px;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 999px;
+            background: rgba(255,255,255,.08);
+            color: #fff;
+            font-size: .82rem;
+            font-weight: 800;
+        }
+        main { padding: 22px 0 48px; }
+        .notice {
+            margin: 0 0 18px;
+            padding: 15px 16px;
+            border: 1px solid #b9d2ff;
+            border-left: 6px solid var(--blue);
+            border-radius: var(--radius);
+            background: #eef5ff;
+            color: #193b68;
+            font-weight: 800;
+        }
+        nav {
+            margin-bottom: 18px;
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: var(--shadow);
+        }
+        nav h2 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+        }
+        nav a {
+            display: block;
+            padding: 8px 0;
+            color: var(--text);
+            text-decoration: none;
+            font-size: .94rem;
+            font-weight: 800;
+            border-top: 1px solid #eef2f5;
+        }
+        section {
+            margin-bottom: 16px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .section-head {
+            padding: 18px 18px 16px;
+            border-bottom: 1px solid var(--line);
+            background: #f9fbfd;
+        }
+        .section-head h2 {
+            margin: 0;
+            font-size: 1.28rem;
+            line-height: 1.35;
+        }
+        .section-head p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: .94rem;
+            font-weight: 700;
+        }
+        .body {
+            padding: 18px;
+            overflow-wrap: anywhere;
+        }
+        h3 {
+            margin: 20px 0 9px;
+            font-size: 1.02rem;
+            line-height: 1.4;
+        }
+        h3:first-child { margin-top: 0; }
+        p { margin: 0 0 12px; }
+        ul, ol { margin: 0 0 14px 1.25rem; padding: 0; }
+        li { margin: 6px 0; }
+        code {
+            padding: 2px 5px;
+            border-radius: 5px;
+            background: #eef2f5;
+            color: #172026;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: .9em;
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+        .ok, .warn, .ng {
+            padding: 12px 14px;
+            border-radius: var(--radius);
+            margin: 12px 0;
+            font-weight: 760;
+        }
+        .ok { border: 1px solid #b9e3cf; background: #effaf4; color: #125c3e; }
+        .warn { border: 1px solid #ffd8a8; background: #fff7ed; color: #8a4300; }
+        .ng { border: 1px solid #ffcdc8; background: #fff3f2; color: var(--red); }
+        .steps {
+            list-style: none;
+            margin-left: 0;
+            counter-reset: step;
+        }
+        .steps li {
+            position: relative;
+            padding: 10px 10px 10px 42px;
+            border: 1px solid #e8eef3;
+            border-radius: 7px;
+            background: #fff;
+        }
+        .steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            background: var(--blue);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-size: .82rem;
+            font-weight: 900;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 12px 0 16px;
+        }
+        .card {
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #fff;
+        }
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: .98rem;
+        }
+        table {
+            width: 100%;
+            margin: 12px 0 16px;
+            border-collapse: collapse;
+            font-size: .92rem;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #f3f6f9;
+            font-weight: 900;
+        }
+        .footer-note {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: .86rem;
+        }
+        @media (max-width: 720px) {
+            .wrap { width: min(100% - 22px, 980px); }
+            header { padding: 28px 0 24px; }
+            .cards { grid-template-columns: 1fr; }
+            table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .body, .section-head { padding-left: 14px; padding-right: 14px; }
+        }
+        @media print {
+            body { background: #fff; }
+            header { padding: 24px 0; }
+            nav { display: none; }
+            section { box-shadow: none; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <p class="eyebrow">楽スタ / お客様用</p>
+            <h1>スマホで店舗用設定を変更する方法</h1>
+            <p class="lead">予約投稿時刻、業種、LINE完了通知、店舗プロフィール、AI生成ルールをスマホから変更するためのマニュアルです。</p>
+            <div class="meta">
+                <span class="pill">最終更新: 2026-06-26</span>
+                <span class="pill">スマホ対応</span>
+                <span class="pill">お客様共有可</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <p class="notice">契約内容、LINEの接続情報、Instagramの接続情報はBANTEX側で管理します。店舗側で変更するのは、投稿時刻と店舗情報だけです。</p>
+
+            <nav aria-label="目次">
+                <h2>目次</h2>
+                <a href="index.html">マニュアル一覧へ戻る</a>
+                <a href="#open">1. 設定画面を開く</a>
+                <a href="#contract">2. 契約で決まっていることを見る</a>
+                <a href="#store">3. 店舗用設定を変更する</a>
+                <a href="#profile">4. 店舗プロフィールを入力する</a>
+                <a href="#ai">5. AI生成ルールを入力する</a>
+                <a href="#required">6. 必須表示情報の書き方</a>
+                <a href="#dont-touch">7. 店舗側で変更しないもの</a>
+                <a href="#trouble">8. 困った時</a>
+            </nav>
+
+            <section id="open">
+                <div class="section-head">
+                    <h2>1. 設定画面を開く</h2>
+                    <p>スマホのSafariまたはChromeで開きます。</p>
+                </div>
+                <div class="body">
+                    <ol class="steps">
+                        <li>BANTEXから案内された店舗用URLを開きます。例: <code>https://kokotomo-sns.bantex.jp/店舗名</code></li>
+                        <li>ログイン画面が出た場合は、案内されたIDとパスワードでログインします。</li>
+                        <li>投稿一覧または投稿確認画面の右上にあるメニュー、または「設定」ボタンを押します。</li>
+                        <li>右側から設定画面が開きます。見たい項目をタップして開きます。</li>
+                    </ol>
+                    <div class="warn">保存ボタンは設定の種類ごとに分かれています。時刻を変えたら「店舗用設定」の保存、プロフィールを変えたら「店舗情報・AI生成ルールを保存」を押してください。</div>
+                </div>
+            </section>
+
+            <section id="contract">
+                <div class="section-head">
+                    <h2>2. 契約で決まっていることを見る</h2>
+                    <p>確認専用です。店舗側では変更できません。</p>
+                </div>
+                <div class="body">
+                    <table>
+                        <tr><th>表示</th><th>意味</th></tr>
+                        <tr><td>1日の投稿回数</td><td>契約上、1日に自動投稿できる回数です。予約時刻はこの回数の範囲で設定します。</td></tr>
+                        <tr><td>画像加工</td><td>写真の明るさや色味をAIで整える契約があるかどうかです。</td></tr>
+                    </table>
+                    <div class="ok">例: 1日の投稿回数が2回なら、予約時刻は2つまで設定できます。</div>
+                    <div class="warn">投稿回数や画像加工の有無を変更したい場合は、店舗画面ではなくBANTEXへ連絡してください。</div>
+                </div>
+            </section>
+
+            <section id="store">
+                <div class="section-head">
+                    <h2>3. 店舗用設定を変更する</h2>
+                    <p>日々の運用で一番よく使う設定です。</p>
+                </div>
+                <div class="body">
+                    <ol class="steps">
+                        <li>設定画面で「店舗用設定」を開きます。</li>
+                        <li>「投稿時刻」を変更します。準備できている投稿が、この時刻の枠に順番に入ります。</li>
+                        <li>「業種」を選びます。投稿文の雰囲気や注意事項の初期設定に使われます。</li>
+                        <li>「LINE完了通知」を選びます。送るにすると、Instagram投稿後にLINEへ完了メッセージが届きます。</li>
+                        <li>「保存」を押します。</li>
+                    </ol>
+                    <div class="warn">投稿時刻を空にした場合は、システム側の標準時刻に戻ることがあります。使いたい時刻を必ず入れて保存してください。</div>
+                </div>
+            </section>
+
+            <section id="profile">
+                <div class="section-head">
+                    <h2>4. 店舗プロフィールを入力する</h2>
+                    <p>AIが投稿文を書く時の前提情報です。</p>
+                </div>
+                <div class="body">
+                    <table>
+                        <tr><th>項目</th><th>入力例</th><th>使われ方</th></tr>
+                        <tr><td>店舗名・ブランド名</td><td>〇〇クリニック</td><td>投稿文に自然に店名を入れる時に使います。</td></tr>
+                        <tr><td>業種・概要</td><td>内科クリニック、美容サロン、デイサービス</td><td>何のお店・施設かをAIに伝えます。</td></tr>
+                        <tr><td>所在地・エリア</td><td>東京・日本橋人形町</td><td>地域名や市区町村を使う時の参考にします。</td></tr>
+                        <tr><td>店長・責任者</td><td>院長 山田、店長 佐藤</td><td>担当者らしさを出したい場合に使います。</td></tr>
+                        <tr><td>主なサービス</td><td>診療案内、定期検診、ヘアカット、ランチ</td><td>写真だけでは分からない内容の補足に使います。</td></tr>
+                        <tr><td>フロア・店舗構成</td><td>受付、待合、施術室、相談室</td><td>写真に写る場所の説明に使います。</td></tr>
+                        <tr><td>想定読者・お客様</td><td>地域の患者さま、保護者、初回来店の方</td><td>誰に向けた投稿かを調整します。</td></tr>
+                    </table>
+                    <div class="ok">全部を完璧に書く必要はありません。まずは店名、業種、所在地、主なサービスだけでも大丈夫です。</div>
+                </div>
+            </section>
+
+            <section id="ai">
+                <div class="section-head">
+                    <h2>5. AI生成ルールを入力する</h2>
+                    <p>投稿文や画像加工の方向性を決めます。</p>
+                </div>
+                <div class="body">
+                    <div class="cards">
+                        <div class="card">
+                            <h3>投稿文の雰囲気</h3>
+                            <p>例: 安心感、清潔感、親しみやすさ。医療系は絵文字控えめ。</p>
+                        </div>
+                        <div class="card">
+                            <h3>投稿文ルール</h3>
+                            <p>例: 写真とメモから分かる事実を優先し、問い合わせにつながる自然な一文を入れる。</p>
+                        </div>
+                        <div class="card">
+                            <h3>画像加工ルール</h3>
+                            <p>例: 明るさ・色味・傾きを自然に整える。人物や商品を別物にしない。</p>
+                        </div>
+                        <div class="card">
+                            <h3>NG・注意事項</h3>
+                            <p>例: 効果保証、個人情報、未確認の価格やキャンペーンは書かない。</p>
+                        </div>
+                    </div>
+                    <div class="warn">画像加工ルールとAI顔ぼかしは、画像加工ありの契約で表示されます。表示されない場合は、現在の契約では使わない項目です。</div>
+                    <div class="ok">LINEで送るその投稿だけのメモがある場合は、その投稿ではLINEメモが優先されます。</div>
+                </div>
+            </section>
+
+            <section id="required">
+                <div class="section-head">
+                    <h2>6. 必須表示情報の書き方</h2>
+                    <p>投稿文の末尾に毎回そのまま追加したい情報です。</p>
+                </div>
+                <div class="body">
+                    <p>施設名、住所、電話番号、営業時間など、投稿文から抜けると困る情報を入れます。</p>
+                    <table>
+                        <tr><th>入力例</th></tr>
+                        <tr><td><code>施設名: 〇〇クリニック<br>住所: 〇〇市〇〇町1-2-3<br>電話番号: 000-0000-0000<br>診療時間: 平日9:00-18:00</code></td></tr>
+                    </table>
+                    <div class="ok">この欄はLINEメモとは別です。LINEメモはその投稿だけの指示、必須表示情報は毎回入れる固定情報です。</div>
+                    <div class="warn">個人名、個人の電話番号、未確定の料金、期間が終わったキャンペーンは入れないでください。</div>
+                </div>
+            </section>
+
+            <section id="dont-touch">
+                <div class="section-head">
+                    <h2>7. 店舗側で変更しないもの</h2>
+                    <p>接続や契約に関わる内容です。</p>
+                </div>
+                <div class="body">
+                    <ul>
+                        <li>LINE Channel Access Token</li>
+                        <li>LINE Channel Secret</li>
+                        <li>Instagram Business Account ID</li>
+                        <li>Facebook Page ID</li>
+                        <li>1日の投稿回数そのもの</li>
+                        <li>画像加工の契約有無</li>
+                        <li>「今すぐ投稿」ボタンの表示設定</li>
+                    </ul>
+                    <div class="warn">「今すぐ投稿」ボタンは、BANTEX側でテスト用に表示している場合があります。表示されない場合は店舗側の設定ミスではありません。</div>
+                </div>
+            </section>
+
+            <section id="trouble">
+                <div class="section-head">
+                    <h2>8. 困った時</h2>
+                    <p>よくある状況です。</p>
+                </div>
+                <div class="body">
+                    <table>
+                        <tr><th>状況</th><th>対応</th></tr>
+                        <tr><td>設定ボタンが見つからない</td><td>画面右上のメニュー、または投稿一覧・投稿詳細の「設定」を探してください。</td></tr>
+                        <tr><td>保存しても変わらない</td><td>変更した欄の下にある保存ボタンを押したか確認してください。保存ボタンは設定の種類ごとに分かれています。</td></tr>
+                        <tr><td>投稿時刻が増やせない</td><td>1日の投稿回数は契約で決まります。増やしたい場合はBANTEXへ連絡してください。</td></tr>
+                        <tr><td>画像加工ルールが出ない</td><td>画像加工なしの契約では表示されません。</td></tr>
+                        <tr><td>LINE完了通知が届かない</td><td>LINE完了通知が「送る」になっているか確認してください。月間上限に達している場合は送られないことがあります。</td></tr>
+                    </table>
+                    <p class="footer-note">このマニュアルはお客様向けです。接続設定や契約設定の変更が必要な場合は、BANTEXへ連絡してください。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

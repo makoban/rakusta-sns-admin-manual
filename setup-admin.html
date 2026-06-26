@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>楽スタSNS 初期設定マニュアル</title>
+    <style>
+        :root {
+            --ink: #172026;
+            --text: #34404a;
+            --muted: #66737e;
+            --line: #dfe6ec;
+            --soft: #f5f8fa;
+            --blue: #1463ff;
+            --green: #08784f;
+            --orange: #b45a00;
+            --red: #b42318;
+            --card: #fff;
+            --radius: 8px;
+            --shadow: 0 12px 34px rgba(21, 32, 43, .08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: #edf2f6;
+            font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.75;
+            letter-spacing: 0;
+        }
+        a { color: var(--blue); }
+        .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+        header {
+            background: #101820;
+            color: #fff;
+            padding: 42px 0 34px;
+        }
+        .eyebrow {
+            margin: 0 0 12px;
+            color: #9bc2ff;
+            font-size: .86rem;
+            font-weight: 800;
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 3.15rem);
+            line-height: 1.15;
+            overflow-wrap: anywhere;
+        }
+        .lead {
+            max-width: 820px;
+            margin: 16px 0 0;
+            color: #dbe6f0;
+            font-size: 1.04rem;
+            font-weight: 700;
+        }
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 4px 10px;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 999px;
+            background: rgba(255,255,255,.08);
+            color: #fff;
+            font-size: .82rem;
+            font-weight: 800;
+        }
+        main { padding: 28px 0 56px; }
+        .notice {
+            margin: 0 0 20px;
+            padding: 16px 18px;
+            border: 1px solid #b9d2ff;
+            border-left: 6px solid var(--blue);
+            border-radius: var(--radius);
+            background: #eef5ff;
+            color: #193b68;
+            font-weight: 800;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+        nav {
+            position: sticky;
+            top: 16px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: var(--shadow);
+        }
+        nav h2 {
+            margin: 0 0 10px;
+            font-size: 1rem;
+        }
+        nav a {
+            display: block;
+            padding: 7px 0;
+            color: var(--text);
+            text-decoration: none;
+            font-size: .92rem;
+            font-weight: 800;
+            border-top: 1px solid #eef2f5;
+        }
+        nav a:hover { color: var(--blue); }
+        section {
+            margin-bottom: 18px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .section-head {
+            padding: 20px 22px;
+            border-bottom: 1px solid var(--line);
+            background: #f9fbfd;
+        }
+        .section-head h2 {
+            margin: 0;
+            font-size: 1.34rem;
+            line-height: 1.35;
+        }
+        .section-head p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: .94rem;
+            font-weight: 700;
+        }
+        .body {
+            padding: 20px 22px 22px;
+            overflow-wrap: anywhere;
+        }
+        h3 {
+            margin: 22px 0 10px;
+            font-size: 1.02rem;
+            line-height: 1.4;
+        }
+        h3:first-child { margin-top: 0; }
+        p { margin: 0 0 12px; }
+        ul, ol { margin: 0 0 14px 1.25rem; padding: 0; }
+        li { margin: 5px 0; }
+        strong { font-weight: 900; }
+        code {
+            padding: 2px 5px;
+            border-radius: 5px;
+            background: #eef2f5;
+            color: #172026;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: .9em;
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 12px 0 16px;
+        }
+        .card {
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #fff;
+        }
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: .98rem;
+        }
+        .ok, .ng, .todo, .warn {
+            padding: 12px 14px;
+            border-radius: var(--radius);
+            margin: 12px 0;
+            font-weight: 760;
+        }
+        .ok { border: 1px solid #b9e3cf; background: #effaf4; color: #125c3e; }
+        .ng { border: 1px solid #ffcdc8; background: #fff3f2; color: var(--red); }
+        .todo { border: 1px solid #c6d8ff; background: #f4f7ff; color: #173f83; }
+        .warn { border: 1px solid #ffd8a8; background: #fff7ed; color: #8a4300; }
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+        .checklist li {
+            padding: 9px 10px;
+            border: 1px solid #e8eef3;
+            border-radius: 7px;
+            background: #fff;
+        }
+        .label {
+            display: inline-block;
+            margin-right: 6px;
+            padding: 2px 7px;
+            border-radius: 999px;
+            background: #e9f2ff;
+            color: #0f55d6;
+            font-size: .76rem;
+            font-weight: 900;
+        }
+        table {
+            width: 100%;
+            margin: 12px 0 16px;
+            border-collapse: collapse;
+            font-size: .92rem;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #f3f6f9;
+            font-weight: 900;
+        }
+        .script {
+            padding: 14px;
+            border: 1px solid #d8dee5;
+            border-radius: var(--radius);
+            background: #fbfcfd;
+        }
+        .script p { margin-bottom: 8px; }
+        .footer-note {
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: .86rem;
+        }
+        @media (max-width: 860px) {
+            .grid { grid-template-columns: 1fr; }
+            nav { position: static; }
+            .cards { grid-template-columns: 1fr; }
+            table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        @media print {
+            body { background: #fff; }
+            header { padding: 24px 0; }
+            nav { display: none; }
+            .grid { display: block; }
+            section { box-shadow: none; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <p class="eyebrow">楽スタSNS / サービススタッフ用</p>
+            <h1>Instagram・Facebook・LINEBOT 初期設定マニュアル</h1>
+            <p class="lead">お客様との打ち合わせで、どこを確認すれば運用開始できるかをまとめたページです。BANTEX管理画面の設定は「接続」「契約」「店舗用」「テスト」に分けて登録します。</p>
+            <div class="meta">
+                <span class="pill">最終更新: 2026-06-26</span>
+                <span class="pill">対象: 楽スタSNS</span>
+                <span class="pill">社内確認用</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <p class="notice">結論: 運用開始に必要なのは、Instagramがプロアカウントであること、Facebookページとつながっていること、LINE公式アカウントのWebhookがBotにつながっていることです。</p>
+
+            <div class="grid">
+                <nav aria-label="目次">
+                    <h2>目次</h2>
+                    <a href="#quick-check">1. まず確認すること</a>
+                    <a href="#instagram">2. Instagramの確認</a>
+                    <a href="#facebook">3. Facebookページの確認</a>
+                    <a href="#missing">4. ない場合の作り方</a>
+                    <a href="#line">5. LINE公式アカウント</a>
+                    <a href="#diagnosis">6. 接続診断ページ</a>
+                    <a href="#bantex">7. BANTEX側で設定する値</a>
+                    <a href="#test">8. 運用開始テスト</a>
+                    <a href="#talk">9. お客様への聞き方</a>
+                    <a href="#trouble">10. つまずいた時</a>
+                    <a href="store-settings-mobile.html">お客様用スマホ設定</a>
+                    <a href="index.html">マニュアル一覧</a>
+                </nav>
+
+                <div>
+                    <section id="quick-check">
+                        <div class="section-head">
+                            <h2>1. まず確認すること</h2>
+                            <p>ここが全部OKなら、楽スタSNSを運用開始できます。</p>
+                        </div>
+                        <div class="body">
+                            <ul class="checklist">
+                                <li><span class="label">Instagram</span>お店のInstagramが「プロアカウント」になっている</li>
+                                <li><span class="label">Facebook</span>お店用のFacebookページがある。個人アカウントではない</li>
+                                <li><span class="label">接続</span>Instagramの「ページ」に、そのFacebookページが表示されている</li>
+                                <li><span class="label">権限</span>お客様、またはBANTEXが案内する接続担当者が、そのFacebookページを管理できる</li>
+                                <li><span class="label">LINE</span>お店用のLINE公式アカウントがあり、Messaging APIを使える</li>
+                            </ul>
+
+                            <div class="ok">
+                                OKの状態: お客様がInstagramとFacebookにログインでき、Meta Business SuiteでFacebookページとInstagramアカウントの両方が見えている。
+                            </div>
+                            <div class="ng">
+                                NGの状態: Instagramが個人アカウントのまま、Facebookが個人プロフィールしかない、Facebookページの管理者が誰かわからない、InstagramとFacebookページが別々になっている。
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="instagram">
+                        <div class="section-head">
+                            <h2>2. Instagramの確認</h2>
+                            <p>お客様のスマホで一緒に確認するのが一番早いです。</p>
+                        </div>
+                        <div class="body">
+                            <h3>確認する場所</h3>
+                            <ol>
+                                <li>Instagramアプリを開く</li>
+                                <li>右下のプロフィールを開く</li>
+                                <li>画面に「プロフェッショナルダッシュボード」があるか確認する</li>
+                                <li>「プロフィールを編集」を開く</li>
+                                <li>「ページ」または「Facebookページ」の欄に、お店のFacebookページが入っているか確認する</li>
+                            </ol>
+
+                            <div class="ok">「プロフェッショナルダッシュボード」があり、「ページ」にお店のFacebookページ名が出ていればOKです。</div>
+                            <div class="warn">画面名はMeta側で変わることがあります。見つからない場合は、Instagramの設定内で「アカウントタイプ」「ビジネス」「ページ」「リンク済みアカウント」を探します。</div>
+
+                            <h3>スタッフが記録する内容</h3>
+                            <table>
+                                <tr><th>項目</th><th>記入例</th><th>用途</th></tr>
+                                <tr><td>Instagramユーザー名</td><td>@sample_salon</td><td>接続対象の確認</td></tr>
+                                <tr><td>アカウント種別</td><td>ビジネス / クリエイター</td><td>API投稿の前提確認</td></tr>
+                                <tr><td>接続済みFacebookページ</td><td>Sample Salon</td><td>Meta接続確認</td></tr>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="facebook">
+                        <div class="section-head">
+                            <h2>3. Facebookページの確認</h2>
+                            <p>Instagram投稿APIは、Facebookページ側の権限で詰まることが多いです。</p>
+                        </div>
+                        <div class="body">
+                            <h3>Facebookで見る場所</h3>
+                            <ol>
+                                <li>Facebookにログインする</li>
+                                <li>お店のFacebookページを開く</li>
+                                <li>ページの「設定」を開く</li>
+                                <li>「ページアクセス」または「Page access」を開く</li>
+                                <li>お客様のアカウントに「フルコントロール」または管理できる権限があるか確認する</li>
+                            </ol>
+
+                            <h3>Meta Business Suiteで見る場所</h3>
+                            <ol>
+                                <li><a href="https://business.facebook.com/" target="_blank" rel="noopener">Meta Business Suite</a> を開く</li>
+                                <li>左下または歯車の「設定」を開く</li>
+                                <li>「アカウント」または「ビジネスアセット」を開く</li>
+                                <li>「ページ」にお店のFacebookページがあるか確認する</li>
+                                <li>「Instagramアカウント」にお店のInstagramがあるか確認する</li>
+                            </ol>
+
+                            <div class="ok">同じMeta Business Suiteの中に、FacebookページとInstagramアカウントが両方見えていれば、接続作業が進めやすい状態です。</div>
+                            <div class="ng">Facebookページはあるが管理者が不明、またはInstagramだけ見えてFacebookページが見えない場合は、先に権限整理が必要です。</div>
+                        </div>
+                    </section>
+
+                    <section id="missing">
+                        <div class="section-head">
+                            <h2>4. ない場合の作り方</h2>
+                            <p>足りないものがあっても、この順番で作れば大丈夫です。</p>
+                        </div>
+                        <div class="body">
+                            <div class="cards">
+                                <div class="card">
+                                    <h3>Instagramが個人アカウントの場合</h3>
+                                    <ol>
+                                        <li>Instagramアプリを開く</li>
+                                        <li>プロフィール右上のメニューを開く</li>
+                                        <li>「アカウントの種類とツール」を探す</li>
+                                        <li>「プロアカウントに切り替える」を選ぶ</li>
+                                        <li>店舗運用なら「ビジネス」を選ぶ</li>
+                                    </ol>
+                                </div>
+                                <div class="card">
+                                    <h3>Facebookページがない場合</h3>
+                                    <ol>
+                                        <li>Facebookにログインする</li>
+                                        <li>「ページを作成」を開く</li>
+                                        <li>店舗名、カテゴリ、所在地などを入力する</li>
+                                        <li>作成後、ページアクセスで管理者を確認する</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <h3>InstagramとFacebookページをつなぐ</h3>
+                            <ol>
+                                <li>Instagramアプリでプロフィールを開く</li>
+                                <li>「プロフィールを編集」を開く</li>
+                                <li>「ページ」を選ぶ</li>
+                                <li>作成済みのFacebookページを選んで接続する</li>
+                                <li>接続できない場合は、Facebookページ側の管理権限を確認する</li>
+                            </ol>
+
+                            <div class="todo">お客様が自分で作れない場合は、リモート打ち合わせ中に画面共有で案内します。パスワードや認証コードはスタッフが聞かず、お客様本人に入力してもらいます。</div>
+                        </div>
+                    </section>
+
+                    <section id="line">
+                        <div class="section-head">
+                            <h2>5. LINE公式アカウントの確認</h2>
+                            <p>LINEから写真を送ってInstagram投稿へ進めるために必要です。</p>
+                        </div>
+                        <div class="body">
+                            <h3>お客様に確認すること</h3>
+                            <ul class="checklist">
+                                <li>お店用のLINE公式アカウントがある</li>
+                                <li>管理画面にログインできる</li>
+                                <li>Messaging APIを使う許可がある</li>
+                            </ul>
+
+                            <h3>LINE Developersで設定するWebhook URL</h3>
+                            <p>楽スタSNSのLINE Botは次のURLで受けます。</p>
+                            <p><code>https://kokotomo-toc-bot.onrender.com/callback</code></p>
+
+                            <h3>BANTEX側で必要になる値</h3>
+                            <table>
+                                <tr><th>値</th><th>どこで使うか</th><th>注意</th></tr>
+                                <tr><td>Channel secret</td><td>LINE署名検証</td><td>外部に送らない</td></tr>
+                                <tr><td>Channel access token</td><td>LINE返信</td><td>外部に送らない</td></tr>
+                                <tr><td>Webhook URL</td><td>LINE Developers</td><td>上記URLを設定</td></tr>
+                            </table>
+
+                            <div class="warn">同じLINE公式アカウントを複数店舗に登録しないでください。システム側では重複を検出すると片方をスキップします。</div>
+                        </div>
+                    </section>
+
+                    <section id="diagnosis">
+                        <div class="section-head">
+                            <h2>6. 接続診断ページ</h2>
+                            <p>お客様のアカウントで本当に接続できるかを、パスワードなしで確認します。</p>
+                        </div>
+                        <div class="body">
+                            <p>サービス提供者管理者でログイン後、次のページを開きます。</p>
+                            <p><code>https://kokotomo-sns.bantex.jp/sns-connection-check</code></p>
+
+                            <h3>このページでできること</h3>
+                            <ul class="checklist">
+                                <li>LINE Channel access tokenが正しいか確認する</li>
+                                <li>LINEに現在設定されているWebhook URLを見る</li>
+                                <li>楽スタSNS BotのWebhook URLへLINEから疎通テストする</li>
+                                <li>明示チェックを入れた時だけ、LINE側のWebhook URLを書き換える</li>
+                                <li>Instagram Business Account IDとBANTEX共通tokenから、対象Instagramが見えるか確認する</li>
+                            </ul>
+
+                            <div class="warn">診断ページはTokenを保存しません。パスワードや2段階認証コードはスタッフが聞かず、お客様本人の画面で入力・確認してもらいます。</div>
+                        </div>
+                    </section>
+
+                    <section id="bantex">
+                        <div class="section-head">
+                            <h2>7. BANTEX側で設定する値</h2>
+                            <p>お客様の画面確認が終わった後、社内で登録する項目です。</p>
+                        </div>
+                        <div class="body">
+                            <h3>店舗設定に入れる主な値</h3>
+                            <table>
+                                <tr><th>区分</th><th>項目</th><th>意味</th></tr>
+                                <tr><td>接続設定</td><td><code>sns_posting_enabled</code></td><td>この店舗のSNS投稿を有効にする。停止中は投稿運用を止める。</td></tr>
+                                <tr><td>接続設定</td><td><code>sns_dashboard_slug</code></td><td>お客様用URLの店舗名パス。例: <code>sample-salon</code></td></tr>
+                                <tr><td>接続設定</td><td><code>channel_access_token</code> / <code>channel_secret</code></td><td>LINE公式アカウントから素材を受け取るための値。外部に残さない。</td></tr>
+                                <tr><td>接続設定</td><td><code>instagram_user_id</code></td><td>投稿先のInstagram Business Account ID。例: <code>1784...</code></td></tr>
+                                <tr><td>接続設定</td><td><code>instagram_username</code></td><td>表示確認用。投稿処理はInstagram Business Account IDを使う。</td></tr>
+                                <tr><td>契約設定</td><td><code>sns_daily_post_count</code></td><td>契約上の1日の投稿回数。店舗側では変更しない。</td></tr>
+                                <tr><td>契約設定</td><td><code>sns_image_processing_mode</code></td><td>画像加工なし、または画像加工ありを選ぶ。画像加工ありの時だけ店舗側に画像加工ルールとAI顔ぼかしを出す。</td></tr>
+                                <tr><td>店舗用設定</td><td><code>sns_daily_post_times</code></td><td>予約投稿時刻。契約回数の範囲内で店舗側でも変更できる。</td></tr>
+                                <tr><td>店舗用設定</td><td><code>sns_business_category</code></td><td>投稿文生成の業種設定。店舗側でも変更できる。</td></tr>
+                                <tr><td>店舗用設定</td><td><code>sns_publish_line_notify_enabled</code></td><td>Instagram投稿後にLINE完了通知を送るか。店舗側でも変更できる。</td></tr>
+                                <tr><td>テスト・確認</td><td><code>sns_publish_now_enabled</code></td><td>LINEのQuickReplyに「今すぐ投稿」を表示するか。新規追加後のテスト用で、契約項目ではない。</td></tr>
+                            </table>
+
+                            <h3>固定で扱う値</h3>
+                            <table>
+                                <tr><th>項目</th><th>扱い</th></tr>
+                                <tr><td><code>instagram_token_source</code></td><td>通常は <code>global</code>。BANTEX共通System User tokenを使う。</td></tr>
+                                <tr><td><code>instagram_api_base</code></td><td>通常は <code>https://graph.facebook.com/v25.0</code>。</td></tr>
+                                <tr><td><code>INSTAGRAM_ACCESS_TOKEN</code></td><td>Render環境変数にあるBANTEX共通System User token。新店舗追加だけで安易に置き換えない。</td></tr>
+                            </table>
+
+                            <div class="warn">契約状態、契約プラン名、契約金額、動画投稿の有無は通常の新規店舗追加では入力しません。メモとして残すだけの項目は、初心者向けの登録手順から外します。</div>
+                            <div class="ng">トークンやシークレットは、お客様にメールやLINEで送らせないでください。画面共有でスタッフが見る場合も、必要な時だけ表示し、作業ログに値を残さないでください。</div>
+                        </div>
+                    </section>
+
+                    <section id="test">
+                        <div class="section-head">
+                            <h2>8. 運用開始テスト</h2>
+                            <p>このテストが通れば「そのまま運用できます」と伝えられます。</p>
+                        </div>
+                        <div class="body">
+                            <h3>テスト手順</h3>
+                            <ol>
+                                <li>LINE公式アカウントに、店舗写真を1枚送る</li>
+                                <li>必要ならメモを送る。例: <code>新色ネイルの紹介です</code></li>
+                                <li><code>投稿して！</code> と送る</li>
+                                <li>LINEに確認URLが返ってくる</li>
+                                <li>確認URLで投稿文、画像、投稿予定時刻を見る</li>
+                                <li>「今すぐ投稿」または予約状態にする</li>
+                                <li>Instagramに投稿されたか確認する</li>
+                            </ol>
+
+                            <div class="ok">成功: Instagramに投稿され、確認画面にInstagram IDが表示される。</div>
+                            <div class="ng">失敗: 「投稿失敗」やエラーが出る場合は、Instagram Business Account ID、BANTEX共通tokenから見える資産権限、Facebookページ権限、画像URL公開状態を確認する。</div>
+                        </div>
+                    </section>
+
+                    <section id="talk">
+                        <div class="section-head">
+                            <h2>9. お客様への聞き方</h2>
+                            <p>そのまま使える確認文です。</p>
+                        </div>
+                        <div class="body">
+                            <div class="script">
+                                <p><strong>最初の確認</strong></p>
+                                <p>「Instagramを自動投稿につなぐために、Instagramがプロアカウントになっているか、Facebookページとつながっているかを確認します。パスワードや認証コードはお聞きしませんので、お客様の画面で一緒に確認させてください。」</p>
+                            </div>
+
+                            <div class="script">
+                                <p><strong>Facebookページがない場合</strong></p>
+                                <p>「Instagram投稿APIの連携には、お店用のFacebookページが必要になることがあります。個人のFacebookではなく、お店のページを作ってInstagramとつなぎます。画面を見ながら一緒に進めます。」</p>
+                            </div>
+
+                            <div class="script">
+                                <p><strong>運用開始OKの場合</strong></p>
+                                <p>「Instagram、Facebookページ、LINE公式アカウントの確認が取れました。この状態でLINEから写真を送って投稿確認まで進められるので、初回テスト投稿が通ればそのまま運用できます。」</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="trouble">
+                        <div class="section-head">
+                            <h2>10. つまずいた時</h2>
+                            <p>よくある原因を上から確認します。</p>
+                        </div>
+                        <div class="body">
+                            <table>
+                                <tr><th>症状</th><th>見る場所</th><th>対応</th></tr>
+                                <tr><td>Instagramに投稿できない</td><td>Instagram Business Account ID / BANTEX共通System User token / 投稿有効化</td><td>共有tokenから対象Instagramが見えるか、投稿先IDが正しいか確認</td></tr>
+                                <tr><td>Instagramが選べない</td><td>Meta Business SuiteのInstagramアカウント</td><td>FacebookページとInstagramの接続を確認</td></tr>
+                                <tr><td>Facebookページが見つからない</td><td>Facebookのページアクセス</td><td>お客様にフルコントロール権限があるか確認</td></tr>
+                                <tr><td>LINEに反応しない</td><td>LINE DevelopersのWebhook URL</td><td><code>/callback</code> URL、Webhook利用ON、Channel secret/tokenを確認</td></tr>
+                                <tr><td>確認URLは出るが投稿されない</td><td>投稿確認画面のステータス</td><td>投稿失敗メッセージを見てInstagram側の接続を確認</td></tr>
+                            </table>
+
+                            <h3>公式情報</h3>
+                            <ul>
+                                <li><a href="https://www.facebook.com/help/instagram/402748553849926" target="_blank" rel="noopener">InstagramプロアカウントとFacebookページ接続について</a></li>
+                                <li><a href="https://www.facebook.com/help/1148909221857370" target="_blank" rel="noopener">FacebookページとInstagramアカウントの接続について</a></li>
+                                <li><a href="https://www.facebook.com/help/1318804834897643/list/" target="_blank" rel="noopener">Facebookページアクセス権限について</a></li>
+                                <li><a href="https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/content-publishing/" target="_blank" rel="noopener">Meta開発者向け Instagram投稿API</a></li>
+                            </ul>
+
+                            <h3>関連マニュアル</h3>
+                            <ul>
+                                <li><a href="store-settings-mobile.html">お客様用: スマホで店舗用設定を変更する方法</a></li>
+                                <li><a href="index.html">楽スタ マニュアル一覧</a></li>
+                            </ul>
+
+                            <p class="footer-note">このページは社内スタッフ向けです。お客様へ送る場合は、秘密情報や管理画面の値が表示されていないことを確認してください。</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,12 +1,22 @@
-# 楽スタ 新店舗SNS連携マニュアル
+# 楽スタ マニュアルサイト
 
-社内管理者向けの静的HTMLマニュアルです。
+GitHub Pagesで公開する静的HTMLマニュアルです。Renderは使いません。
 
 ## 開くファイル
 
+- 一覧: `index.html`
 - まず迷ったら: `simple-customer-onboarding.html`
-- 全体版: `index.html`
+- お客様用スマホ設定: `store-settings-mobile.html`
+- 管理側初期設定: `setup-admin.html`
+- 全体版: `operator-full.html`
 - 村上さん練習用: `murakami.html`
+
+## GitHub Pages
+
+- まずはGitHub Pages標準URLで公開する。
+- 後で `rakusuta-manual.bantex.jp` に切り替える。
+- DNSを切り替える時は、`CNAME.example` を `CNAME` に変更し、GitHub PagesのCustom domainにも同じドメインを設定する。
+- DNSのCNAME先は `makoban.github.io`。
 
 ## 重要
 
