@@ -204,7 +204,7 @@
     <div class="wrap">
       <p class="eyebrow">楽スタ / 村上さん向け</p>
       <h1><span>Instagram投稿権限</span><span>エラー対応</span></h1>
-      <p class="lead">SNS管理画面で「Metaアプリに対象Instagramの投稿権限がありません」と出た時に、どこを確認するかをまとめたページです。</p>
+      <p class="lead">SNS管理画面で「Metaアプリに対象Instagramの投稿権限がありません」と出た時に、村上さんが見る場所・見ない場所をまとめたページです。</p>
       <div class="meta">
         <span class="pill">最終更新: 2026-06-29</span>
         <span class="pill">社内向け</span>
@@ -220,10 +220,11 @@
 
   <main>
     <div class="wrap">
-      <p class="notice">結論: SNS管理画面の保存ボタンを繰り返しても直りません。入力値を確認した上で、Meta Business Suite側のページ・Instagram・投稿用アプリ権限を確認します。</p>
+      <p class="notice">結論: 村上さんが通常作業で見るのは、Meta Business Suiteの <strong>アカウント → ページ</strong> と <strong>アカウント → Instagramアカウント</strong> です。<strong>アプリ</strong> 欄、BANTEX投稿Bot、System User、Graph API Explorer、Renderは見ません。</p>
 
       <nav aria-label="目次">
         <h2>目次</h2>
+        <a href="#changes">0. 今回変わったところ</a>
         <a href="#meaning">1. エラーの意味</a>
         <a href="#screen">2. SNS管理画面で確認すること</a>
         <a href="#meta">3. Meta側で直す場所</a>
@@ -232,6 +233,23 @@
         <a href="#stop">6. 止めて確認する条件</a>
         <a href="#reply">7. そのまま送れる回答文</a>
       </nav>
+
+      <section id="changes">
+        <div class="section-head">
+          <h2>0. 今回変わったところ</h2>
+          <p>新規店舗を村上さんが自分で登録できるよう、通常作業で見る画面を絞りました。</p>
+        </div>
+        <div class="body">
+          <table>
+            <tr><th>変わったこと</th><th>村上さんの動き</th></tr>
+            <tr><td>新店舗の追加は村上さんが毎回行う</td><td><code>楽スタ管理</code> の <code>アカウント</code> で、FacebookページとInstagramを追加する。</td></tr>
+            <tr><td>見る場所は2つだけ</td><td><code>アカウント</code> → <code>ページ</code>、<code>アカウント</code> → <code>Instagramアカウント</code> を見る。</td></tr>
+            <tr><td><code>アプリ</code> 欄は通常作業では使わない</td><td><code>アプリが追加されていません</code> と出ても、その画面を閉じてページ/Instagramの画面へ戻る。</td></tr>
+            <tr><td>tokenやRenderは触らない</td><td>Graph API Explorer、BANTEX投稿Bot、System User、Instagram Access Token欄は触らない。</td></tr>
+          </table>
+          <div class="ok">村上さんに伝える要点: 「新店舗ごとに追加するのはページとInstagramだけ。アプリ欄は見ない。IDを控えて楽スタSNS管理画面に登録する。」</div>
+        </div>
+      </section>
 
       <section id="meaning">
         <div class="section-head">
