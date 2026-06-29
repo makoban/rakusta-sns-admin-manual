@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>村上さん向け Instagram投稿権限エラー対応</title>
+  <style>
+    :root {
+      --ink: #172026;
+      --text: #34404a;
+      --muted: #66737e;
+      --line: #dfe6ec;
+      --bg: #edf2f6;
+      --paper: #fff;
+      --blue: #1463ff;
+      --green: #08784f;
+      --orange: #b45a00;
+      --red: #b42318;
+      --soft-blue: #eef5ff;
+      --soft-green: #effaf4;
+      --soft-orange: #fff7ed;
+      --soft-red: #fff3f2;
+      --shadow: 0 14px 38px rgba(21, 32, 43, .08);
+    }
+    * { box-sizing: border-box; min-width: 0; }
+    html, body { overflow-x: hidden; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+    h1, h2, h3, p, li, td, th, a, span, strong, code { overflow-wrap: anywhere; }
+    a { color: var(--blue); }
+    .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+    header {
+      background: #101820;
+      color: #fff;
+      padding: 36px 0 30px;
+    }
+    .eyebrow { margin: 0 0 10px; color: #9bc2ff; font-size: .86rem; font-weight: 900; }
+    h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.15rem); line-height: 1.18; }
+    .lead { max-width: 850px; margin: 14px 0 0; color: #dbe6f0; font-weight: 800; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 900;
+    }
+    main { padding: 24px 0 54px; }
+    nav, section {
+      margin: 0 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    nav { padding: 14px 18px; }
+    nav h2 { margin: 0 0 8px; font-size: 1rem; }
+    nav a {
+      display: block;
+      padding: 8px 0;
+      border-top: 1px solid #eef2f5;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 900;
+    }
+    .section-head {
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+      background: #f9fbfd;
+    }
+    .section-head h2 { margin: 0; font-size: 1.42rem; line-height: 1.35; }
+    .section-head p { margin: 6px 0 0; color: var(--muted); font-weight: 800; }
+    .body { padding: 20px 22px 22px; }
+    p { margin: 0 0 12px; color: var(--text); }
+    .notice, .ok, .warn, .ng {
+      margin: 0 0 18px;
+      padding: 15px 16px;
+      border: 1px solid;
+      border-left-width: 6px;
+      border-radius: 8px;
+      font-weight: 850;
+      overflow-wrap: anywhere;
+    }
+    .notice { background: var(--soft-blue); border-color: #b9d2ff; color: #193b68; }
+    .ok { background: var(--soft-green); border-color: #b9e3cf; color: #125c3e; }
+    .warn { background: var(--soft-orange); border-color: #ffd8a8; color: #8a4300; }
+    .ng { background: var(--soft-red); border-color: #ffcdc8; color: var(--red); }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0 18px;
+    }
+    .flow-card {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .flow-card strong {
+      display: block;
+      color: var(--blue);
+      font-size: .92rem;
+      margin-bottom: 5px;
+    }
+    .flow-card span { display: block; color: var(--text); font-weight: 850; }
+    figure {
+      margin: 16px 0 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(21, 32, 43, .06);
+    }
+    figure img { display: block; width: 100%; height: auto; background: #eef4f6; }
+    figcaption {
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 800;
+    }
+    .steps { list-style: none; margin: 12px 0 16px; padding: 0; counter-reset: step; display: grid; gap: 10px; }
+    .steps li {
+      position: relative;
+      padding: 12px 12px 12px 48px;
+      border: 1px solid #e8eef3;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 760;
+    }
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 12px;
+      top: 13px;
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 900;
+      font-size: .82rem;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; font-size: .94rem; }
+    th, td { border: 1px solid var(--line); padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f3f6f9; font-weight: 900; }
+    code {
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: #eef2f5;
+      color: #172026;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .9em;
+    }
+    pre {
+      margin: 12px 0 0;
+      padding: 14px;
+      border-radius: 8px;
+      background: #101820;
+      color: #eef5ff;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .9rem;
+      line-height: 1.65;
+    }
+    .top-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .top-links a { color: #dbe6f0; font-weight: 900; }
+    @media (max-width: 720px) {
+      .wrap { padding: 0 11px; }
+      header { padding: 28px 0 24px; }
+      h1 { font-size: clamp(1.65rem, 7vw, 2rem); line-height: 1.26; }
+      h1 span { display: block; }
+      .lead, .notice, .ok, .warn, .ng, p, li, a, figcaption, td, th {
+        overflow-wrap: anywhere;
+      }
+      .pill { max-width: 100%; white-space: normal; }
+      .flow { grid-template-columns: 1fr; }
+      .section-head, .body { padding-left: 14px; padding-right: 14px; }
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">楽スタ / 村上さん向け</p>
+      <h1><span>Instagram投稿権限</span><span>エラー対応</span></h1>
+      <p class="lead">SNS管理画面で「Metaアプリに対象Instagramの投稿権限がありません」と出た時に、どこを確認するかをまとめたページです。</p>
+      <div class="meta">
+        <span class="pill">最終更新: 2026-06-29</span>
+        <span class="pill">社内向け</span>
+        <span class="pill">token変更なし</span>
+      </div>
+      <div class="top-links">
+        <a href="index.html">マニュアル一覧</a>
+        <a href="simple-customer-onboarding.html">新規顧客追加</a>
+        <a href="murakami.html">村上さん手順</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="notice">結論: SNS管理画面の保存ボタンを繰り返しても直りません。入力値を確認した上で、Meta Business Suite側のページ・Instagram・投稿用アプリ権限を確認します。</p>
+
+      <nav aria-label="目次">
+        <h2>目次</h2>
+        <a href="#meaning">1. エラーの意味</a>
+        <a href="#screen">2. SNS管理画面で確認すること</a>
+        <a href="#meta">3. Meta側で直す場所</a>
+        <a href="#dont-touch">4. 触らないもの</a>
+        <a href="#stop">5. 止めて確認する条件</a>
+        <a href="#reply">6. そのまま送れる回答文</a>
+      </nav>
+
+      <section id="meaning">
+        <div class="section-head">
+          <h2>1. エラーの意味</h2>
+          <p>対象Instagramを投稿できる権限が、楽スタの投稿用Metaアプリ側に入っていない状態です。</p>
+        </div>
+        <div class="body">
+          <figure>
+            <img src="assets/error-guide/error-location.svg" alt="SNS管理画面で出る投稿権限エラーの説明図">
+            <figcaption>赤いエラーはSNS管理画面で表示されますが、原因はMeta側の投稿権限であることが多いです。</figcaption>
+          </figure>
+          <div class="flow">
+            <div class="flow-card"><strong>画面に出る場所</strong><span>楽スタ SNS管理画面</span></div>
+            <div class="flow-card"><strong>原因になりやすい場所</strong><span>Meta Business Suite</span></div>
+            <div class="flow-card"><strong>やってはいけない対応</strong><span>tokenやRenderを急に変更</span></div>
+          </div>
+          <div class="warn">Instagram Access Token欄へ新しいtokenを貼る対応ではありません。通常は <code>Token運用方式 = global</code>、Instagram Access Token欄は空欄のまま確認します。</div>
+        </div>
+      </section>
+
+      <section id="screen">
+        <div class="section-head">
+          <h2>2. SNS管理画面で確認すること</h2>
+          <p>まず入力値が間違っていないかだけ確認します。</p>
+        </div>
+        <div class="body">
+          <table>
+            <tr><th>項目</th><th>見ること</th><th>OKの状態</th></tr>
+            <tr><td>Instagram Business Account ID</td><td>Instagramのユーザー名ではなく、<code>1784...</code> で始まる数字IDか</td><td>対象店舗のInstagram Business Account IDになっている</td></tr>
+            <tr><td>Instagramユーザー名</td><td><code>@</code> なし、または表記ゆれがないか</td><td>対象店舗のInstagram名と一致</td></tr>
+            <tr><td>Facebook Page ID</td><td>対象店舗のFacebookページIDか</td><td>別店舗や個人プロフィールではない</td></tr>
+            <tr><td>Token運用方式</td><td><code>global</code> / 共通方式になっているか</td><td>店舗別tokenではない</td></tr>
+            <tr><td>Instagram Access Token</td><td>店舗別tokenを貼っていないか</td><td>空欄</td></tr>
+          </table>
+          <div class="ok">ここが正しいのに同じエラーが出る場合は、SNS管理画面ではなくMeta側の権限確認へ進みます。</div>
+        </div>
+      </section>
+
+      <section id="meta">
+        <div class="section-head">
+          <h2>3. Meta側で直す場所</h2>
+          <p>村上さん本人のFacebook/Metaログインで入り、Business Portfolioは「楽スタ管理」を選びます。</p>
+        </div>
+        <div class="body">
+          <figure>
+            <img src="assets/error-guide/meta-check.svg" alt="Meta Business Suiteで確認する順番の説明図">
+            <figcaption>Facebookページ、Instagram、投稿用アプリ/System Userの権限を順番に確認します。</figcaption>
+          </figure>
+          <ol class="steps">
+            <li>Meta Business SuiteまたはBusiness設定で、Business Portfolioが <code>楽スタ管理</code> になっているか確認します。</li>
+            <li><code>アカウント</code> → <code>ページ</code> に、対象店舗のFacebookページがあるか確認します。</li>
+            <li><code>アカウント</code> → <code>Instagramアカウント</code> に、対象店舗のInstagramがあるか確認します。</li>
+            <li>対象Facebookページと対象Instagramがリンク済みか確認します。</li>
+            <li>投稿用Metaアプリ、またはSystem User側に、対象Facebookページと対象Instagramの権限が付いているか確認します。</li>
+          </ol>
+          <div class="warn">既存の <code>iryoukaigotest</code> や <code>rakusuta2000</code> のページ/Instagram選択を外さないでください。既存店舗が投稿できなくなる可能性があります。</div>
+        </div>
+      </section>
+
+      <section id="dont-touch">
+        <div class="section-head">
+          <h2>4. 触らないもの</h2>
+          <p>このエラーで焦って触ると、既存店舗へ影響が出やすい場所です。</p>
+        </div>
+        <div class="body">
+          <figure>
+            <img src="assets/error-guide/do-not-touch.svg" alt="Graph API Explorer、Render、店舗別tokenは触らない説明図">
+            <figcaption>通常の新規顧客追加では、token生成、Render変更、店舗別token貼り付けは行いません。</figcaption>
+          </figure>
+          <ul>
+            <li>Graph API Explorerのtoken生成画面を開かない。</li>
+            <li>Renderの <code>INSTAGRAM_ACCESS_TOKEN</code> を変更しない。</li>
+            <li>Instagram Access Token欄へ店舗別tokenを貼らない。</li>
+            <li>既存店舗のFacebookページやInstagram権限を外さない。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="stop">
+        <div class="section-head">
+          <h2>5. 止めて確認する条件</h2>
+          <p>ここに当てはまる場合は、その場で作業を止めて確認します。</p>
+        </div>
+        <div class="body">
+          <table>
+            <tr><th>止める状態</th><th>理由</th></tr>
+            <tr><td><code>楽スタ管理</code> に対象ページ/Instagramが見えない</td><td>投稿権限以前に、Meta側の資産追加が完了していない可能性があります。</td></tr>
+            <tr><td>FacebookページとInstagramのリンクが確認できない</td><td>Instagram投稿APIはページ連携が前提です。</td></tr>
+            <tr><td>投稿用アプリ/System Userの権限画面で既存店舗が外れそう</td><td>既存店舗の投稿を止める可能性があります。</td></tr>
+            <tr><td>Graph API ExplorerやRender変更が必要そうに見える</td><td>通常の新規顧客追加ではなく、本番token切替作業として別扱いにします。</td></tr>
+          </table>
+          <div class="ng">分からない場合は、対象店舗名、Instagramユーザー名、Facebookページ名、出たエラー文を控えて、そこで止めてください。</div>
+        </div>
+      </section>
+
+      <section id="reply">
+        <div class="section-head">
+          <h2>6. そのまま送れる回答文</h2>
+          <p>村上さんへ説明する時の短い文面です。</p>
+        </div>
+        <div class="body">
+          <pre>このエラーは、SNS管理画面の保存項目だけで直すものではなく、Meta側で対象Instagramの投稿権限が足りない時に出ます。
+
+まずSNS管理画面では、Instagram Business Account ID、Facebook Page ID、Token運用方式が global になっているかだけ確認してください。
+Instagram Access Token欄には何も貼らないでください。
+
+次にMeta Business Suiteで「楽スタ管理」を選び、対象のFacebookページとInstagramが入っているか、ページとInstagramがリンク済みか、投稿用Metaアプリ/System Userに対象Instagramの権限が付いているかを確認します。
+
+Graph API Explorer、Render、既存共通tokenは触らないでください。
+分からない場合は、対象店舗名・Instagramユーザー名・Facebookページ名・表示されたエラー文を控えて止めてください。</pre>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

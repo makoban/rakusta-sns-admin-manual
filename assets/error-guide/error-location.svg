@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="680" viewBox="0 0 980 680" role="img" aria-labelledby="title desc">
+  <title id="title">SNS管理画面のエラー位置</title>
+  <desc id="desc">SNS管理画面で保存時に出る投稿権限エラーは、画面入力だけでは直らずMeta側の権限確認が必要であることを示す図です。</desc>
+  <rect width="980" height="680" fill="#eef4f6"/>
+  <rect x="48" y="44" width="884" height="592" rx="24" fill="#ffffff" stroke="#d7e0ea"/>
+  <rect x="48" y="44" width="884" height="86" rx="24" fill="#101820"/>
+  <text x="84" y="98" fill="#ffffff" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="29" font-weight="900">楽スタ SNS管理画面</text>
+  <rect x="82" y="164" width="816" height="86" rx="14" fill="#fff3f2" stroke="#ffcdc8"/>
+  <text x="112" y="200" fill="#b42318" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="19" font-weight="900">保存時のエラー</text>
+  <text x="112" y="230" fill="#7a271a" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="18" font-weight="700">Metaアプリに対象Instagramの投稿権限がありません。</text>
+  <circle cx="890" cy="164" r="30" fill="#ffb020"/>
+  <text x="881" y="175" fill="#172026" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="30" font-weight="900">!</text>
+  <rect x="82" y="292" width="370" height="248" rx="18" fill="#f8fafc" stroke="#d7e0ea"/>
+  <text x="112" y="336" fill="#172026" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="22" font-weight="900">ここで確認する入力</text>
+  <text x="112" y="378" fill="#34404a" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="18">Instagram Business Account ID</text>
+  <rect x="112" y="394" width="280" height="44" rx="10" fill="#ffffff" stroke="#cbd7e3"/>
+  <text x="130" y="423" fill="#66737e" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="16">1784... の数字ID</text>
+  <text x="112" y="474" fill="#34404a" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="18">Token運用方式</text>
+  <rect x="112" y="490" width="280" height="44" rx="10" fill="#ffffff" stroke="#cbd7e3"/>
+  <text x="130" y="519" fill="#66737e" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="16">global / 共通方式</text>
+  <rect x="528" y="292" width="370" height="248" rx="18" fill="#fff7ed" stroke="#ffd8a8"/>
+  <text x="558" y="336" fill="#8a4300" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="22" font-weight="900">直す場所はMeta側</text>
+  <text x="558" y="384" fill="#7c2d12" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="18" font-weight="800">SNS管理画面で保存を繰り返しても直りません。</text>
+  <text x="558" y="424" fill="#7c2d12" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="18">対象Instagramが、投稿用Metaアプリまたは</text>
+  <text x="558" y="454" fill="#7c2d12" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="18">System User tokenの権限に入っているか確認します。</text>
+  <path d="M460 410 C486 410 504 410 526 410" fill="none" stroke="#ffb020" stroke-width="8" stroke-linecap="round"/>
+  <path d="M510 392 L532 410 L510 428" fill="none" stroke="#ffb020" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="760" viewBox="0 0 980 760" role="img" aria-labelledby="title desc">
+  <title id="title">Meta Business Suiteで確認する場所</title>
+  <desc id="desc">楽スタ管理のBusiness Portfolio、Facebookページ、Instagramアカウント、投稿用Metaアプリの権限を順番に確認する図です。</desc>
+  <rect width="980" height="760" fill="#eef4f6"/>
+  <rect x="62" y="44" width="856" height="672" rx="24" fill="#ffffff" stroke="#d7e0ea"/>
+  <text x="92" y="102" fill="#172026" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="30" font-weight="900">Meta Business Suiteで確認する順番</text>
+  <text x="92" y="138" fill="#66737e" font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif" font-size="17" font-weight="700">村上さんは自分のFacebook/Metaログインで入り、Business Portfolioは「楽スタ管理」を選びます。</text>
+  <g font-family="Arial,'Hiragino Sans','Yu Gothic',sans-serif">
+    <rect x="92" y="190" width="796" height="96" rx="18" fill="#eaf2ff" stroke="#b9d2ff"/>
+    <circle cx="130" cy="238" r="22" fill="#1463ff"/>
+    <text x="124" y="246" fill="#fff" font-size="22" font-weight="900">1</text>
+    <text x="170" y="230" fill="#193b68" font-size="21" font-weight="900">Business Portfolioが「楽スタ管理」か確認</text>
+    <text x="170" y="258" fill="#193b68" font-size="16">別の箱を見ていると、対象ページやInstagramが見つかりません。</text>
+    <rect x="92" y="320" width="796" height="96" rx="18" fill="#effaf4" stroke="#b9e3cf"/>
+    <circle cx="130" cy="368" r="22" fill="#08784f"/>
+    <text x="124" y="376" fill="#fff" font-size="22" font-weight="900">2</text>
+    <text x="170" y="360" fill="#125c3e" font-size="21" font-weight="900">アカウント → ページ / Instagramアカウントを見る</text>
+    <text x="170" y="388" fill="#125c3e" font-size="16">対象のFacebookページとInstagramが両方あるか確認します。</text>
+    <rect x="92" y="450" width="796" height="96" rx="18" fill="#fff7ed" stroke="#ffd8a8"/>
+    <circle cx="130" cy="498" r="22" fill="#ffb020"/>
+    <text x="124" y="506" fill="#172026" font-size="22" font-weight="900">3</text>
+    <text x="170" y="490" fill="#8a4300" font-size="21" font-weight="900">FacebookページとInstagramがリンク済みか確認</text>
+    <text x="170" y="518" fill="#8a4300" font-size="16">ページだけ、Instagramだけでは投稿権限確認が通りません。</text>
+    <rect x="92" y="580" width="796" height="96" rx="18" fill="#fff3f2" stroke="#ffcdc8"/>
+    <circle cx="130" cy="628" r="22" fill="#b42318"/>
+    <text x="124" y="636" fill="#fff" font-size="22" font-weight="900">4</text>
+    <text x="170" y="620" fill="#b42318" font-size="21" font-weight="900">投稿用Metaアプリ / System Userに対象アセット権限があるか確認</text>
+    <text x="170" y="648" fill="#b42318" font-size="16">ここが抜けると、SNS管理画面で「投稿権限がありません」と出ます。</text>
+  </g>
+</svg>
