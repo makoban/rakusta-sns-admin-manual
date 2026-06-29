@@ -227,9 +227,10 @@
         <a href="#meaning">1. エラーの意味</a>
         <a href="#screen">2. SNS管理画面で確認すること</a>
         <a href="#meta">3. Meta側で直す場所</a>
-        <a href="#dont-touch">4. 触らないもの</a>
-        <a href="#stop">5. 止めて確認する条件</a>
-        <a href="#reply">6. そのまま送れる回答文</a>
+        <a href="#app-missing">4. 「アプリが追加されていません」と出た場合</a>
+        <a href="#dont-touch">5. 触らないもの</a>
+        <a href="#stop">6. 止めて確認する条件</a>
+        <a href="#reply">7. そのまま送れる回答文</a>
       </nav>
 
       <section id="meaning">
@@ -290,9 +291,27 @@
         </div>
       </section>
 
+      <section id="app-missing">
+        <div class="section-head">
+          <h2>4. 「アプリが追加されていません」と出た場合</h2>
+          <p>村上さん側で追加作業を続けず、管理者側の確認に切り替えます。</p>
+        </div>
+        <div class="body">
+          <div class="ok">FacebookページとInstagramのリンクが連動済みで、ビジネス設定の「アプリ」欄に <code>アプリが追加されていません</code> と出た場合、村上さんはここで止めて正解です。</div>
+          <p>この表示は、投稿用Metaアプリがその画面で見えていない、または投稿用System Userへの資産割り当てが確認できない状態です。対象店舗のFacebookページとInstagram自体が見えているかとは別の確認です。</p>
+          <table>
+            <tr><th>見る人</th><th>確認すること</th></tr>
+            <tr><td>村上さん</td><td>対象FacebookページとInstagramが連動済みか、対象店舗名・Instagram名・エラー文を控える。アプリ追加やtoken変更はしない。</td></tr>
+            <tr><td>管理者</td><td><code>楽スタ管理</code> の投稿用Metaアプリ、または投稿用System Userに、対象Facebookページと対象Instagramの資産権限が付いているか確認する。</td></tr>
+            <tr><td>管理者</td><td>既存店舗の権限を外さず、対象店舗だけを追加する。既存の <code>iryoukaigotest</code> や <code>rakusuta2000</code> を外さない。</td></tr>
+          </table>
+          <div class="warn">「アプリが追加されていません」と出たからといって、村上さんが任意のアプリを追加したり、Graph API Explorerでtokenを作ったりする対応ではありません。</div>
+        </div>
+      </section>
+
       <section id="dont-touch">
         <div class="section-head">
-          <h2>4. 触らないもの</h2>
+          <h2>5. 触らないもの</h2>
           <p>このエラーで焦って触ると、既存店舗へ影響が出やすい場所です。</p>
         </div>
         <div class="body">
@@ -311,7 +330,7 @@
 
       <section id="stop">
         <div class="section-head">
-          <h2>5. 止めて確認する条件</h2>
+          <h2>6. 止めて確認する条件</h2>
           <p>ここに当てはまる場合は、その場で作業を止めて確認します。</p>
         </div>
         <div class="body">
@@ -319,6 +338,7 @@
             <tr><th>止める状態</th><th>理由</th></tr>
             <tr><td><code>楽スタ管理</code> に対象ページ/Instagramが見えない</td><td>投稿権限以前に、Meta側の資産追加が完了していない可能性があります。</td></tr>
             <tr><td>FacebookページとInstagramのリンクが確認できない</td><td>Instagram投稿APIはページ連携が前提です。</td></tr>
+            <tr><td>ビジネス設定の「アプリ」欄に <code>アプリが追加されていません</code> と出る</td><td>投稿用MetaアプリまたはSystem User側の確認に切り替える状態です。村上さん側で追加作業を続けません。</td></tr>
             <tr><td>投稿用アプリ/System Userの権限画面で既存店舗が外れそう</td><td>既存店舗の投稿を止める可能性があります。</td></tr>
             <tr><td>Graph API ExplorerやRender変更が必要そうに見える</td><td>通常の新規顧客追加ではなく、本番token切替作業として別扱いにします。</td></tr>
           </table>
@@ -328,7 +348,7 @@
 
       <section id="reply">
         <div class="section-head">
-          <h2>6. そのまま送れる回答文</h2>
+          <h2>7. そのまま送れる回答文</h2>
           <p>村上さんへ説明する時の短い文面です。</p>
         </div>
         <div class="body">
@@ -341,6 +361,15 @@ Instagram Access Token欄には何も貼らないでください。
 
 Graph API Explorer、Render、既存共通tokenは触らないでください。
 分からない場合は、対象店舗名・Instagramユーザー名・Facebookページ名・表示されたエラー文を控えて止めてください。</pre>
+          <div class="notice">今回の「アプリが追加されていません」への返信例</div>
+          <pre>ご確認ありがとうございます。
+FacebookページとInstagramのリンクが連動済みで、ビジネス設定の「アプリ」欄に「アプリが追加されていません」と出ている場合は、そこで止めていただいて大丈夫です。
+
+これは村上さん側で追加操作を続ける場所ではなく、こちらで投稿用Metaアプリ、またはSystem User側の権限を確認する段階です。
+Graph API Explorer、Render、Instagram Access Token欄は触らないでください。
+
+対象店舗名、Instagramユーザー名、Facebookページ名、表示されたエラー文だけ控えておいてください。
+こちらで管理者側の設定を確認します。</pre>
         </div>
       </section>
     </div>
