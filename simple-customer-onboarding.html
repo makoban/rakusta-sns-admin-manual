@@ -137,6 +137,9 @@
       <div class="note">
         「Meta Business Suiteで管理対象のアカウントでログイン」とは言いません。正しくは、<strong>村上さん本人のFacebook/Metaアカウントでログイン</strong>です。その個人アカウントに <code>楽スタ管理</code> の管理者権限が付いている前提で進めます。
       </div>
+      <div class="ok">
+        新規店舗が増えるたびに村上さんが行うのは、FacebookページとInstagramを <code>楽スタ管理</code> に追加し、IDを楽スタSNS管理画面へ登録する作業です。<code>アプリ</code>、System User、Graph API Explorer、Renderは通常作業では見ません。
+      </div>
       <div class="top-links">
         <a href="#murakami-admin">村上さん追加</a>
         <a href="#meta">Metaで確認</a>
@@ -160,11 +163,11 @@
         <div class="step"><div><strong>Business Portfolioを確認</strong><br>左上または設定画面で <code>楽スタ管理</code> を選ぶ。別のBusiness Portfolioでは作業しない。</div></div>
         <div class="step"><div><strong>ユーザー招待を開く</strong><br><code>設定</code> -> <code>ユーザー</code> -> <code>ユーザー</code> または <code>People</code> を開き、<code>ユーザーを招待</code> / <code>Invite people</code> を押す。</div></div>
         <div class="step"><div><strong>村上さんのメールを入れる</strong><br>村上さん本人のFacebook/Metaログインに使うメールアドレスを入れる。パスワードや2段階認証コードは聞かない。</div></div>
-        <div class="step"><div><strong>権限を管理者にする</strong><br>今回は管理者前提なので、Business Portfolioの <code>フルコントロール</code> / 管理者権限を付ける。単なる作業者にする場合だけ部分アクセスにする。</div></div>
+        <div class="step"><div><strong>権限を管理者にする</strong><br>今回は村上さんが新規店舗を毎回追加できる前提なので、Business Portfolioの <code>フルコントロール</code> / 管理者権限を付ける。ページとInstagramを追加・管理できる状態にする。</div></div>
         <div class="step"><div><strong>村上さんが招待を承認する</strong><br>村上さん本人が招待メールまたはMeta通知から承認し、自分のFacebook/Metaでログインする。</div></div>
         <div class="step"><div><strong>完了確認</strong><br>村上さんの画面で <code>楽スタ管理</code> が選べれば完了。管理者一覧が <code>招待中</code> のままなら、まだ完了していない。</div></div>
       </div>
-      <div class="danger">この作業でもGraph API Explorer、token生成画面、Render設定、BANTEX投稿Bot設定画面は開きません。</div>
+      <div class="danger">この作業でもGraph API Explorer、token生成画面、Render設定、BANTEX投稿Bot設定画面、Metaの <code>アプリ</code> 欄は開きません。</div>
     </section>
 
     <section>
@@ -178,8 +181,8 @@
       </div>
       <div class="flow">
         <div class="step"><div><strong>村上さん本人のFacebook/Metaでログイン</strong><br>Business Portfolioは <code>楽スタ管理</code> を選ぶ。</div></div>
-        <div class="step"><div><strong>ページを確認</strong><br><code>設定</code> -> <code>アカウント</code> -> <code>ページ</code> に顧客Facebook店舗ページがあるか見る。</div></div>
-        <div class="step"><div><strong>Instagramを確認</strong><br><code>設定</code> -> <code>アカウント</code> -> <code>Instagramアカウント</code> に顧客Instagramがあるか見る。</div></div>
+        <div class="step"><div><strong>ページを追加または確認</strong><br><code>設定</code> -> <code>アカウント</code> -> <code>ページ</code> に顧客Facebook店舗ページを追加する。すでにあれば表示されることを確認する。</div></div>
+        <div class="step"><div><strong>Instagramを追加または確認</strong><br><code>設定</code> -> <code>アカウント</code> -> <code>Instagramアカウント</code> に顧客Instagramを追加する。すでにあれば表示されることを確認する。</div></div>
         <div class="step"><div><strong>IDを控える</strong><br>Instagram Business Account ID、Facebook Page IDを確認する。</div></div>
         <div class="step"><div><strong>楽スタ管理画面に登録</strong><br>Instagram ID、LINE Channel情報、投稿設定を保存する。</div></div>
         <div class="step"><div><strong>ヘルスチェック</strong><br>新規店舗と既存104/105がOKか確認する。</div></div>
@@ -196,12 +199,12 @@
       <table>
         <thead><tr><th>確認するもの</th><th>見る場所</th><th>OK</th></tr></thead>
         <tbody>
-          <tr><td>Facebook店舗ページ</td><td>設定 -> アカウント -> ページ</td><td>顧客の店舗ページが表示される</td></tr>
-          <tr><td>Instagram PRO</td><td>設定 -> アカウント -> Instagramアカウント</td><td>顧客Instagramが表示される</td></tr>
+          <tr><td>Facebook店舗ページ</td><td>設定 -> アカウント -> ページ</td><td>顧客の店舗ページを追加する。追加済みなら表示される</td></tr>
+          <tr><td>Instagram PRO</td><td>設定 -> アカウント -> Instagramアカウント</td><td>顧客Instagramを追加する。追加済みなら表示される</td></tr>
           <tr><td>連携状態</td><td>Facebookページ/Instagram詳細</td><td>FacebookページとInstagramがリンク済み</td></tr>
         </tbody>
       </table>
-      <div class="danger">ここでGraph API Explorer、token生成画面、Render設定は開きません。</div>
+      <div class="danger">ここで見るのは <code>アカウント</code> の中の <code>ページ</code> と <code>Instagramアカウント</code> だけです。<code>アプリ</code> 欄に「アプリが追加されていません」と出ても、通常作業では見ない画面なので戻ります。Graph API Explorer、token生成画面、Render設定も開きません。</div>
     </section>
 
     <section id="rakusta">
@@ -258,6 +261,7 @@
         <thead><tr><th>止める状態</th><th>次に見る場所</th></tr></thead>
         <tbody>
           <tr><td><code>楽スタ管理</code> にページ/Instagramが見えない</td><td>Meta Business Suiteのページ/Instagram追加状態</td></tr>
+          <tr><td>Metaの <code>アプリ</code> 欄に「アプリが追加されていません」と出る</td><td>通常作業では見ない画面。<code>アカウント</code> -> <code>ページ</code> / <code>Instagramアカウント</code> へ戻る</td></tr>
           <tr><td>Instagram Business Account IDが分からない</td><td>Meta Business SuiteのInstagram詳細、またはBANTEX側確認</td></tr>
           <tr><td>ヘルスチェックで新規がNG</td><td>ページ連携、Instagram PRO化、承認状態</td></tr>
           <tr><td>既存104/105がNG</td><td>作業停止。既存環境を壊している可能性がある</td></tr>

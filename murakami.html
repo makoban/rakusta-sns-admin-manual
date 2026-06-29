@@ -483,6 +483,7 @@
         <p class="lead">村上さんが作ったFacebookページとInstagramを、楽スタ管理の資産として追加します。通常作業ではGraph API Explorerのtoken生成画面は開きません。</p>
         <div class="note">ログイン画面が出たら、ID欄には村上さん本人のFacebook/Metaログインを入れます。事前に村上さんを <strong>楽スタ管理</strong> の管理者へ追加しておきます。</div>
         <div class="warn">Meta Business Suiteの左上では <strong>楽スタ管理</strong> を選びます。これはBANTEX側で楽スタのFacebookページとInstagramを管理しているBusiness Portfolioです。新しい箱は作りません。</div>
+        <div class="ok">ここで使うのは <strong>アカウント → ページ</strong> と <strong>アカウント → Instagramアカウント</strong> だけです。<strong>アプリ</strong> 欄は通常作業では見ません。「アプリが追加されていません」と出ても、そこは村上さんの毎回作業ではありません。</div>
         <figure class="shot">
           <img src="assets/screenshots/meta_business_home.png" alt="Meta Business Suiteログイン画面">
           <span class="pin" style="--x:68%;--y:43%;">1</span>
@@ -505,6 +506,7 @@
           <div class="step"><strong>左上の箱を確認する</strong><br>画面左上のBusiness Portfolioは「楽スタ管理」を使います。</div>
           <div class="step"><strong>Facebookページを追加する</strong><br>設定の「ページ」で「追加」を押し、「楽スタデモ村上店」を選びます。承認確認が出たら画面の案内どおりに進みます。</div>
           <div class="step"><strong>Instagramを追加する</strong><br>設定の「Instagramアカウント」で「追加」を押し、「rakusta_demo_murakami」でログインします。SMSや2段階認証が出たら、村上さんが画面で入力します。</div>
+          <div class="step"><strong>アプリ欄は見ない</strong><br>Metaの「アプリ」欄、BANTEX投稿Bot、System Userは毎回の新店舗追加では触りません。ページとInstagramの追加へ戻ります。</div>
           <div class="step"><strong>既存店舗を触っていないか確認する</strong><br>既存店舗のページやInstagramは外しません。共通tokenやRender設定も変更しません。</div>
           <div class="step"><strong>Instagram User IDを確認する</strong><br>Meta Business SuiteのInstagramアカウント詳細、またはBANTEX側の安全な確認で <code>1784...</code> の数字を確認します。</div>
         </div>
@@ -643,6 +645,7 @@
             <tr><td>店舗が検索に出ない</td><td>店舗管理</td><td>サービス提供者権限で新規店舗追加してからSNS管理へ戻る</td></tr>
             <tr><td>LINEから送っても反応しない</td><td>LINE DevelopersとココトモSNS管理画面</td><td>Webhook、Token、Secret、SNS投稿ONを確認</td></tr>
             <tr><td>Instagram User IDが分からない</td><td>BANTEX側Meta確認</td><td><code>rakusta_demo_murakami</code> ではなく <code>1784...</code> の数字を探す</td></tr>
+            <tr><td>「アプリが追加されていません」と出る</td><td>Meta Businessのアプリ欄</td><td>通常作業では見ない画面。閉じて、アカウント -> ページ / Instagramアカウントへ戻る</td></tr>
             <tr><td>Instagram投稿だけ失敗する</td><td>Meta BusinessとToken運用方式</td><td>既存tokenは触らず、ページ/Instagramの資産追加、Instagramリンク、Token運用方式がBANTEX共通か確認</td></tr>
           </tbody>
         </table>

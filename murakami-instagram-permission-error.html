@@ -285,7 +285,7 @@
             <li><code>アカウント</code> → <code>ページ</code> に、対象店舗のFacebookページがあるか確認します。</li>
             <li><code>アカウント</code> → <code>Instagramアカウント</code> に、対象店舗のInstagramがあるか確認します。</li>
             <li>対象Facebookページと対象Instagramがリンク済みか確認します。</li>
-            <li>投稿用Metaアプリ、またはSystem User側に、対象Facebookページと対象Instagramの権限が付いているか確認します。</li>
+            <li>通常の新規店舗追加では、Metaの <code>アプリ</code> 欄、投稿用Metaアプリ、System Userは見ません。</li>
           </ol>
           <div class="warn">既存の <code>iryoukaigotest</code> や <code>rakusuta2000</code> のページ/Instagram選択を外さないでください。既存店舗が投稿できなくなる可能性があります。</div>
         </div>
@@ -294,16 +294,16 @@
       <section id="app-missing">
         <div class="section-head">
           <h2>4. 「アプリが追加されていません」と出た場合</h2>
-          <p>村上さん側で追加作業を続けず、管理者側の確認に切り替えます。</p>
+          <p>通常の新規店舗追加では見ない画面です。ページとInstagramの追加画面へ戻ります。</p>
         </div>
         <div class="body">
-          <div class="ok">FacebookページとInstagramのリンクが連動済みで、ビジネス設定の「アプリ」欄に <code>アプリが追加されていません</code> と出た場合、村上さんはここで止めて正解です。</div>
-          <p>この表示は、投稿用Metaアプリがその画面で見えていない、または投稿用System Userへの資産割り当てが確認できない状態です。対象店舗のFacebookページとInstagram自体が見えているかとは別の確認です。</p>
+          <div class="ok">FacebookページとInstagramのリンク確認中に、ビジネス設定の <code>アプリ</code> 欄で <code>アプリが追加されていません</code> と出ても、通常の新規店舗追加ではそこで作業しません。</div>
+          <p>村上さんが毎回行うのは、対象店舗のFacebookページとInstagramを <code>楽スタ管理</code> の <code>アカウント</code> に追加し、IDを楽スタSNS管理画面へ登録することです。投稿用MetaアプリやSystem Userは裏側の共通設定であり、新店舗ごとに作り直したり確認したりしません。</p>
           <table>
-            <tr><th>見る人</th><th>確認すること</th></tr>
-            <tr><td>村上さん</td><td>対象FacebookページとInstagramが連動済みか、対象店舗名・Instagram名・エラー文を控える。アプリ追加やtoken変更はしない。</td></tr>
-            <tr><td>管理者</td><td><code>楽スタ管理</code> の投稿用Metaアプリ、または投稿用System Userに、対象Facebookページと対象Instagramの資産権限が付いているか確認する。</td></tr>
-            <tr><td>管理者</td><td>既存店舗の権限を外さず、対象店舗だけを追加する。既存の <code>iryoukaigotest</code> や <code>rakusuta2000</code> を外さない。</td></tr>
+            <tr><th>状態</th><th>次にすること</th></tr>
+            <tr><td><code>アプリ</code> 欄に <code>アプリが追加されていません</code> と出た</td><td>その画面を閉じる。<code>アカウント</code> → <code>ページ</code> / <code>Instagramアカウント</code> へ戻る。</td></tr>
+            <tr><td>ページ/Instagramが <code>楽スタ管理</code> にない</td><td>村上さんが追加・承認する。これは新店舗ごとに毎回行う。</td></tr>
+            <tr><td>ページ/Instagramがある</td><td>Instagram Business Account IDとFacebook Page IDを控えて、楽スタSNS管理画面に登録する。</td></tr>
           </table>
           <div class="warn">「アプリが追加されていません」と出たからといって、村上さんが任意のアプリを追加したり、Graph API Explorerでtokenを作ったりする対応ではありません。</div>
         </div>
@@ -338,8 +338,8 @@
             <tr><th>止める状態</th><th>理由</th></tr>
             <tr><td><code>楽スタ管理</code> に対象ページ/Instagramが見えない</td><td>投稿権限以前に、Meta側の資産追加が完了していない可能性があります。</td></tr>
             <tr><td>FacebookページとInstagramのリンクが確認できない</td><td>Instagram投稿APIはページ連携が前提です。</td></tr>
-            <tr><td>ビジネス設定の「アプリ」欄に <code>アプリが追加されていません</code> と出る</td><td>投稿用MetaアプリまたはSystem User側の確認に切り替える状態です。村上さん側で追加作業を続けません。</td></tr>
-            <tr><td>投稿用アプリ/System Userの権限画面で既存店舗が外れそう</td><td>既存店舗の投稿を止める可能性があります。</td></tr>
+            <tr><td>ビジネス設定の「アプリ」欄に <code>アプリが追加されていません</code> と出る</td><td>通常作業では見ない画面です。<code>アカウント</code> → <code>ページ</code> / <code>Instagramアカウント</code> へ戻ります。</td></tr>
+            <tr><td>投稿用アプリ/System Userの権限画面を開きそうになる</td><td>通常の新店舗追加では触りません。既存店舗の投稿を止める可能性があります。</td></tr>
             <tr><td>Graph API ExplorerやRender変更が必要そうに見える</td><td>通常の新規顧客追加ではなく、本番token切替作業として別扱いにします。</td></tr>
           </table>
           <div class="ng">分からない場合は、対象店舗名、Instagramユーザー名、Facebookページ名、出たエラー文を控えて、そこで止めてください。</div>
@@ -357,19 +357,22 @@
 まずSNS管理画面では、Instagram Business Account ID、Facebook Page ID、Token運用方式が global になっているかだけ確認してください。
 Instagram Access Token欄には何も貼らないでください。
 
-次にMeta Business Suiteで「楽スタ管理」を選び、対象のFacebookページとInstagramが入っているか、ページとInstagramがリンク済みか、投稿用Metaアプリ/System Userに対象Instagramの権限が付いているかを確認します。
+次にMeta Business Suiteで「楽スタ管理」を選び、アカウント → ページ と アカウント → Instagramアカウント に対象店舗が入っているか、ページとInstagramがリンク済みかを確認します。
 
 Graph API Explorer、Render、既存共通tokenは触らないでください。
 分からない場合は、対象店舗名・Instagramユーザー名・Facebookページ名・表示されたエラー文を控えて止めてください。</pre>
           <div class="notice">今回の「アプリが追加されていません」への返信例</div>
           <pre>ご確認ありがとうございます。
-FacebookページとInstagramのリンクが連動済みで、ビジネス設定の「アプリ」欄に「アプリが追加されていません」と出ている場合は、そこで止めていただいて大丈夫です。
+FacebookページとInstagramのリンクが連動済みで、ビジネス設定の「アプリ」欄に「アプリが追加されていません」と出ている場合、その画面は通常の新規店舗追加では使いません。
 
-これは村上さん側で追加操作を続ける場所ではなく、こちらで投稿用Metaアプリ、またはSystem User側の権限を確認する段階です。
+いったん「アプリ」欄は閉じて、楽スタ管理の「アカウント」→「ページ」と「Instagramアカウント」に戻ってください。
+そこで対象店舗のFacebookページとInstagramが追加済みかを確認し、なければ追加してください。
+
+その後、Instagram Business Account IDとFacebook Page IDを楽スタSNS管理画面に登録します。
 Graph API Explorer、Render、Instagram Access Token欄は触らないでください。
 
 対象店舗名、Instagramユーザー名、Facebookページ名、表示されたエラー文だけ控えておいてください。
-こちらで管理者側の設定を確認します。</pre>
+登録後にまだ投稿権限エラーが出る場合だけ、こちらで共通設定を確認します。</pre>
         </div>
       </section>
     </div>
