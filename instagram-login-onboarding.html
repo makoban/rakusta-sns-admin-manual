@@ -148,6 +148,7 @@
         <a href="#changed">今回変わったところ</a>
         <a href="#roles">二人管理</a>
         <a href="#new-store">新規顧客</a>
+        <a href="#line-example">LINE実例</a>
         <a href="#screens">承認スクショ</a>
         <a href="#admin">楽スタ管理</a>
         <a href="#review">本番申請</a>
@@ -193,6 +194,56 @@
         <div class="step"><div><strong>接続完了とヘルスチェック</strong><br>管理画面で <code>Instagramのみ連携</code>、接続有効、ユーザー名一致を確認します。</div></div>
         <div class="step"><div><strong>LINEからテスト投稿</strong><br>写真1枚と短いメモを送り、投稿案作成からInstagram投稿まで確認します。</div></div>
       </div>
+    </section>
+
+    <section id="line-example">
+      <h2>LINE公式アカウント実例: kanjicompass</h2>
+      <p class="lead">新規顧客でLINE公式アカウントを作る場合の実例です。例では <code>@064xmpon</code> を作成し、Messaging APIを <code>ココトモSNS</code> プロバイダーへ接続しました。</p>
+      <div class="warn">Channel secretとChannel access tokenはスクショ、チャット、GitHubに残しません。画面でコピーして、そのまま楽スタ管理画面または本番DBへ登録します。</div>
+      <div class="flow">
+        <div class="step"><div><strong>LINE Official Account Managerでアカウントを作成</strong><br>店舗名、業種、目的を入力します。LINE IDは作成後に確認します。</div></div>
+        <div class="step"><div><strong>Messaging APIを利用する</strong><br>設定画面の <code>Messaging API</code> で緑のボタンを押します。</div></div>
+        <div class="step"><div><strong>既存プロバイダーを選ぶ</strong><br><code>ココトモSNS</code> を選択します。新規プロバイダーは作りません。</div></div>
+        <div class="step"><div><strong>Webhook URLを設定</strong><br><code>https://kokotomo-toc-bot.onrender.com/callback</code> を入れて保存します。</div></div>
+        <div class="step"><div><strong>SecretとAccess Tokenを登録</strong><br>値は表示せず、楽スタ側へ直接登録します。登録前にVerifyすると400になることがあります。</div></div>
+        <div class="step"><div><strong>Use webhookをONにしてVerify</strong><br><code>Success</code> が出ればLINE PlatformからBotへの到達確認は完了です。</div></div>
+      </div>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_manager_open.png" alt="kanjicompass LINE公式アカウント作成画面">
+        <figcaption>LINE公式アカウント作成画面です。アカウント名はInstagram名に寄せると管理しやすくなります。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_provider_selected_agree.png" alt="LINE Messaging APIでココトモSNSプロバイダーを選択">
+        <figcaption>Messaging APIを有効化する時は、既存の <code>ココトモSNS</code> プロバイダーを選びます。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_messaging_api_confirm.png" alt="kanjicompass Messaging API利用確認">
+        <figcaption>アカウント名 <code>kanjicompass</code>、プロバイダー名 <code>ココトモSNS</code> を確認してOKを押します。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_developers_channel.png" alt="LINE Developers kanjicompassチャンネル">
+        <figcaption>LINE Developersで <code>kanjicompass</code> のMessaging APIチャンネルを開きます。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_developers_webhook.png" alt="LINE Developers Webhook URL設定">
+        <figcaption>Webhook URLは <code>https://kokotomo-toc-bot.onrender.com/callback</code> です。Verifyの前にSecret/Tokenを楽スタ側へ登録します。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_webhook_verify_before_db.png" alt="Secret登録前のWebhook Verifyエラー例">
+        <figcaption>Secret/Token登録前にVerifyすると <code>400 Bad Request</code> になることがあります。この場合は値を登録してから再実行します。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_channel_token_issue.png" alt="LINE Developers Channel access token発行前">
+        <figcaption>Channel access tokenは <code>Issue</code> で発行します。発行後のtokenが映る画面はマニュアルに残しません。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_use_webhook_on.png" alt="Use webhookをONにした状態">
+        <figcaption>楽スタ側へSecret/Tokenを登録した後、<code>Use webhook</code> をONにします。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_webhook_verify_success.png" alt="Webhook Verify Success">
+        <figcaption><code>Success</code> が出ればWebhookの到達確認は完了です。実運用前には、実LINEから写真1枚とメモを送って投稿テストします。</figcaption>
+      </figure>
     </section>
 
     <section id="screens">
