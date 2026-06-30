@@ -204,14 +204,15 @@
     <div class="wrap">
       <p class="eyebrow">楽スタ / 村上さん向け</p>
       <h1><span>Instagram投稿権限</span><span>エラー対応</span></h1>
-      <p class="lead">SNS管理画面で「Metaアプリに対象Instagramの投稿権限がありません」と出た時に、村上さんが見る場所・見ない場所をまとめたページです。</p>
+      <p class="lead">旧Facebook＆Instagram連携方式で「Metaアプリに対象Instagramの投稿権限がありません」と出た時の確認ページです。新規顧客の標準はInstagram Login方式へ変更済みです。</p>
       <div class="meta">
-        <span class="pill">最終更新: 2026-06-29</span>
+        <span class="pill">最終更新: 2026-06-30</span>
         <span class="pill">社内向け</span>
         <span class="pill">token変更なし</span>
       </div>
       <div class="top-links">
         <a href="index.html">マニュアル一覧</a>
+        <a href="instagram-login-onboarding.html">Instagram Login新標準</a>
         <a href="simple-customer-onboarding.html">新規顧客追加</a>
         <a href="murakami.html">村上さん手順</a>
       </div>
@@ -220,7 +221,7 @@
 
   <main>
     <div class="wrap">
-      <p class="notice">結論: 村上さんが通常作業で見るのは、Meta Business Suiteの <strong>アカウント → ページ</strong> と <strong>アカウント → Instagramアカウント</strong> です。<strong>アプリ</strong> 欄、BANTEX投稿Bot、System User、Graph API Explorer、Renderは見ません。</p>
+      <p class="notice">結論: 新規顧客はこのページではなく <a href="instagram-login-onboarding.html">Instagram Login方式</a> を使います。このページは、既存のFacebook＆Instagram連携方式を維持している店舗だけで参照します。</p>
 
       <nav aria-label="目次">
         <h2>目次</h2>
@@ -237,17 +238,17 @@
       <section id="changes">
         <div class="section-head">
           <h2>0. 今回変わったところ</h2>
-          <p>新規店舗を村上さんが自分で登録できるよう、通常作業で見る画面を絞りました。</p>
+          <p>新規顧客の標準はInstagram Login方式です。このページは旧方式を残す店舗のエラー診断用です。</p>
         </div>
         <div class="body">
           <table>
             <tr><th>変わったこと</th><th>村上さんの動き</th></tr>
-            <tr><td>新店舗の追加は村上さんが毎回行う</td><td><code>楽スタ管理</code> の <code>アカウント</code> で、FacebookページとInstagramを追加する。</td></tr>
-            <tr><td>見る場所は2つだけ</td><td><code>アカウント</code> → <code>ページ</code>、<code>アカウント</code> → <code>Instagramアカウント</code> を見る。</td></tr>
-            <tr><td><code>アプリ</code> 欄は通常作業では使わない</td><td><code>アプリが追加されていません</code> と出ても、その画面を閉じてページ/Instagramの画面へ戻る。</td></tr>
+            <tr><td>新規顧客の標準</td><td>Facebookページなしの <code>Instagramのみ連携</code>。詳細は <a href="instagram-login-onboarding.html">Instagram Login方式</a> を見る。</td></tr>
+            <tr><td>このページの対象</td><td>既存104/105など、旧Facebook＆Instagram連携方式を残す店舗のエラー確認。</td></tr>
+            <tr><td><code>アプリ</code> 欄は通常作業では使わない</td><td>新方式では顧客InstagramのOAuth許可を使う。旧方式診断でもGraph API ExplorerやRenderは通常触らない。</td></tr>
             <tr><td>tokenやRenderは触らない</td><td>Graph API Explorer、BANTEX投稿Bot、System User、Instagram Access Token欄は触らない。</td></tr>
           </table>
-          <div class="ok">村上さんに伝える要点: 「新店舗ごとに追加するのはページとInstagramだけ。アプリ欄は見ない。IDを控えて楽スタSNS管理画面に登録する。」</div>
+          <div class="ok">村上さんに伝える要点: 「新規顧客はInstagram Login方式を見る。ここは旧方式店舗のエラー確認用。」</div>
         </div>
       </section>
 

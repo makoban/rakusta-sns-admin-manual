@@ -344,9 +344,10 @@
   <div class="layout">
     <aside>
       <h1>楽スタ 新店舗SNS連携マニュアル</h1>
-      <div class="version">2026-06-22 / 社内管理者向け</div>
+      <div class="version">2026-06-30 / 社内管理者向け / 旧方式を含む詳細</div>
       <nav>
         <a href="index.html">マニュアル一覧</a>
+        <a href="instagram-login-onboarding.html">新標準 Instagram Login方式</a>
         <a href="#time">所要時間</a>
         <a href="simple-customer-onboarding.html">最短版</a>
         <a href="store-settings-mobile.html">店舗スマホ設定</a>
@@ -371,7 +372,7 @@
     <main>
       <div class="hero">
         <h2>新しい店舗アカウントで、LINEからInstagram投稿できる状態まで作る</h2>
-        <p>このページは、遠方の社内管理者が一人で作業できるようにした操作マニュアルです。最初に「Facebook店舗ページ」「店舗Instagram」「公式LINE」の有無を確認し、足りないものだけ作ります。実パスワードやtokenはこのHTMLには書かず、別の安全な方法で共有してください。</p>
+        <p>このページは旧Facebook連携方式も含む詳細版です。新規顧客の標準はFacebookページなしのInstagram Login方式へ変更済みです。実パスワードやtokenはこのHTMLには書かず、別の安全な方法で共有してください。</p>
         <div class="badges">
           <span class="badge">店舗側のLINE運用は今まで通り</span>
           <span class="badge">Instagram tokenは店舗ごとに発行しない</span>
@@ -379,7 +380,7 @@
           <span class="badge">スクショ多め</span>
         </div>
         <div class="note">
-          新規顧客追加で迷った場合は、先に <a href="simple-customer-onboarding.html">新規顧客追加 やることだけ</a> を開いてください。お客様に送る店舗用設定は <a href="store-settings-mobile.html">スマホで店舗用設定を変更する方法</a>、管理側の初期設定は <a href="setup-admin.html">初期設定マニュアル</a> を使います。村上さんが社内練習用に「個人FacebookからLINE投稿テストまで」を1人で進める場合は、<a href="murakami.html">村上さん専用ページ</a> を開いてください。
+          新規顧客追加で迷った場合は、先に <a href="instagram-login-onboarding.html">Instagram Login方式 新規顧客追加</a> を開いてください。お客様に送る店舗用設定は <a href="store-settings-mobile.html">スマホで店舗用設定を変更する方法</a>、村上さんの通常作業は <a href="murakami.html">村上さん専用ページ</a> を使います。
         </div>
       </div>
 
@@ -398,7 +399,7 @@
         <div class="asset-grid">
           <div class="asset">
             <strong>1. Facebook店舗ページ</strong>
-            <span>店舗名で存在するページ。個人Facebookではありません。</span>
+            <span>旧方式店舗だけで使います。新規顧客の標準では作りません。</span>
           </div>
           <div class="asset">
             <strong>2. 店舗Instagram</strong>
@@ -410,20 +411,17 @@
           </div>
         </div>
         <div class="warn">
-          <strong>紐づけ先は「Facebookページ楽スタ」ではありません。</strong> お客様のFacebook店舗ページと店舗Instagramを、BANTEX側のMeta Business「楽スタ管理」の資産として追加します。Facebookページ「楽スタ」は、楽スタ自身のページであり、お客様店舗をぶら下げる親ページではありません。
+          <strong>新規顧客の標準はInstagram Login方式です。</strong> Facebook店舗ページをMeta Businessへ追加する説明は、既存の旧方式店舗を維持・確認する時だけ使います。
         </div>
-        <h3>3項目の有無別スタート位置</h3>
+        <h3>新方式の有無別スタート位置</h3>
         <table class="pattern-table">
           <thead><tr><th>パターン</th><th>有無</th><th>最初にやること</th><th>その後</th></tr></thead>
           <tbody>
-            <tr><td>A</td><td>3つ全部あり</td><td>BANTEX Meta Businessへページ/Instagramを追加</td><td>楽スタ管理画面登録、LINE投稿テスト</td></tr>
-            <tr><td>B</td><td>Facebookページあり / Instagramあり / LINEなし</td><td>公式LINEを作成し、Messaging APIを有効化</td><td>BANTEX Meta追加、楽スタ管理画面登録</td></tr>
-            <tr><td>C</td><td>Facebookページあり / Instagramなし / LINEあり</td><td>店舗Instagramを作成し、Facebookページとリンク</td><td>BANTEX Meta追加、楽スタ管理画面登録</td></tr>
-            <tr><td>D</td><td>Facebookページなし / Instagramあり / LINEあり</td><td>Facebook店舗ページを作成し、Instagramをリンク</td><td>BANTEX Meta追加、楽スタ管理画面登録</td></tr>
-            <tr><td>E</td><td>Facebookページあり / Instagramなし / LINEなし</td><td>店舗Instagramを作成し、Facebookページとリンク</td><td>公式LINE作成、楽スタ管理画面登録</td></tr>
-            <tr><td>F</td><td>Facebookページなし / Instagramあり / LINEなし</td><td>Facebook店舗ページを作成し、Instagramをリンク</td><td>公式LINE作成、楽スタ管理画面登録</td></tr>
-            <tr><td>G</td><td>Facebookページなし / Instagramなし / LINEあり</td><td>Facebook店舗ページと店舗Instagramを作成</td><td>Instagramリンク、BANTEX Meta追加</td></tr>
-            <tr><td>H</td><td>3つ全部なし</td><td>店舗メール、Facebook店舗ページ、Instagram、公式LINEを順に作成</td><td>BANTEX Meta追加、楽スタ管理画面登録</td></tr>
+            <tr><td>A</td><td>Instagramあり / LINEあり</td><td>楽スタ管理画面で店舗を作り、Instagram連携URLを発行</td><td>顧客がInstagramで許可、LINE投稿テスト</td></tr>
+            <tr><td>B</td><td>Instagramあり / LINEなし</td><td>公式LINEを作成し、Messaging APIを有効化</td><td>Instagram連携URLを発行、顧客が許可</td></tr>
+            <tr><td>C</td><td>Instagramなし / LINEあり</td><td>店舗Instagramを作成し、プロアカウント化</td><td>Instagram連携URLを発行、顧客が許可</td></tr>
+            <tr><td>D</td><td>Instagramなし / LINEなし</td><td>店舗Instagramと公式LINEを作成</td><td>楽スタ管理画面登録、Instagram連携URLを発行</td></tr>
+            <tr><td>旧方式</td><td>既存のFacebook＆Instagram連携店舗</td><td>FacebookページとInstagramリンクを確認</td><td>既存設定を維持。新規顧客へは通常使わない</td></tr>
           </tbody>
         </table>
         <div class="note">

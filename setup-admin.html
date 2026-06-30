@@ -259,9 +259,9 @@
         <div class="wrap">
             <p class="eyebrow">楽スタSNS / サービススタッフ用</p>
             <h1>Instagram・Facebook・LINEBOT 初期設定マニュアル</h1>
-            <p class="lead">お客様との打ち合わせで、どこを確認すれば運用開始できるかをまとめたページです。BANTEX管理画面の設定は「接続」「契約」「店舗用」「テスト」に分けて登録します。</p>
+            <p class="lead">旧方式を含む詳細確認ページです。新規顧客の標準はInstagram Login方式へ変更済みです。</p>
             <div class="meta">
-                <span class="pill">最終更新: 2026-06-26</span>
+                <span class="pill">最終更新: 2026-06-30</span>
                 <span class="pill">対象: 楽スタSNS</span>
                 <span class="pill">社内確認用</span>
             </div>
@@ -270,11 +270,12 @@
 
     <main>
         <div class="wrap">
-            <p class="notice">結論: 運用開始に必要なのは、Instagramがプロアカウントであること、Facebookページとつながっていること、LINE公式アカウントのWebhookがBotにつながっていることです。</p>
+            <p class="notice">新規顧客の標準は <a href="instagram-login-onboarding.html">Instagram Login方式</a> です。Facebookページ連携の説明は、既存店舗や旧方式を確認する時だけ参照してください。</p>
 
             <div class="grid">
                 <nav aria-label="目次">
                     <h2>目次</h2>
+                    <a href="instagram-login-onboarding.html">新標準: Instagram Login方式</a>
                     <a href="#quick-check">1. まず確認すること</a>
                     <a href="#instagram">2. Instagramの確認</a>
                     <a href="#facebook">3. Facebookページの確認</a>
@@ -298,14 +299,14 @@
                         <div class="body">
                             <ul class="checklist">
                                 <li><span class="label">Instagram</span>お店のInstagramが「プロアカウント」になっている</li>
-                                <li><span class="label">Facebook</span>お店用のFacebookページがある。個人アカウントではない</li>
-                                <li><span class="label">接続</span>Instagramの「ページ」に、そのFacebookページが表示されている</li>
-                                <li><span class="label">権限</span>お客様、またはBANTEXが案内する接続担当者が、そのFacebookページを管理できる</li>
+                                <li><span class="label">新方式</span>お客様が店舗Instagramにログインでき、楽スタSNS連携の許可画面で承認できる</li>
+                                <li><span class="label">旧方式</span>既存のFacebook＆Instagram連携店舗だけ、FacebookページとInstagramリンクを確認する</li>
+                                <li><span class="label">権限</span>お客様、またはBANTEXが案内する接続担当者が、対象Instagramを管理できる</li>
                                 <li><span class="label">LINE</span>お店用のLINE公式アカウントがあり、Messaging APIを使える</li>
                             </ul>
 
                             <div class="ok">
-                                OKの状態: お客様がInstagramとFacebookにログインでき、Meta Business SuiteでFacebookページとInstagramアカウントの両方が見えている。
+                                OKの状態: 新方式では、お客様が対象Instagramにログインでき、OAuth許可後に管理画面が <code>Instagramのみ連携</code> になる。旧方式店舗だけFacebookページとInstagramリンクも確認する。
                             </div>
                             <div class="ng">
                                 NGの状態: Instagramが個人アカウントのまま、Facebookが個人プロフィールしかない、Facebookページの管理者が誰かわからない、InstagramとFacebookページが別々になっている。

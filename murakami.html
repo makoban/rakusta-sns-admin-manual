@@ -4,16 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>村上さん専用 楽スタデモ作成手順</title>
+  <title>村上さん専用 Instagram Login方式 管理手順</title>
   <style>
     :root {
       --ink: #172033;
-      --muted: #657084;
+      --muted: #667085;
       --line: #d7dce6;
-      --paper: #ffffff;
-      --bg: #f3f6fb;
+      --bg: #f4f7fb;
+      --paper: #fff;
       --blue: #2364d2;
-      --blue-dark: #17428d;
       --green: #15803d;
       --orange: #c2410c;
       --red: #dc2626;
@@ -21,10 +20,8 @@
       --soft-green: #eaf8ef;
       --soft-orange: #fff3e8;
       --soft-red: #fff1f1;
-      --shadow: 0 18px 48px rgba(23, 32, 51, .08);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       color: var(--ink);
@@ -33,644 +30,218 @@
       line-height: 1.75;
       letter-spacing: 0;
     }
-    a { color: var(--blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
-    aside {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: auto;
-      padding: 24px 18px;
-      background: #101827;
-      color: #fff;
-      border-right: 1px solid #0b1020;
-    }
-    aside h1 { font-size: 18px; line-height: 1.4; margin: 0 0 14px; }
-    aside .version { color: #b7c3d7; font-size: 12px; margin-bottom: 18px; }
-    aside nav a {
-      display: block;
-      color: #dbe6ff;
-      padding: 8px 10px;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-    aside nav a:hover { background: rgba(255,255,255,.09); text-decoration: none; }
-    main { padding: 32px; max-width: 1120px; width: 100%; }
-    .hero, section {
+    main { max-width: 1060px; margin: 0 auto; padding: 28px 18px 52px; }
+    header, section {
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 28px;
-      margin: 18px 0;
-      box-shadow: 0 10px 30px rgba(23, 32, 51, .05);
+      border-radius: 10px;
+      padding: 22px;
+      margin: 16px 0;
     }
-    .hero {
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-      box-shadow: var(--shadow);
-      margin-top: 0;
-    }
-    .hero h2 { font-size: 32px; line-height: 1.25; margin: 0 0 12px; }
-    h2 { font-size: 25px; line-height: 1.35; margin: 0 0 16px; }
-    h3 { font-size: 18px; line-height: 1.45; margin: 22px 0 10px; }
+    h1 { font-size: 30px; line-height: 1.3; margin: 0 0 8px; }
+    h2 { font-size: 22px; line-height: 1.4; margin: 0 0 12px; }
+    h3 { font-size: 17px; margin: 18px 0 8px; }
     p { margin: 0 0 12px; }
-    .lead { font-size: 17px; color: #334155; }
-    .badges, .tiles { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 12px;
-      font-weight: 700;
-      background: var(--soft-blue);
-      color: var(--blue-dark);
-      border: 1px solid #c6dcff;
-    }
-    .note, .warn, .ok, .danger {
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin: 14px 0;
-      border: 1px solid;
-    }
-    .note { background: var(--soft-blue); border-color: #bad4ff; color: #15366f; }
-    .warn { background: var(--soft-orange); border-color: #fed7aa; color: #7c2d12; }
-    .ok { background: var(--soft-green); border-color: #bbf7d0; color: #14532d; }
-    .danger { background: var(--soft-red); border-color: #fecaca; color: #7f1d1d; }
-    .make-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .make-card {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 14px;
-      background: #f8fafc;
-    }
-    .make-card strong { display: block; font-size: 20px; color: var(--blue-dark); }
-    .make-card span { display: block; font-weight: 800; margin-top: 6px; }
-    .make-card small { display: block; color: var(--muted); margin-top: 4px; }
-    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
-    th, td { border: 1px solid var(--line); padding: 10px 12px; vertical-align: top; }
-    th { background: #f8fafc; text-align: left; }
+    a { color: var(--blue); text-decoration: none; }
     code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       background: #eef2f7;
       padding: 2px 5px;
       border-radius: 5px;
+      overflow-wrap: anywhere;
     }
-    .steps { counter-reset: steps; }
+    .lead { color: var(--muted); }
+    .note, .ok, .warn, .danger {
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      border: 1px solid;
+    }
+    .note { background: var(--soft-blue); border-color: #bad4ff; color: #15366f; }
+    .ok { background: var(--soft-green); border-color: #bbf7d0; color: #14532d; }
+    .warn { background: var(--soft-orange); border-color: #fed7aa; color: #7c2d12; }
+    .danger { background: var(--soft-red); border-color: #fecaca; color: #7f1d1d; }
+    .top-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .top-links a { padding: 8px 10px; background: var(--soft-blue); border-radius: 8px; font-weight: 700; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px;
+      background: #fff;
+    }
+    .card strong { display: block; color: #17428d; margin-bottom: 4px; }
+    .flow { display: grid; gap: 10px; counter-reset: step; }
     .step {
-      counter-increment: steps;
-      position: relative;
-      padding-left: 44px;
-      margin: 18px 0;
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
     }
     .step::before {
-      content: counter(steps);
-      position: absolute;
-      left: 0;
-      top: 1px;
+      content: counter(step);
+      display: grid;
+      place-items: center;
       width: 28px;
       height: 28px;
       border-radius: 50%;
       background: var(--blue);
       color: #fff;
-      display: grid;
-      place-items: center;
       font-weight: 800;
-      font-size: 14px;
     }
-    .shot {
-      position: relative;
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 9px 10px; vertical-align: top; }
+    th { background: #f8fafc; text-align: left; }
+    figure {
+      margin: 14px 0;
       border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #f8fafc;
+      border-radius: 8px;
       overflow: hidden;
-      margin: 14px 0 18px;
-    }
-    .shot img { display: block; width: 100%; height: auto; }
-    .shot figcaption {
-      padding: 10px 12px;
-      color: var(--muted);
       background: #fff;
-      border-top: 1px solid var(--line);
+    }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption { padding: 10px 12px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
+    pre {
+      overflow-x: auto;
+      background: #111827;
+      color: #e5e7eb;
+      padding: 14px;
+      border-radius: 8px;
       font-size: 13px;
     }
-    .pin {
-      position: absolute;
-      left: var(--x);
-      top: var(--y);
-      transform: translate(-50%, -50%);
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--red);
-      color: #fff;
-      border: 3px solid #fff;
-      box-shadow: 0 8px 20px rgba(0,0,0,.24);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 15px;
-    }
-    .callout {
-      display: inline-grid;
-      place-items: center;
-      min-width: 23px;
-      height: 23px;
-      border-radius: 50%;
-      background: var(--red);
-      color: #fff;
-      font-weight: 900;
-      font-size: 12px;
-      margin-right: 5px;
-    }
-    .checklist { padding-left: 0; list-style: none; }
-    .checklist li {
-      display: grid;
-      grid-template-columns: 26px 1fr;
-      gap: 8px;
-      padding: 7px 0;
-      border-bottom: 1px dashed #e5e7eb;
-    }
-    .checklist li::before {
-      content: "□";
-      color: var(--blue);
-      font-weight: 900;
-    }
-    .do-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .do-item {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 14px;
-      background: #fff;
-    }
-    .do-item strong { color: var(--blue-dark); }
-    .small { color: var(--muted); font-size: 13px; }
-    @media (max-width: 960px) {
-      .layout { display: block; }
-      aside { position: static; height: auto; }
-      main {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        padding: 18px;
-      }
-      section, .hero {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        padding: 22px 18px;
-      }
-      .hero h2 { font-size: 25px; }
-      .make-grid { grid-template-columns: 1fr; }
-      h2, h3, p, li, th, td, .badge, .make-card, .do-item {
-        overflow-wrap: anywhere;
-      }
-      table {
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      .card-table {
-        display: block;
-        overflow: visible;
-      }
-      .card-table thead { display: none; }
-      .card-table,
-      .card-table tbody,
-      .card-table tr,
-      .card-table td {
-        width: 100%;
-        display: block;
-      }
-      .card-table tr {
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 10px 12px;
-        margin: 10px 0;
-        background: #fff;
-      }
-      .card-table td {
-        border: 0;
-        padding: 7px 0;
-      }
-      .card-table td:first-child {
-        font-weight: 800;
-        color: var(--blue-dark);
-      }
-      .card-table td:nth-child(2)::before { content: "入れるもの: "; display: block; font-weight: 800; color: var(--muted); }
-      .card-table td:nth-child(3)::before { content: "注意: "; display: block; font-weight: 800; color: var(--muted); }
+    @media (max-width: 640px) {
+      main { padding: 18px 12px 36px; }
+      header, section { padding: 16px; }
+      h1 { font-size: 24px; }
+      table, thead, tbody, tr, th, td { display: block; width: 100%; }
+      th { display: none; }
+      td { border-top: 0; }
+      tr { border-top: 1px solid var(--line); }
     }
   </style>
 </head>
 <body>
-  <div class="layout">
-    <aside>
-      <h1>村上さん専用<br>いちばん簡単な作成手順</h1>
-      <div class="version">2026-06-25 / 初心者用</div>
-      <nav>
-        <a href="#start">最初に見る</a>
-        <a href="#changes">今回変わったところ</a>
-        <a href="#what">作るもの</a>
-        <a href="#names">使う名前</a>
-        <a href="#prepare">用意するもの</a>
-        <a href="#facebook-personal">1. Facebook個人</a>
-        <a href="#facebook-page">2. Facebookページ</a>
-        <a href="#instagram">3. Instagram</a>
-        <a href="#line">4. 公式LINE</a>
-        <a href="#bantex">5. BANTEX/Meta</a>
-        <a href="#rakusta">6. ココトモSNS登録</a>
-        <a href="#test">7. LINEテスト</a>
-        <a href="#stop">止まったとき</a>
-        <a href="simple-customer-onboarding.html">新規顧客の最短版</a>
-        <a href="store-settings-mobile.html">店舗スマホ設定</a>
-        <a href="operator-full.html">全体マニュアルへ戻る</a>
-        <a href="index.html">一覧へ戻る</a>
-      </nav>
-    </aside>
-    <main>
-      <div class="hero" id="start">
-        <h2>村上さんが作るものだけを、上から順番に作るページです</h2>
-        <p>むずかしい言葉はできるだけ言い換えます。Facebook、Instagram、LINE、BANTEX確認、楽スタ管理画面まで、順番に進めるページです。</p>
-        <div class="badges">
-          <span class="badge">Facebookも新しく作る</span>
-          <span class="badge">名前はデモ用</span>
-          <span class="badge">管理画面も飛ばさない</span>
-          <span class="badge">パスワードはここに書かない</span>
-          <span class="badge">困ったら止める</span>
-        </div>
-        <div class="note">
-          Meta Business Suiteのログインは「管理対象のアカウント」ではなく、村上さん本人のFacebook/Metaログインです。村上さんが <strong>楽スタ管理</strong> の管理者に追加済み、という前提で進めます。
-        </div>
+  <main>
+    <header>
+      <h1>村上さん専用 Instagram Login方式 管理手順</h1>
+      <p class="lead">村上さんが新規顧客のInstagram連携URLを作り、顧客に承認してもらい、接続確認まで進めるためのページです。</p>
+      <div class="ok">今回から、新規顧客の標準はFacebookページなしです。Facebookページ作成、ページ追加、System User、Render、Graph API Explorerは通常作業では使いません。</div>
+      <div class="top-links">
+        <a href="#first">最初に一度</a>
+        <a href="#customer">新規顧客ごと</a>
+        <a href="#tester">開発中だけ</a>
+        <a href="#approve">承認画面</a>
+        <a href="#admin">管理画面</a>
+        <a href="#message">送る文面</a>
+        <a href="instagram-login-onboarding.html">詳細版</a>
+        <a href="index.html">一覧</a>
       </div>
+    </header>
 
-      <section id="changes">
-        <h2>今回変わったところ</h2>
-        <p class="lead">今後、新規店舗が増えた時に村上さんが自分で進められるよう、見る場所と触らない場所をはっきり分けました。</p>
-        <div class="ok">
-          村上さんが毎回見る場所は、Meta Business Suiteの <strong>アカウント → ページ</strong> と <strong>アカウント → Instagramアカウント</strong> です。
-        </div>
-        <div class="make-grid">
-          <div class="make-card"><strong>やる</strong><span>ページ追加</span><small>新店舗のFacebookページを楽スタ管理へ追加</small></div>
-          <div class="make-card"><strong>やる</strong><span>Instagram追加</span><small>新店舗Instagramを楽スタ管理へ追加</small></div>
-          <div class="make-card"><strong>やる</strong><span>ID登録</span><small>Instagram Business Account IDとPage IDを登録</small></div>
-          <div class="make-card"><strong>見ない</strong><span>アプリ欄</span><small>「アプリが追加されていません」は通常作業では使わない</small></div>
-          <div class="make-card"><strong>触らない</strong><span>token / Render</span><small>BANTEX投稿Bot、System User、Graph API Explorerも触らない</small></div>
-        </div>
-        <div class="warn">
-          「アプリが追加されていません」と出た場合は、間違った画面を見ています。その画面は閉じて、<strong>アカウント → ページ</strong> または <strong>アカウント → Instagramアカウント</strong> へ戻ってください。
-        </div>
-      </section>
+    <section id="first">
+      <h2>最初に一度だけやること</h2>
+      <div class="grid">
+        <div class="card"><strong>Meta Developers</strong><code>楽スタSNS連携</code> の管理者または開発者に村上さんを追加します。</div>
+        <div class="card"><strong>楽スタSNS管理画面</strong>村上さんが店舗追加とSNS設定を保存できる運営側IDで入れるようにします。</div>
+        <div class="card"><strong>申請担当</strong>App Review、本番切替、差し戻し対応は番野さんと村上さんの二人で確認できる状態にします。</div>
+      </div>
+      <div class="danger">パスワード、Instagramの2段階認証コード、LINE token、Meta App Secretはチャットやマニュアルに書きません。</div>
+    </section>
 
-      <section id="what">
-        <h2>まず大きく見る: 作るものは4つ、最後に2つの管理画面へ登録</h2>
-        <p class="lead">今日やることはこれだけです。上から順番に進みます。途中で出てくる管理画面も、このページの中で扱います。</p>
-        <div class="make-grid">
-          <div class="make-card"><strong>1</strong><span>Facebook個人</span><small>村上さん本人のアカウント</small></div>
-          <div class="make-card"><strong>2</strong><span>Facebookページ</span><small>楽スタデモ村上店</small></div>
-          <div class="make-card"><strong>3</strong><span>Instagram</span><small>投稿が出る場所</small></div>
-          <div class="make-card"><strong>4</strong><span>公式LINE</span><small>写真と文を送る場所</small></div>
-          <div class="make-card"><strong>5</strong><span>BANTEX/Meta確認</span><small>InstagramをBANTEXから見えるようにする</small></div>
-          <div class="make-card"><strong>6</strong><span>ココトモSNS登録</span><small>LINEとInstagramをつなぐ</small></div>
-        </div>
-        <div class="ok">
-          最後は、公式LINEに「写真」と「文」を送って、楽スタに投稿案が出るか見ます。
-        </div>
-      </section>
+    <section id="customer">
+      <h2>新規顧客ごとにやること</h2>
+      <div class="flow">
+        <div class="step"><div><strong>店舗Instagramを確認</strong><br>顧客のInstagramがプロアカウントになっているか確認します。Facebookページは標準では不要です。</div></div>
+        <div class="step"><div><strong>楽スタSNS管理画面で店舗を作る</strong><br>店舗名はInstagramアカウント名に寄せます。例: <code>label.totalsalon</code>。</div></div>
+        <div class="step"><div><strong>LINEと契約設定を保存</strong><br>LINE Channel情報、投稿回数、画像加工、投稿時刻を保存します。</div></div>
+        <div class="step"><div><strong>Instagram連携URLをコピー</strong><br>管理画面の <code>お客様へ送るInstagram連携URL</code> をコピーします。</div></div>
+        <div class="step"><div><strong>顧客へ送る</strong><br>対象Instagramにログインした状態でURLを開き、許可してもらいます。</div></div>
+        <div class="step"><div><strong>接続確認</strong><br>管理画面で <code>Instagramのみ連携</code>、接続有効、ユーザー名一致を確認します。</div></div>
+        <div class="step"><div><strong>LINEテスト</strong><br>写真1枚と短い文を送り、Instagram投稿まで確認します。</div></div>
+      </div>
+    </section>
 
-      <section id="names">
-        <h2>今回使う名前</h2>
-        <p class="lead">入力で迷わないよう、名前はこれでそろえます。</p>
-        <table class="card-table">
-          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>Facebook個人</td><td>村上さんの本名</td><td>ここだけは本物の名前で作る</td></tr>
-            <tr><td>Facebookページ</td><td>楽スタデモ村上店</td><td>「デモ」を消さない</td></tr>
-            <tr><td>Instagram表示名</td><td>楽スタデモ村上店</td><td>Facebookページと同じ名前</td></tr>
-            <tr><td>Instagramユーザー名</td><td><code>rakusta_demo_murakami</code></td><td>使えなければ末尾に01などを付ける</td></tr>
-            <tr><td>公式LINE名</td><td>楽スタデモ村上店</td><td>Instagramと同じ名前</td></tr>
-            <tr><td>テスト文</td><td>テスト投稿です。楽スタデモ村上店の投稿確認です。</td><td>実投稿してもデモだと分かる文にする</td></tr>
-          </tbody>
-        </table>
-      </section>
+    <section id="tester">
+      <h2>開発中だけ: Instagramテスター承認</h2>
+      <p>Meta App Reviewが通るまでは、対象Instagramを <code>楽スタSNS連携</code> のInstagramテスターとして追加し、Instagram側で承認する必要があります。</p>
+      <figure>
+        <img src="assets/screenshots/instagram_tester_invite_accept.png" alt="Instagramテスター招待を承認する画面">
+        <figcaption>顧客Instagramで <code>アプリとウェブサイト</code> を開き、<code>楽スタSNS連携-IG</code> の <strong>承認する</strong> を押します。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/instagram_tester_invite_accepted.png" alt="Instagramテスター承認済み画面">
+        <figcaption>承認済みになった状態です。本番申請後は通常顧客にこの作業をさせない運用に変えます。</figcaption>
+      </figure>
+    </section>
 
-      <section id="prepare">
-        <h2>始める前に用意するもの</h2>
-        <ul class="checklist">
-          <li>村上さんが使えるメールアドレス</li>
-          <li>SMSを受け取れるスマホ</li>
-          <li>Facebook用に決めたパスワード</li>
-          <li>Instagram用に決めたパスワード</li>
-          <li>LINEにログインできるアカウント</li>
-          <li>テスト投稿に使う写真1枚</li>
-          <li>BANTEXから渡されたログインメモ</li>
-        </ul>
-        <div class="danger">
-          パスワード、SMSコード、LINEのSecret、tokenは、このページやチャットに書かないでください。画面に直接入力します。
-        </div>
-        <h3>ログインで入れるもの早見表</h3>
-        <p>ログイン画面が出たら、下の表だけ見ます。IDを知らなくても、どの画面かで入れるものが決まります。</p>
-        <table class="card-table">
-          <thead><tr><th>画面</th><th>ID欄に入れるもの</th><th>パスワード欄に入れるもの</th></tr></thead>
-          <tbody>
-            <tr><td>Facebook新規作成</td><td>村上さんが使えるメールアドレス、またはスマホ電話番号</td><td>村上さんがその場で決めたFacebook用パスワード</td></tr>
-            <tr><td>Instagram新規作成</td><td>村上さんが使えるメールアドレス、またはFacebookでログイン</td><td>村上さんがその場で決めたInstagram用パスワード</td></tr>
-            <tr><td>LINE Official Account / LINE Developers</td><td>村上さんがいつも使うLINEアカウント、またはLINEビジネスアカウント</td><td>村上さんのLINEログイン用パスワード。QRログインの場合はスマホで承認</td></tr>
-            <tr><td>Meta Business Suite</td><td>村上さん本人のFacebook/Metaログイン。事前に <strong>楽スタ管理</strong> の管理者へ追加されていること</td><td>村上さん本人のFacebook/Metaパスワード。BANTEXや番野個人のパスワードは使わない</td></tr>
-            <tr><td>ココトモSNS管理画面</td><td>別紙の「ココトモSNS管理画面ログインID」</td><td>別紙の「ココトモSNS管理画面パスワード」</td></tr>
-          </tbody>
-        </table>
-        <h3>BANTEXが先に書いて渡すメモ</h3>
-        <p>村上さんに渡す紙、またはパスワード管理ツールには、最低限これを書きます。この公開ページには実際のIDやパスワードを書きません。</p>
-        <table class="card-table">
-          <thead><tr><th>メモの項目名</th><th>村上さんが使う場所</th><th>書き方</th></tr></thead>
-          <tbody>
-            <tr><td>村上さんを楽スタ管理へ追加済みか</td><td>手順5のMeta Business Suiteログイン前</td><td>追加済み / 招待中 / 未追加のどれかを書く。未追加なら先にBANTEX側で追加する</td></tr>
-            <tr><td>Meta Business Suite用ログインID</td><td>手順5のMeta Business Suiteログイン</td><td>村上さん本人のFacebook/Metaログインに使うメールまたは電話番号を書く</td></tr>
-            <tr><td>ココトモSNS管理画面ログインID</td><td>手順6のログイン画面</td><td>サービス提供者権限で入れるIDを書く</td></tr>
-            <tr><td>ココトモSNS管理画面パスワード</td><td>手順6のログイン画面</td><td>対応するパスワードを書く</td></tr>
-            <tr><td>Instagram User ID</td><td>手順6のInstagram User ID欄</td><td>最初は空欄でよい。手順5で取れた <code>1784...</code> の数字を書く</td></tr>
-          </tbody>
-        </table>
-        <div class="warn">
-          村上さんが管理者として作業する場合、Meta Business Suiteは村上さん本人のFacebook/Metaログインで入ります。ログインできても <strong>楽スタ管理</strong> が見えない場合は、BANTEX側で村上さんを楽スタ管理のユーザー/管理者に追加してから進めます。
-        </div>
-      </section>
+    <section id="approve">
+      <h2>顧客に押してもらう承認画面</h2>
+      <figure>
+        <img src="assets/screenshots/instagram_oauth_allow.png" alt="Instagram OAuth許可画面">
+        <figcaption>アカウント名が顧客店舗のInstagramと一致していることを見てから <strong>許可</strong> を押します。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/instagram_oauth_complete.png" alt="Instagram連携完了画面">
+        <figcaption>この画面が出れば連携完了です。</figcaption>
+      </figure>
+      <div class="danger">違うInstagram名が出た場合は許可しません。いったんInstagramからログアウトし、正しい店舗Instagramでログインし直します。</div>
+    </section>
 
-      <section id="facebook-personal">
-        <h2>1. Facebook個人を作る</h2>
-        <p class="lead">最初に、村上さん本人のFacebookアカウントを作ります。</p>
-        <figure class="shot">
-          <img src="assets/screenshots/facebook_create_account_entry.png" alt="Facebook個人アカウント作成画面">
-          <span class="pin" style="--x:18%;--y:16%;">1</span>
-          <span class="pin" style="--x:15%;--y:42%;">2</span>
-          <span class="pin" style="--x:15%;--y:78%;">3</span>
-          <figcaption><span class="callout">1</span>村上さんの本名。<span class="callout">2</span>生年月日。<span class="callout">3</span>メールとパスワードを入れて進みます。</figcaption>
-        </figure>
-        <div class="do-list">
-          <div class="do-item"><strong>やること:</strong> Facebookを開き、新しいアカウントを作ります。</div>
-          <div class="do-item"><strong>名前:</strong> 村上さんの本名を入れます。店名や架空名にしません。</div>
-          <div class="do-item"><strong>止まる画面:</strong> SMS、本人確認、2段階認証が出たら、村上さん本人が画面で入力します。</div>
-        </div>
-        <div class="warn">Facebook個人の名前は、最後のInstagram投稿には出ません。</div>
-      </section>
+    <section id="admin">
+      <h2>管理画面で見るところ</h2>
+      <figure>
+        <img src="assets/screenshots/rakusta_admin_instagram_only_connected.png" alt="楽スタ管理画面 Instagramのみ連携">
+        <figcaption><code>Instagramのみ連携</code> と表示されます。labelのようにFacebookページなしで接続する店舗はこの表示です。</figcaption>
+      </figure>
+      <table>
+        <thead><tr><th>見る項目</th><th>OKの状態</th></tr></thead>
+        <tbody>
+          <tr><td>店舗名</td><td>Instagramアカウント名。例: <code>label.totalsalon</code></td></tr>
+          <tr><td>Instagram接続</td><td>有効 / Instagramのみ連携</td></tr>
+          <tr><td>Instagramユーザー名</td><td>顧客Instagramと同じ</td></tr>
+          <tr><td>LINE</td><td>設定済</td></tr>
+          <tr><td>契約設定</td><td>投稿回数、画像加工、投稿時刻が決まっている</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-      <section id="facebook-page">
-        <h2>2. Facebookページを作る</h2>
-        <p class="lead">次に、デモ店舗用のFacebookページを作ります。</p>
-        <figure class="shot">
-          <img src="assets/screenshots/facebook_page_create.png" alt="Facebookページ作成画面">
-          <span class="pin" style="--x:58%;--y:51%;">1</span>
-          <span class="pin" style="--x:80%;--y:72%;">2</span>
-          <figcaption><span class="callout">1</span>ページ作成を選びます。<span class="callout">2</span>ページ名は「楽スタデモ村上店」です。</figcaption>
-        </figure>
-        <table class="card-table">
-          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>ページ名</td><td>楽スタデモ村上店</td><td>「デモ」を必ず入れる</td></tr>
-            <tr><td>カテゴリ</td><td>サービス、店舗、ローカルサービスなど近いもの</td><td>迷ったら近いものでよい</td></tr>
-            <tr><td>住所</td><td>空欄、またはBANTEX管理の情報</td><td>実在店舗の住所は入れない</td></tr>
-            <tr><td>画像</td><td>仮画像またはロゴ</td><td>本物の店舗ロゴは使わない</td></tr>
-          </tbody>
-        </table>
-      </section>
+    <section id="message">
+      <h2>顧客へ送る文面</h2>
+      <pre><code>Instagram連携のお願いです。
+下のURLを、投稿先にしたいInstagramアカウントでログインした状態で開いてください。
 
-      <section id="instagram">
-        <h2>3. Instagramを作る</h2>
-        <p class="lead">Instagramは、最後に投稿が表示される場所です。</p>
-        <figure class="shot">
-          <img src="assets/screenshots/instagram_signup_entry.png" alt="Instagram登録画面">
-          <span class="pin" style="--x:17%;--y:16%;">1</span>
-          <span class="pin" style="--x:14%;--y:47%;">2</span>
-          <span class="pin" style="--x:13%;--y:76%;">3</span>
-          <figcaption><span class="callout">1</span>メール。<span class="callout">2</span>生年月日。<span class="callout">3</span>名前とユーザー名を入れます。</figcaption>
-        </figure>
-        <table class="card-table">
-          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>表示名</td><td>楽スタデモ村上店</td><td>Facebookページと同じ</td></tr>
-            <tr><td>ユーザー名</td><td><code>rakusta_demo_murakami</code></td><td>使えなければ末尾に01などを付ける</td></tr>
-            <tr><td>アカウント種類</td><td>プロアカウント / ビジネス</td><td>あとで必ず切り替える</td></tr>
-            <tr><td>リンク先</td><td>Facebookページ「楽スタデモ村上店」</td><td>前の手順で作ったページを選ぶ</td></tr>
-          </tbody>
-        </table>
-        <div class="steps">
-          <div class="step"><strong>Instagramを作る</strong><br>メール、名前、ユーザー名を入れて作ります。</div>
-          <div class="step"><strong>プロアカウントに切り替える</strong><br>画面の案内に沿って、ビジネス用にします。</div>
-          <div class="step"><strong>Facebookページとつなぐ</strong><br>「楽スタデモ村上店」を選びます。</div>
-        </div>
-      </section>
+表示された画面で、アカウント名が店舗のInstagramになっていることを確認し、「許可」を押してください。
 
-      <section id="line">
-        <h2>4. 公式LINEを作る</h2>
-        <p class="lead">公式LINEは、写真と文を送る場所です。</p>
-        <figure class="shot">
-          <img src="assets/screenshots/line_official_entry.png" alt="LINE公式アカウント入口">
-          <span class="pin" style="--x:17%;--y:59%;">1</span>
-          <span class="pin" style="--x:90%;--y:23%;">2</span>
-          <figcaption><span class="callout">1</span>LINE公式アカウントをはじめる。<span class="callout">2</span>ログイン済みなら管理画面へ進みます。</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="assets/screenshots/line_manager_login.png" alt="LINE Business IDログイン画面">
-          <span class="pin" style="--x:70%;--y:41%;">1</span>
-          <span class="pin" style="--x:70%;--y:48%;">2</span>
-          <figcaption><span class="callout">1</span>LINEアカウントでログイン。<span class="callout">2</span>ビジネスアカウントでログイン。</figcaption>
-        </figure>
-        <table class="card-table">
-          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>公式LINE名</td><td>楽スタデモ村上店</td><td>Instagramと同じ名前</td></tr>
-            <tr><td>Messaging API</td><td>有効にする</td><td>ここを有効にしないと楽スタに届かない</td></tr>
-            <tr><td>Webhook URL</td><td><code>https://kokotomo-toc-bot.onrender.com/callback</code></td><td>Use webhookをONにしてVerifyする</td></tr>
-            <tr><td>Channel Access Token</td><td>楽スタ管理画面に貼る</td><td>メモに残さない</td></tr>
-            <tr><td>Channel Secret</td><td>楽スタ管理画面に貼る</td><td>メモに残さない</td></tr>
-          </tbody>
-        </table>
-      </section>
+URL:
+（ここに楽スタ管理画面のInstagram連携URLを貼る）
 
-      <section id="bantex">
-        <h2>5. BANTEXでInstagramを使えるようにする</h2>
-        <p class="lead">村上さんが作ったFacebookページとInstagramを、楽スタ管理の資産として追加します。通常作業ではGraph API Explorerのtoken生成画面は開きません。</p>
-        <div class="note">ログイン画面が出たら、ID欄には村上さん本人のFacebook/Metaログインを入れます。事前に村上さんを <strong>楽スタ管理</strong> の管理者へ追加しておきます。</div>
-        <div class="warn">Meta Business Suiteの左上では <strong>楽スタ管理</strong> を選びます。これはBANTEX側で楽スタのFacebookページとInstagramを管理しているBusiness Portfolioです。新しい箱は作りません。</div>
-        <div class="ok">ここで使うのは <strong>アカウント → ページ</strong> と <strong>アカウント → Instagramアカウント</strong> だけです。<strong>アプリ</strong> 欄は通常作業では見ません。「アプリが追加されていません」と出ても、そこは村上さんの毎回作業ではありません。</div>
-        <figure class="shot">
-          <img src="assets/screenshots/meta_business_home.png" alt="Meta Business Suiteログイン画面">
-          <span class="pin" style="--x:68%;--y:43%;">1</span>
-          <span class="pin" style="--x:67%;--y:50%;">2</span>
-          <figcaption><span class="callout">1</span>早見表どおりにIDとパスワードを入力。<span class="callout">2</span>Instagram確認が出たら、作ったInstagramを選びます。</figcaption>
-        </figure>
-        <h3>開く画面</h3>
-        <table class="card-table">
-          <thead><tr><th>画面</th><th>開く場所</th><th>やること</th></tr></thead>
-          <tbody>
-            <tr><td>Meta Business Suite</td><td><a href="https://business.facebook.com/" target="_blank" rel="noopener">business.facebook.com</a></td><td>ID欄とパスワード欄は早見表どおりに入れる。左上の箱は「楽スタ管理」を選ぶ</td></tr>
-            <tr><td>ページ</td><td>設定 → アカウント → ページ</td><td>Facebookページ「楽スタデモ村上店」を追加する</td></tr>
-            <tr><td>Instagramアカウント</td><td>設定 → アカウント → Instagramアカウント</td><td>Instagram「rakusta_demo_murakami」を追加する</td></tr>
-            <tr><td>Instagram ID確認</td><td>Meta Business SuiteのInstagram詳細、またはBANTEX側確認</td><td>Instagram User IDの数字を確認する。Graph API Explorerのtoken生成画面は開かない</td></tr>
-          </tbody>
-        </table>
-        <div class="steps">
-          <div class="step"><strong>Meta Business Suiteを開く</strong><br>ログイン画面のID欄には、村上さん本人のFacebook/Metaログインを入れます。</div>
-          <div class="step"><strong>パスワードを入れる</strong><br>パスワード欄には、村上さん本人のFacebook/Metaパスワードを入れます。BANTEXや番野個人のパスワードは使いません。</div>
-          <div class="step"><strong>左上の箱を確認する</strong><br>画面左上のBusiness Portfolioは「楽スタ管理」を使います。</div>
-          <div class="step"><strong>Facebookページを追加する</strong><br>設定の「ページ」で「追加」を押し、「楽スタデモ村上店」を選びます。承認確認が出たら画面の案内どおりに進みます。</div>
-          <div class="step"><strong>Instagramを追加する</strong><br>設定の「Instagramアカウント」で「追加」を押し、「rakusta_demo_murakami」でログインします。SMSや2段階認証が出たら、村上さんが画面で入力します。</div>
-          <div class="step"><strong>アプリ欄は見ない</strong><br>Metaの「アプリ」欄、BANTEX投稿Bot、System Userは毎回の新店舗追加では触りません。ページとInstagramの追加へ戻ります。</div>
-          <div class="step"><strong>既存店舗を触っていないか確認する</strong><br>既存店舗のページやInstagramは外しません。共通tokenやRender設定も変更しません。</div>
-          <div class="step"><strong>Instagram User IDを確認する</strong><br>Meta Business SuiteのInstagramアカウント詳細、またはBANTEX側の安全な確認で <code>1784...</code> の数字を確認します。</div>
-        </div>
-        <table class="card-table">
-          <thead><tr><th>確認するもの</th><th>正しい例</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>Instagramユーザー名</td><td><code>rakusta_demo_murakami</code></td><td>ユーザー名は文字です</td></tr>
-            <tr><td>Instagram User ID</td><td><code>1784...</code> で始まる数字</td><td>ココトモSNS管理画面に入れるのはこの数字です</td></tr>
-            <tr><td>Facebookページ</td><td>楽スタデモ村上店</td><td>Instagramと同じデモ店舗用ページを選びます</td></tr>
-          </tbody>
-        </table>
-        <div class="ok">ここまでできたら、次はココトモSNS管理画面に登録します。</div>
-      </section>
+パスワードや2段階認証コードをこちらに送る必要はありません。
+画面上でご本人が操作してください。</code></pre>
+      <div class="warn">App Review完了前だけ、先にInstagramテスター招待の承認をお願いする文面を添えます。本番化後はこの一文を消します。</div>
+    </section>
 
-      <section id="rakusta">
-        <h2>6. ココトモSNS管理画面に登録する</h2>
-        <p class="lead">マニュアル内で「楽スタ管理画面」と呼んでいた画面です。画面上の名前は「ココトモSNS 管理画面」と出ます。</p>
-        <div class="note">開くURL: <a href="https://kokotomo-sns.bantex.jp/sns-admin?q=%E6%A5%BD%E3%82%B9%E3%82%BF" target="_blank" rel="noopener">https://kokotomo-sns.bantex.jp/sns-admin?q=楽スタ</a></div>
-        <figure class="shot">
-          <img src="assets/screenshots/rakusta_dashboard_login.png" alt="楽スタ管理画面ログイン">
-          <span class="pin" style="--x:66%;--y:40%;">1</span>
-          <span class="pin" style="--x:66%;--y:50%;">2</span>
-          <span class="pin" style="--x:66%;--y:62%;">3</span>
-          <figcaption><span class="callout">1</span>ユーザーID。<span class="callout">2</span>パスワード。<span class="callout">3</span>ログイン。</figcaption>
-        </figure>
-        <div class="steps">
-          <div class="step"><strong>ココトモSNS管理画面を開く</strong><br>上のURLを開きます。ユーザーID欄には、別紙の「ココトモSNS管理画面ログインID」を入れます。</div>
-          <div class="step"><strong>パスワードを入れる</strong><br>パスワード欄には、別紙の「ココトモSNS管理画面パスワード」を入れます。チャットには書かず、画面に直接入力します。</div>
-          <div class="step"><strong>店舗を検索する</strong><br>検索欄に「楽スタデモ村上店」または「楽スタ」と入れて検索します。</div>
-          <div class="step"><strong>店舗がない場合は作る</strong><br>「店舗管理」画面で「新規店舗追加」を押し、店舗名を「楽スタデモ村上店」にして登録します。所属組織を選ぶ画面が出たら、検証用は <code>TEST</code> などBANTEX側の検証用組織を選びます。新規追加はサービス提供者権限のログインだけでできます。</div>
-          <div class="step"><strong>SNS管理へ戻る</strong><br>もう一度 <code>/sns-admin?q=楽スタ</code> を開き、「楽スタデモ村上店」を選びます。</div>
-        </div>
-        <figure class="shot">
-          <img src="assets/screenshots/rakusta_admin_search_rakusta.png" alt="楽スタSNS管理画面 店舗検索">
-          <span class="pin" style="--x:46%;--y:18%;">1</span>
-          <span class="pin" style="--x:72%;--y:18%;">2</span>
-          <figcaption><span class="callout">1</span>店舗検索。<span class="callout">2</span>「楽スタデモ村上店」を開きます。なければ新しく作ります。</figcaption>
-        </figure>
-        <h3>公開・ログイン欄</h3>
-        <table class="card-table">
-          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>店舗名</td><td>楽スタデモ村上店</td><td>「デモ」を残します</td></tr>
-            <tr><td>SNS店舗URL slug</td><td><code>rakusta_demo_murakami</code></td><td>英数字とアンダーバーだけにします</td></tr>
-            <tr><td>SNSログインID</td><td><code>rakusta_demo_murakami</code></td><td>迷ったらslugと同じにします</td></tr>
-            <tr><td>SNS投稿を有効化</td><td>ON</td><td>OFFだとLINEから送っても投稿対象になりません</td></tr>
-            <tr><td>ログイン必須</td><td>ON</td><td>お客様用画面を外部から見せないためです</td></tr>
-          </tbody>
-        </table>
-        <figure class="shot">
-          <img src="assets/screenshots/rakusta_admin_line_instagram_visible.png" alt="楽スタ管理画面 LINEとInstagram設定">
-          <span class="pin" style="--x:26%;--y:35%;">1</span>
-          <span class="pin" style="--x:70%;--y:35%;">2</span>
-          <span class="pin" style="--x:74%;--y:54%;">3</span>
-          <span class="pin" style="--x:89%;--y:83%;">4</span>
-          <figcaption><span class="callout">1</span>LINE情報。<span class="callout">2</span>Instagram情報。<span class="callout">3</span>Token運用方式。<span class="callout">4</span>保存。</figcaption>
-        </figure>
-        <h3>LINE Bot連携欄</h3>
-        <table class="card-table">
-          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>Channel Access Token</td><td>LINE Developersで発行した長い文字列</td><td>貼ったらメモに残しません</td></tr>
-            <tr><td>Channel Secret</td><td>LINE Developersに表示されるSecret</td><td>貼ったらメモに残しません</td></tr>
-            <tr><td>Webhook URL</td><td><code>https://kokotomo-toc-bot.onrender.com/callback</code></td><td>LINE側にも同じURLを入れます</td></tr>
-          </tbody>
-        </table>
-        <h3>Instagram / Meta API連携欄</h3>
-        <table class="card-table">
-          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>Instagramアカウント名</td><td><code>rakusta_demo_murakami</code></td><td>実際に取れたユーザー名を入れます</td></tr>
-            <tr><td>Instagram URL</td><td><code>https://www.instagram.com/rakusta_demo_murakami/</code></td><td>末尾にスラッシュがあっても大丈夫です</td></tr>
-            <tr><td>Facebookページ名</td><td>楽スタデモ村上店</td><td>手順2で作ったページ名です</td></tr>
-            <tr><td>FacebookページURL</td><td>Facebookページを開いたURL</td><td>分かる場合だけ入れます</td></tr>
-            <tr><td>Facebook Page ID</td><td>Metaで確認した数字</td><td>分からなければ空欄でも進め、後で確認します</td></tr>
-            <tr><td>Meta App ID</td><td><code>1157880256443341</code></td><td>BANTEX投稿BotのApp IDです。画面の指示が違う場合だけBANTEX側で確認します</td></tr>
-            <tr><td>Instagram User ID</td><td>Meta Business SuiteまたはBANTEX側確認で取得した <code>1784...</code> の数字</td><td>ユーザー名ではなく数字を入れます</td></tr>
-            <tr><td>Instagram API base</td><td>通常は表示された初期値のまま</td><td>変更が必要な場合だけBANTEX担当に確認します</td></tr>
-            <tr><td>Token運用方式</td><td>BANTEX共通 / global</td><td>店舗別tokenは選びません</td></tr>
-            <tr><td>Instagram Access Token</td><td>空欄</td><td>BANTEX共通方式ではここにtokenを貼りません</td></tr>
-          </tbody>
-        </table>
-        <figure class="shot">
-          <img src="assets/screenshots/rakusta_admin_contract_schedule_visible.png" alt="楽スタ管理画面 投稿時間設定">
-          <span class="pin" style="--x:31%;--y:22%;">1</span>
-          <span class="pin" style="--x:66%;--y:30%;">2</span>
-          <figcaption><span class="callout">1</span>有効状態。<span class="callout">2</span>投稿時間。</figcaption>
-        </figure>
-        <h3>契約・投稿設定欄</h3>
-        <table class="card-table">
-          <thead><tr><th>場所</th><th>入れるもの</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>契約状態</td><td>デモまたは有効</td><td>練習ならデモと分かる状態にします</td></tr>
-            <tr><td>LINE投稿依頼時の扱い</td><td>通常は予約投稿</td><td>すぐ投稿したい検証だけ即時投稿にします</td></tr>
-            <tr><td>予約投稿時刻</td><td><code>14:00</code> と <code>20:00</code></td><td>1日2回の例です</td></tr>
-            <tr><td>LINE完了通知</td><td>ON</td><td>テスト時に結果が分かりやすくなります</td></tr>
-          </tbody>
-        </table>
-        <figure class="shot">
-          <img src="assets/screenshots/rakusta_admin_image_save_visible.png" alt="楽スタ管理画面 画像加工と保存">
-          <span class="pin" style="--x:35%;--y:36%;">1</span>
-          <span class="pin" style="--x:89%;--y:84%;">2</span>
-          <figcaption><span class="callout">1</span>画像設定。<span class="callout">2</span>最後に保存。</figcaption>
-        </figure>
-        <h3>最後に保存して確認</h3>
-        <div class="steps">
-          <div class="step"><strong>保存する</strong><br>画面の下または右下にある保存ボタンを押します。</div>
-          <div class="step"><strong>設定済み表示を見る</strong><br>上部の状態表示で、LINEが設定済、Instagram APIがOKまたはBANTEX共通方式になっていることを見ます。</div>
-          <div class="step"><strong>SNSダッシュボードを開く</strong><br>店舗名の近くにある「SNSダッシュボード」を開き、投稿案を見る画面へ進めることを確認します。</div>
-        </div>
-      </section>
-
-      <section id="test">
-        <h2>7. LINEからテストする</h2>
-        <p class="lead">ここまでできたら、最後にLINEでテストします。</p>
-        <div class="steps">
-          <div class="step"><strong>公式LINEを友だち追加</strong><br>「楽スタデモ村上店」の公式LINEを開きます。</div>
-          <div class="step"><strong>写真を1枚送る</strong><br>テスト用の写真を送ります。</div>
-          <div class="step"><strong>文を送る</strong><br>「テスト投稿です。楽スタデモ村上店の投稿確認です。」と送ります。</div>
-          <div class="step"><strong>楽スタのダッシュボードを見る</strong><br>投稿案ができているか確認します。</div>
-          <div class="step"><strong>必要ならInstagramへ投稿</strong><br>投稿先がデモInstagramになっていることを見てから投稿します。</div>
-        </div>
-        <div class="ok">投稿案が出たら、ひとまず成功です。</div>
-      </section>
-
-      <section id="stop">
-        <h2>止まったらここを見る</h2>
-        <table class="card-table">
-          <thead><tr><th>困ったこと</th><th>見る場所</th><th>注意</th></tr></thead>
-          <tbody>
-            <tr><td>SMSが来ない</td><td>FacebookまたはInstagramの画面</td><td>電話番号を確認。何度も押しすぎない</td></tr>
-            <tr><td>本人確認が出た</td><td>Facebook画面</td><td>村上さん本人が処理。分からなければ止める</td></tr>
-            <tr><td>Instagram名が使えない</td><td>Instagram登録画面</td><td><code>rakusta_demo_murakami01</code> などにする</td></tr>
-            <tr><td>ログインIDが分からない</td><td>BANTEXから渡されたログインメモ</td><td>メモに書いてあるIDを入れる。メモがなければ推測せず、BANTEX側に先に作ってもらう</td></tr>
-            <tr><td>ココトモSNS管理画面に入れない</td><td>ログイン画面</td><td>別紙の「ココトモSNS管理画面ログインID」と「パスワード」を入れる。パスワードはチャットに書かない</td></tr>
-            <tr><td>店舗が検索に出ない</td><td>店舗管理</td><td>サービス提供者権限で新規店舗追加してからSNS管理へ戻る</td></tr>
-            <tr><td>LINEから送っても反応しない</td><td>LINE DevelopersとココトモSNS管理画面</td><td>Webhook、Token、Secret、SNS投稿ONを確認</td></tr>
-            <tr><td>Instagram User IDが分からない</td><td>BANTEX側Meta確認</td><td><code>rakusta_demo_murakami</code> ではなく <code>1784...</code> の数字を探す</td></tr>
-            <tr><td>「アプリが追加されていません」と出る</td><td>Meta Businessのアプリ欄</td><td>通常作業では見ない画面。閉じて、アカウント -> ページ / Instagramアカウントへ戻る</td></tr>
-            <tr><td>Instagram投稿だけ失敗する</td><td>Meta BusinessとToken運用方式</td><td>既存tokenは触らず、ページ/Instagramの資産追加、Instagramリンク、Token運用方式がBANTEX共通か確認</td></tr>
-          </tbody>
-        </table>
-        <div class="danger">パスワード、SMSコード、Secret、tokenをチャットに貼らないでください。</div>
-      </section>
-    </main>
-  </div>
+    <section>
+      <h2>止める条件</h2>
+      <table>
+        <thead><tr><th>状態</th><th>対応</th></tr></thead>
+        <tbody>
+          <tr><td>顧客がInstagramにログインできない</td><td>顧客本人に復旧してもらう。パスワードや2段階認証コードは聞かない</td></tr>
+          <tr><td>開発者の役割が不十分</td><td>Instagramテスター追加・承認を確認する</td></tr>
+          <tr><td>OAuth画面のアカウント名が違う</td><td>許可せず、正しいInstagramへログインし直す</td></tr>
+          <tr><td>FacebookページやRenderを触りたくなる</td><td>新方式の通常作業では触らない。別作業として番野さんへ確認</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
 </body>
 </html>

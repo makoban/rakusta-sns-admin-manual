@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>楽スタ Instagram Login方式 新規顧客追加マニュアル</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d7dce6;
+      --bg: #f4f7fb;
+      --paper: #fff;
+      --blue: #2364d2;
+      --green: #15803d;
+      --orange: #c2410c;
+      --red: #dc2626;
+      --soft-blue: #eaf2ff;
+      --soft-green: #eaf8ef;
+      --soft-orange: #fff3e8;
+      --soft-red: #fff1f1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+    main { max-width: 1120px; margin: 0 auto; padding: 28px 18px 52px; }
+    header, section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px;
+      margin: 16px 0;
+    }
+    h1 { font-size: 30px; line-height: 1.3; margin: 0 0 8px; }
+    h2 { font-size: 22px; line-height: 1.4; margin: 0 0 12px; }
+    h3 { font-size: 17px; margin: 18px 0 8px; }
+    p { margin: 0 0 12px; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: #eef2f7;
+      padding: 2px 5px;
+      border-radius: 5px;
+      overflow-wrap: anywhere;
+    }
+    .lead { color: var(--muted); }
+    .note, .ok, .warn, .danger {
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      border: 1px solid;
+    }
+    .note { background: var(--soft-blue); border-color: #bad4ff; color: #15366f; }
+    .ok { background: var(--soft-green); border-color: #bbf7d0; color: #14532d; }
+    .warn { background: var(--soft-orange); border-color: #fed7aa; color: #7c2d12; }
+    .danger { background: var(--soft-red); border-color: #fecaca; color: #7f1d1d; }
+    .top-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .top-links a {
+      padding: 8px 10px;
+      background: var(--soft-blue);
+      border-radius: 8px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px;
+      background: #fff;
+    }
+    .card strong { display: block; color: #17428d; margin-bottom: 4px; }
+    .flow { display: grid; gap: 10px; counter-reset: step; }
+    .step {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .step::before {
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 9px 10px; vertical-align: top; }
+    th { background: #f8fafc; text-align: left; }
+    figure {
+      margin: 14px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption { padding: 10px 12px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
+    pre {
+      overflow-x: auto;
+      background: #111827;
+      color: #e5e7eb;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    @media (max-width: 640px) {
+      main { padding: 18px 12px 36px; }
+      header, section { padding: 16px; }
+      h1 { font-size: 24px; }
+      table, thead, tbody, tr, th, td { display: block; width: 100%; }
+      th { display: none; }
+      td { border-top: 0; }
+      tr { border-top: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Instagram Login方式 新規顧客追加マニュアル</h1>
+      <p class="lead">2026-06-30版。新規顧客はFacebookページ追加を標準作業から外し、店舗Instagram本人の承認で接続します。</p>
+      <div class="ok">
+        新標準: お客様または店舗担当者が対象Instagramにログインし、楽スタSNS連携の許可画面で <strong>許可</strong> を押す。これで楽スタからInstagramへ投稿できる状態になります。
+      </div>
+      <div class="top-links">
+        <a href="#changed">今回変わったところ</a>
+        <a href="#roles">二人管理</a>
+        <a href="#new-store">新規顧客</a>
+        <a href="#screens">承認スクショ</a>
+        <a href="#admin">楽スタ管理</a>
+        <a href="#review">本番申請</a>
+        <a href="#stop">止める条件</a>
+        <a href="index.html">一覧</a>
+      </div>
+    </header>
+
+    <section id="changed">
+      <h2>今回変わったところ</h2>
+      <div class="grid">
+        <div class="card"><strong>Facebookページ不要</strong>新規顧客の標準手順では、Facebook店舗ページを作らずInstagramだけで接続します。</div>
+        <div class="card"><strong>接続方式</strong>管理画面では <code>Instagramのみ連携</code> と表示します。旧方式は <code>Facebook＆Instagram連携</code> のまま残します。</div>
+        <div class="card"><strong>承認する人</strong>対象Instagramにログインできる人が許可します。labelなら <code>label.totalsalon</code> の画面です。</div>
+        <div class="card"><strong>開発中だけテスター</strong>App Review完了前はInstagramテスター承認が必要です。本番化後は通常顧客にテスター追加は不要です。</div>
+      </div>
+      <div class="danger">旧方式の104/105などは触りません。既存のFacebookページ連携方式は残したまま、新規顧客だけInstagram Login方式へ寄せます。</div>
+    </section>
+
+    <section id="roles">
+      <h2>村上さんと二人で管理するための設定</h2>
+      <p class="lead">これは新規顧客ごとではなく、最初に一度だけ行います。</p>
+      <table>
+        <thead><tr><th>場所</th><th>村上さんに付ける権限</th><th>目的</th></tr></thead>
+        <tbody>
+          <tr><td>Meta Developers / 楽スタSNS連携</td><td>管理者または開発者</td><td>App Review、Instagramテスター追加、アプリ設定確認を二人で見られるようにする</td></tr>
+          <tr><td>楽スタSNS管理画面</td><td>運営側ログインID</td><td>店舗追加、接続URL発行、契約・投稿設定を行う</td></tr>
+          <tr><td>Instagram</td><td>顧客本人のログイン</td><td>店舗InstagramのOAuth許可。パスワードや2段階認証は顧客本人が操作する</td></tr>
+        </tbody>
+      </table>
+      <div class="warn">村上さんが触るのは、Meta Developersのアプリ役割と、楽スタSNS管理画面です。顧客Instagramのパスワードや2段階認証コードは聞きません。</div>
+    </section>
+
+    <section id="new-store">
+      <h2>新規顧客の標準フロー</h2>
+      <div class="flow">
+        <div class="step"><div><strong>Instagramをプロアカウントにする</strong><br>顧客側でビジネス/クリエイターのプロアカウントにします。Facebookページは標準では作りません。</div></div>
+        <div class="step"><div><strong>楽スタ管理画面で店舗を作る</strong><br>店舗名はInstagramアカウント名に寄せます。例: <code>label.totalsalon</code>。</div></div>
+        <div class="step"><div><strong>LINE連携と契約設定を保存する</strong><br>LINE Channel情報、投稿回数、画像加工、予約時刻を決めて保存します。</div></div>
+        <div class="step"><div><strong>Instagram連携URLを開く</strong><br>管理画面の <code>お客様へ送るInstagram連携URL</code> を対象Instagramで開きます。</div></div>
+        <div class="step"><div><strong>開発中はテスター招待を承認する</strong><br>App Review前だけ、Instagram側の <code>アプリとウェブサイト</code> で招待を承認します。</div></div>
+        <div class="step"><div><strong>OAuth許可を押す</strong><br>許可画面で対象アカウント名が合っていることを確認し、<code>許可</code> を押します。</div></div>
+        <div class="step"><div><strong>接続完了とヘルスチェック</strong><br>管理画面で <code>Instagramのみ連携</code>、接続有効、ユーザー名一致を確認します。</div></div>
+        <div class="step"><div><strong>LINEからテスト投稿</strong><br>写真1枚と短いメモを送り、投稿案作成からInstagram投稿まで確認します。</div></div>
+      </div>
+    </section>
+
+    <section id="screens">
+      <h2>Instagram承認のスクショ手順</h2>
+      <figure>
+        <img src="assets/screenshots/instagram_tester_invite_accept.png" alt="Instagramのテスター招待承認画面">
+        <figcaption>開発中だけ必要です。Instagram側の <code>アプリとウェブサイト</code> で <code>楽スタSNS連携-IG</code> が出たら <strong>承認する</strong> を押します。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/instagram_tester_invite_accepted.png" alt="Instagramテスター招待承認済み">
+        <figcaption>承認後は <code>楽スタSNS連携-IG</code> が一覧に残ります。App Review完了後はこのテスター招待手順を通常顧客には行いません。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/instagram_oauth_allow.png" alt="Instagram OAuth許可画面">
+        <figcaption>OAuth許可画面です。ここでは <code>label.totalsalon</code> へのアクセス要求になっていることを確認してから <strong>許可</strong> を押します。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/instagram_oauth_complete.png" alt="Instagram連携完了画面">
+        <figcaption>この画面になればtoken保存は完了です。画面は閉じてかまいません。</figcaption>
+      </figure>
+    </section>
+
+    <section id="admin">
+      <h2>楽スタ管理画面で確認するところ</h2>
+      <figure>
+        <img src="assets/screenshots/rakusta_admin_instagram_only_connected.png" alt="楽スタ管理画面 Instagramのみ連携の表示">
+        <figcaption>接続後は、店舗一覧と上部の表示で <code>Instagramのみ連携</code> と分かるようにします。labelのようにFacebookページなしの店舗はこの方式です。</figcaption>
+      </figure>
+      <table>
+        <thead><tr><th>項目</th><th>Instagram Login方式の値</th></tr></thead>
+        <tbody>
+          <tr><td>店舗名</td><td>Instagramアカウント名。例: <code>label.totalsalon</code></td></tr>
+          <tr><td>SNS店舗URL slug</td><td>短い英数字。例: <code>label</code></td></tr>
+          <tr><td>Instagramユーザー名</td><td>例: <code>label.totalsalon</code></td></tr>
+          <tr><td>連携方式</td><td><code>Instagramのみ連携</code></td></tr>
+          <tr><td>Instagram Access Token欄</td><td>手入力しない。OAuth callbackで自動保存されます。</td></tr>
+          <tr><td>Facebook Page ID</td><td>新方式では標準入力しません。旧方式店舗だけ使います。</td></tr>
+        </tbody>
+      </table>
+      <figure>
+        <img src="assets/screenshots/rakusta_admin_instagram_only_mismatch_before_fix.png" alt="接続先不一致の例">
+        <figcaption>この警告は、Instagram Login方式のアプリスコープID差異で出ていた旧表示です。現在はユーザー名一致を優先し、labelは接続有効です。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/rakusta_admin_contract_schedule_visible.png" alt="契約と投稿時刻設定">
+        <figcaption>契約、投稿回数、投稿時刻を決めます。未契約のまま本番運用に入らないよう、ここを保存します。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/rakusta_admin_image_save_visible.png" alt="画像加工と保存">
+        <figcaption>画像加工と保存ボタンまで確認します。保存後に状態表示を見ます。</figcaption>
+      </figure>
+    </section>
+
+    <section id="review">
+      <h2>Meta本番申請で準備するもの</h2>
+      <p class="lead">現在の <code>楽スタSNS連携</code> は開発・審査前です。App Reviewが通り、Live運用に切り替えるまでは、通常顧客はテスター追加なしでは使えません。</p>
+      <table>
+        <thead><tr><th>項目</th><th>現在の値/準備内容</th></tr></thead>
+        <tbody>
+          <tr><td>Meta App</td><td><code>楽スタSNS連携</code> / App ID <code>1020953476972538</code></td></tr>
+          <tr><td>Instagram App ID</td><td><code>1367395768414894</code></td></tr>
+          <tr><td>Redirect URI</td><td><code>https://kokotomo-sns.bantex.jp/sns-instagram/callback</code></td></tr>
+          <tr><td>権限</td><td><code>instagram_business_basic</code>、<code>instagram_business_content_publish</code></td></tr>
+          <tr><td>申請動画</td><td>管理画面で連携URLを発行、Instagramで許可、callback完了、LINEから投稿、Instagramに公開される流れを録画</td></tr>
+          <tr><td>公開ページ</td><td>プライバシーポリシー、利用規約、データ削除説明、アプリドメイン</td></tr>
+          <tr><td>テストアカウント</td><td>Meta審査担当が試せるInstagramテストアカウントと楽スタ管理画面の限定ログイン</td></tr>
+        </tbody>
+      </table>
+      <div class="flow">
+        <div class="step"><div><strong>申請用テスト店舗を用意</strong><br>label本番とは別に、審査担当が見ても問題ないデモInstagramとデモLINEを用意します。</div></div>
+        <div class="step"><div><strong>録画を作る</strong><br>個人情報や本番顧客のDM、token、Secretが映らない画面だけを録画します。</div></div>
+        <div class="step"><div><strong>権限説明を書く</strong><br><code>basic</code> はアカウント確認、<code>content_publish</code> は店舗がLINEで送った素材をInstagramへ投稿するため、と説明します。</div></div>
+        <div class="step"><div><strong>Meta DevelopersでApp Reviewへ提出</strong><br>提出後、差し戻しがあれば動画・説明・テスト手順を修正します。</div></div>
+        <div class="step"><div><strong>承認後にLive運用へ</strong><br>承認済み権限でLive運用できる状態になったら、新規顧客のテスター追加手順を廃止します。</div></div>
+      </div>
+      <div class="warn">本番申請はMeta Developers上の操作が必要です。ログイン、2段階認証、Business認証が出た場合は本人が画面で操作します。</div>
+    </section>
+
+    <section id="stop">
+      <h2>止める条件</h2>
+      <table>
+        <thead><tr><th>状態</th><th>判断</th></tr></thead>
+        <tbody>
+          <tr><td>OAuth画面のアカウント名が違う</td><td>押さずに停止。正しいInstagramへログインし直します。</td></tr>
+          <tr><td>開発中に「開発者の役割が不十分」</td><td>Instagramテスター未承認。対象Instagramの <code>テスターへのご招待</code> を確認します。</td></tr>
+          <tr><td>App Review前に一般顧客で使えない</td><td>正常です。テスター追加が必要です。本番化後に解消します。</td></tr>
+          <tr><td>接続先不一致が出る</td><td>ユーザー名を確認。現在の新方式ではusername一致でOKにしています。</td></tr>
+          <tr><td>104/105がNGになった</td><td>作業停止。旧方式を壊した可能性があるため、設定変更を戻さず原因を確認します。</td></tr>
+          <tr><td>token、Secret、Renderを触りたくなる</td><td>通常の新規顧客作業では触りません。別作業として切り分けます。</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

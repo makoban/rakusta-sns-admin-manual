@@ -14,9 +14,11 @@
       --paper: #fff;
       --blue: #2364d2;
       --green: #15803d;
+      --orange: #c2410c;
       --red: #dc2626;
       --soft-blue: #eaf2ff;
       --soft-green: #eaf8ef;
+      --soft-orange: #fff3e8;
       --soft-red: #fff1f1;
     }
     * { box-sizing: border-box; }
@@ -41,9 +43,15 @@
     h3 { font-size: 17px; margin: 18px 0 8px; }
     p { margin: 0 0 12px; }
     a { color: var(--blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: #eef2f7;
+      padding: 2px 5px;
+      border-radius: 5px;
+      overflow-wrap: anywhere;
+    }
     .lead { color: var(--muted); }
-    .note, .ok, .danger {
+    .note, .ok, .warn, .danger {
       border-radius: 8px;
       padding: 12px 14px;
       margin: 12px 0;
@@ -51,7 +59,10 @@
     }
     .note { background: var(--soft-blue); border-color: #bad4ff; color: #15366f; }
     .ok { background: var(--soft-green); border-color: #bbf7d0; color: #14532d; }
+    .warn { background: var(--soft-orange); border-color: #fed7aa; color: #7c2d12; }
     .danger { background: var(--soft-red); border-color: #fecaca; color: #7f1d1d; }
+    .top-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .top-links a { padding: 8px 10px; background: var(--soft-blue); border-radius: 8px; font-weight: 700; }
     .flow { display: grid; gap: 10px; counter-reset: step; }
     .step {
       counter-increment: step;
@@ -78,20 +89,6 @@
     table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
     th, td { border: 1px solid var(--line); padding: 9px 10px; vertical-align: top; }
     th { background: #f8fafc; text-align: left; }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      background: #eef2f7;
-      padding: 2px 5px;
-      border-radius: 5px;
-    }
-    pre {
-      overflow-x: auto;
-      background: #111827;
-      color: #e5e7eb;
-      padding: 14px;
-      border-radius: 8px;
-      font-size: 13px;
-    }
     figure {
       margin: 14px 0;
       border: 1px solid var(--line);
@@ -101,27 +98,10 @@
     }
     figure img { display: block; width: 100%; height: auto; }
     figcaption { padding: 10px 12px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
-    .top-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .top-links a { padding: 8px 10px; background: var(--soft-blue); border-radius: 8px; font-weight: 700; }
-    .mini-diagram {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 8px;
-      margin: 14px 0 4px;
-    }
-    .mini-node {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 12px;
-      background: #fff;
-      min-height: 88px;
-    }
-    .mini-node strong { display: block; color: #17428d; margin-bottom: 4px; }
     @media (max-width: 640px) {
       main { padding: 18px 12px 32px; }
       header, section { padding: 16px; }
       h1 { font-size: 24px; }
-      .mini-diagram { grid-template-columns: 1fr; }
       table, thead, tbody, tr, th, td { display: block; width: 100%; }
       th { display: none; }
       td { border-top: 0; }
@@ -133,160 +113,71 @@
   <main>
     <header>
       <h1>新規顧客追加 やることだけ</h1>
-      <p class="lead">前提: 村上さんは <code>楽スタ管理</code> の管理者に追加済み。顧客のInstagramはプロ/ビジネス、Facebook店舗ページも用意済みまたは追加作業中。</p>
-      <div class="note">
-        「Meta Business Suiteで管理対象のアカウントでログイン」とは言いません。正しくは、<strong>村上さん本人のFacebook/Metaアカウントでログイン</strong>です。その個人アカウントに <code>楽スタ管理</code> の管理者権限が付いている前提で進めます。
-      </div>
+      <p class="lead">新標準はInstagram Login方式です。Facebookページは標準作業では作りません。</p>
       <div class="ok">
-        新規店舗が増えるたびに村上さんが行うのは、FacebookページとInstagramを <code>楽スタ管理</code> に追加し、IDを楽スタSNS管理画面へ登録する作業です。<code>アプリ</code>、System User、Graph API Explorer、Renderは通常作業では見ません。
+        やることは、店舗Instagramで <code>楽スタSNS連携</code> を許可し、楽スタ管理画面で <code>Instagramのみ連携</code> として保存・確認することです。
       </div>
       <div class="top-links">
-        <a href="#changes">今回変わったところ</a>
-        <a href="#murakami-admin">村上さん追加</a>
-        <a href="#meta">Metaで確認</a>
-        <a href="#rakusta">楽スタ登録</a>
-        <a href="#check">ヘルスチェック</a>
-        <a href="#stop">止める条件</a>
-        <a href="murakami-instagram-permission-error.html">投稿権限エラー対応</a>
-        <a href="store-settings-mobile.html">店舗スマホ設定</a>
-        <a href="setup-admin.html">管理側初期設定</a>
-        <a href="operator-full.html">全体版</a>
-        <a href="index.html">一覧</a>
+        <a href="instagram-login-onboarding.html">詳細版</a>
         <a href="murakami.html">村上さん版</a>
+        <a href="store-settings-mobile.html">店舗スマホ設定</a>
+        <a href="index.html">一覧</a>
       </div>
     </header>
 
-    <section id="changes">
-      <h2>今回変わったところ</h2>
-      <p class="lead">村上さんに最初に伝える内容です。今後の新規店舗追加は、村上さんがこの手順で進めます。</p>
+    <section>
+      <h2>最短の順番</h2>
       <div class="flow">
-        <div class="step"><div><strong>村上さんが毎回やる作業にしました</strong><br>新店舗のFacebookページとInstagramを <code>楽スタ管理</code> に追加し、IDを楽スタSNS管理画面へ登録します。</div></div>
-        <div class="step"><div><strong>見る場所を2つに絞りました</strong><br>Meta Business Suiteでは <code>アカウント</code> -> <code>ページ</code> と <code>アカウント</code> -> <code>Instagramアカウント</code> だけを見ます。</div></div>
-        <div class="step"><div><strong>アプリ欄は見ません</strong><br><code>アプリが追加されていません</code> と出ても、そこは通常作業で使わない画面です。閉じてページ/Instagramの画面へ戻ります。</div></div>
-        <div class="step"><div><strong>tokenやRenderは触りません</strong><br>Graph API Explorer、BANTEX投稿Bot、System User、Render、Instagram Access Token欄は通常作業では使いません。</div></div>
+        <div class="step"><div><strong>店舗Instagramを用意する</strong><br>プロアカウントにします。Facebookページは標準では不要です。</div></div>
+        <div class="step"><div><strong>楽スタ管理画面で店舗を作る</strong><br>店舗名はInstagramアカウント名に寄せます。例: <code>label.totalsalon</code>。</div></div>
+        <div class="step"><div><strong>契約・投稿設定を保存する</strong><br>投稿回数、画像加工、予約時刻、LINE連携を決めて保存します。</div></div>
+        <div class="step"><div><strong>Instagram連携URLを開く</strong><br>対象Instagramにログインした状態で、管理画面の連携URLを開きます。</div></div>
+        <div class="step"><div><strong>許可する</strong><br>OAuth画面でアカウント名が正しいことを見て <code>許可</code> を押します。</div></div>
+        <div class="step"><div><strong>接続確認</strong><br>管理画面で <code>Instagramのみ連携</code>、接続有効、ユーザー名一致を確認します。</div></div>
+        <div class="step"><div><strong>LINEでテスト</strong><br>写真1枚と短いメモを送り、投稿案とInstagram投稿を確認します。</div></div>
       </div>
-      <h3>村上さんへ送る説明文</h3>
-      <pre><code>村上さん、マニュアルを更新しました。
-今後、新規店舗が増えた時は、村上さんのMetaログインで「楽スタ管理」を開き、アカウント → ページ と アカウント → Instagramアカウント に新店舗を追加してください。
-
-今回から見る場所はこの2つに絞っています。
-「アプリ」欄、BANTEX投稿Bot、System User、Graph API Explorer、Renderは通常作業では見ません。
-もし「アプリが追加されていません」と出たら、その画面は閉じて、アカウント → ページ / Instagramアカウントへ戻ってください。
-
-ページとInstagramを追加できたら、Instagram Business Account IDとFacebook Page IDを楽スタSNS管理画面に登録します。</code></pre>
-    </section>
-
-    <section id="murakami-admin">
-      <h2>0. 一度だけ: 村上さんを楽スタ管理に追加</h2>
-      <p class="lead">これは新規顧客ごとにやりません。明日最初に一度だけ行い、村上さん本人が <code>楽スタ管理</code> を見られる状態にします。</p>
-      <div class="flow">
-        <div class="step"><div><strong>既存管理者でMeta Business Suiteに入る</strong><br>番野さんなど、すでに <code>楽スタ管理</code> の管理者になっている人のFacebook/Metaでログインする。</div></div>
-        <div class="step"><div><strong>Business Portfolioを確認</strong><br>左上または設定画面で <code>楽スタ管理</code> を選ぶ。別のBusiness Portfolioでは作業しない。</div></div>
-        <div class="step"><div><strong>ユーザー招待を開く</strong><br><code>設定</code> -> <code>ユーザー</code> -> <code>ユーザー</code> または <code>People</code> を開き、<code>ユーザーを招待</code> / <code>Invite people</code> を押す。</div></div>
-        <div class="step"><div><strong>村上さんのメールを入れる</strong><br>村上さん本人のFacebook/Metaログインに使うメールアドレスを入れる。パスワードや2段階認証コードは聞かない。</div></div>
-        <div class="step"><div><strong>権限を管理者にする</strong><br>今回は村上さんが新規店舗を毎回追加できる前提なので、Business Portfolioの <code>フルコントロール</code> / 管理者権限を付ける。ページとInstagramを追加・管理できる状態にする。</div></div>
-        <div class="step"><div><strong>村上さんが招待を承認する</strong><br>村上さん本人が招待メールまたはMeta通知から承認し、自分のFacebook/Metaでログインする。</div></div>
-        <div class="step"><div><strong>完了確認</strong><br>村上さんの画面で <code>楽スタ管理</code> が選べれば完了。管理者一覧が <code>招待中</code> のままなら、まだ完了していない。</div></div>
-      </div>
-      <div class="danger">この作業でもGraph API Explorer、token生成画面、Render設定、BANTEX投稿Bot設定画面、Metaの <code>アプリ</code> 欄は開きません。</div>
+      <div class="warn">App Review完了前だけ、対象InstagramをInstagramテスターに追加し、Instagram側で招待承認が必要です。</div>
     </section>
 
     <section>
-      <h2>全体の順番</h2>
-      <div class="mini-diagram" aria-label="新規顧客追加の流れ">
-        <div class="mini-node"><strong>Meta</strong>ページとInstagramを確認</div>
-        <div class="mini-node"><strong>ID</strong><code>1784...</code> とPage IDを控える</div>
-        <div class="mini-node"><strong>楽スタ</strong>店舗のSNS設定に登録</div>
-        <div class="mini-node"><strong>確認</strong>新規、104、105をチェック</div>
-        <div class="mini-node"><strong>LINE</strong>写真を送って投稿案を見る</div>
-      </div>
-      <div class="flow">
-        <div class="step"><div><strong>村上さん本人のFacebook/Metaでログイン</strong><br>Business Portfolioは <code>楽スタ管理</code> を選ぶ。</div></div>
-        <div class="step"><div><strong>ページを追加または確認</strong><br><code>設定</code> -> <code>アカウント</code> -> <code>ページ</code> に顧客Facebook店舗ページを追加する。すでにあれば表示されることを確認する。</div></div>
-        <div class="step"><div><strong>Instagramを追加または確認</strong><br><code>設定</code> -> <code>アカウント</code> -> <code>Instagramアカウント</code> に顧客Instagramを追加する。すでにあれば表示されることを確認する。</div></div>
-        <div class="step"><div><strong>IDを控える</strong><br>Instagram Business Account ID、Facebook Page IDを確認する。</div></div>
-        <div class="step"><div><strong>楽スタ管理画面に登録</strong><br>Instagram ID、LINE Channel情報、投稿設定を保存する。</div></div>
-        <div class="step"><div><strong>ヘルスチェック</strong><br>新規店舗と既存104/105がOKか確認する。</div></div>
-        <div class="step"><div><strong>LINEからテスト</strong><br>写真1枚と短い文を送り、投稿案を確認する。</div></div>
-      </div>
+      <h2>承認画面の見え方</h2>
+      <figure>
+        <img src="assets/screenshots/instagram_oauth_allow.png" alt="Instagram OAuth許可画面">
+        <figcaption>ここで店舗Instagram名を確認してから <strong>許可</strong> を押します。違うアカウント名なら押しません。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/instagram_oauth_complete.png" alt="Instagram連携完了画面">
+        <figcaption>この画面になれば接続完了です。</figcaption>
+      </figure>
     </section>
 
-    <section id="meta">
-      <h2>1. Meta Business Suiteで見る場所</h2>
+    <section>
+      <h2>楽スタ管理画面で見るところ</h2>
       <figure>
-        <img src="assets/screenshots/meta_business_home.png" alt="Meta Business Suiteログイン画面">
-        <figcaption>ログインは村上さん本人のFacebook/Meta。左上または設定画面で <code>楽スタ管理</code> を選びます。</figcaption>
+        <img src="assets/screenshots/rakusta_admin_instagram_only_connected.png" alt="Instagramのみ連携の管理画面">
+        <figcaption><code>Instagramのみ連携</code> と表示されていれば新方式です。旧方式店舗は <code>Facebook＆Instagram連携</code> のまま残します。</figcaption>
       </figure>
       <table>
-        <thead><tr><th>確認するもの</th><th>見る場所</th><th>OK</th></tr></thead>
+        <thead><tr><th>項目</th><th>新方式の扱い</th></tr></thead>
         <tbody>
-          <tr><td>Facebook店舗ページ</td><td>設定 -> アカウント -> ページ</td><td>顧客の店舗ページを追加する。追加済みなら表示される</td></tr>
-          <tr><td>Instagram PRO</td><td>設定 -> アカウント -> Instagramアカウント</td><td>顧客Instagramを追加する。追加済みなら表示される</td></tr>
-          <tr><td>連携状態</td><td>Facebookページ/Instagram詳細</td><td>FacebookページとInstagramがリンク済み</td></tr>
+          <tr><td>店舗名</td><td>Instagramアカウント名に寄せる</td></tr>
+          <tr><td>Facebook Page ID</td><td>標準では不要</td></tr>
+          <tr><td>Instagram Access Token</td><td>手入力しない。OAuthで自動保存</td></tr>
+          <tr><td>連携方式</td><td><code>Instagramのみ連携</code></td></tr>
+          <tr><td>契約設定</td><td>未設定のままにせず、投稿回数・画像加工・時刻を保存</td></tr>
         </tbody>
       </table>
-      <div class="danger">ここで見るのは <code>アカウント</code> の中の <code>ページ</code> と <code>Instagramアカウント</code> だけです。<code>アプリ</code> 欄に「アプリが追加されていません」と出ても、通常作業では見ない画面なので戻ります。Graph API Explorer、token生成画面、Render設定も開きません。</div>
     </section>
 
-    <section id="rakusta">
-      <h2>2. 楽スタ管理画面に入れるもの</h2>
-      <figure>
-        <img src="assets/screenshots/rakusta_dashboard_login.png" alt="楽スタ管理画面ログイン">
-        <figcaption>楽スタ管理画面にログインします。Metaのログインとは別です。</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/screenshots/rakusta_admin_search_rakusta.png" alt="楽スタSNS管理画面 店舗検索">
-        <figcaption>店舗名またはslugで検索。なければ新規店舗追加後にSNS設定へ進みます。</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/screenshots/rakusta_admin_line_instagram_visible.png" alt="楽スタ管理画面 LINEとInstagram設定">
-        <figcaption>LINE Channel情報、Instagramユーザー名、Instagram Business Account IDを入れます。</figcaption>
-      </figure>
-      <table>
-        <thead><tr><th>項目</th><th>入れるもの</th></tr></thead>
-        <tbody>
-          <tr><td>Instagramアカウント名</td><td>例: <code>sample_shop</code></td></tr>
-          <tr><td>Instagram Business Account ID</td><td><code>1784...</code> の数字。ユーザー名ではない</td></tr>
-          <tr><td>Instagram API base</td><td><code>https://graph.facebook.com/v25.0</code></td></tr>
-          <tr><td>Token運用方式</td><td><code>global</code> / BANTEX共通</td></tr>
-          <tr><td>Instagram Access Token</td><td>空欄。店舗別tokenは貼らない</td></tr>
-          <tr><td>LINE Channel情報</td><td>LINE DevelopersのChannel ID、secret、access token</td></tr>
-        </tbody>
-      </table>
-      <figure>
-        <img src="assets/screenshots/rakusta_admin_contract_schedule_visible.png" alt="楽スタ管理画面 投稿設定">
-        <figcaption>投稿方式、投稿時刻、契約状態を確認します。</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/screenshots/rakusta_admin_image_save_visible.png" alt="楽スタ管理画面 画像加工と保存">
-        <figcaption>画像加工、動画投稿、保存まで確認します。</figcaption>
-      </figure>
-    </section>
-
-    <section id="check">
-      <h2>3. 保存後の確認</h2>
-      <p>新規店舗だけでなく、既存の主要店舗 <code>104</code> と <code>105</code> も同時に見ます。</p>
-      <pre><code>uv run --with requests --with sqlalchemy --with psycopg2-binary \
-  python scripts/check_instagram_health.py \
-  --franchise-id &lt;NEW_FRANCHISE_ID&gt; \
-  --franchise-id 104 \
-  --franchise-id 105</code></pre>
-      <div class="ok">
-        OK条件: 新規店舗が <code>graph_status=ok</code>、profile 200、content_publishing_limit 200。既存の <code>104</code> と <code>105</code> もOKのまま。
-      </div>
-    </section>
-
-    <section id="stop">
+    <section>
       <h2>止める条件</h2>
       <table>
-        <thead><tr><th>止める状態</th><th>次に見る場所</th></tr></thead>
+        <thead><tr><th>状態</th><th>対応</th></tr></thead>
         <tbody>
-          <tr><td><code>楽スタ管理</code> にページ/Instagramが見えない</td><td>Meta Business Suiteのページ/Instagram追加状態</td></tr>
-          <tr><td>Metaの <code>アプリ</code> 欄に「アプリが追加されていません」と出る</td><td>通常作業では見ない画面。<code>アカウント</code> -> <code>ページ</code> / <code>Instagramアカウント</code> へ戻る</td></tr>
-          <tr><td>Instagram Business Account IDが分からない</td><td>Meta Business SuiteのInstagram詳細、またはBANTEX側確認</td></tr>
-          <tr><td>ヘルスチェックで新規がNG</td><td>ページ連携、Instagram PRO化、承認状態</td></tr>
-          <tr><td>既存104/105がNG</td><td>作業停止。既存環境を壊している可能性がある</td></tr>
-          <tr><td>token生成やRender変更が必要そう</td><td>通常作業では扱わない。本番token切替作業として別扱い</td></tr>
+          <tr><td>OAuth画面のアカウント名が違う</td><td>許可しない。正しいInstagramでログインし直す</td></tr>
+          <tr><td>開発者の役割が不十分</td><td>App Review前なのでInstagramテスター承認を確認する</td></tr>
+          <tr><td>104/105がNGになる</td><td>作業停止。旧方式を壊した可能性を確認する</td></tr>
+          <tr><td>tokenやRenderを触りたくなる</td><td>通常の新規顧客作業では触らない</td></tr>
         </tbody>
       </table>
     </section>
