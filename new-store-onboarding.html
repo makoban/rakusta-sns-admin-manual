@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>楽スタ 新規店舗オンボーディング 完全マニュアル（初心者向け）</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d7dce6;
+      --bg: #f4f7fb;
+      --paper: #fff;
+      --blue: #2364d2;
+      --green: #15803d;
+      --orange: #c2410c;
+      --red: #dc2626;
+      --soft-blue: #eaf2ff;
+      --soft-green: #eaf8ef;
+      --soft-orange: #fff3e8;
+      --soft-red: #fff1f1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+    main { max-width: 1120px; margin: 0 auto; padding: 28px 18px 52px; }
+    header, section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px;
+      margin: 16px 0;
+    }
+    h1 { font-size: 30px; line-height: 1.3; margin: 0 0 8px; }
+    h2 { font-size: 22px; line-height: 1.4; margin: 0 0 12px; }
+    h3 { font-size: 17px; margin: 18px 0 8px; }
+    p { margin: 0 0 12px; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: #eef2f7;
+      padding: 2px 5px;
+      border-radius: 5px;
+      overflow-wrap: anywhere;
+    }
+    .lead { color: var(--muted); }
+    .note, .ok, .warn, .danger {
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      border: 1px solid;
+    }
+    .note { background: var(--soft-blue); border-color: #bad4ff; color: #15366f; }
+    .ok { background: var(--soft-green); border-color: #bbf7d0; color: #14532d; }
+    .warn { background: var(--soft-orange); border-color: #fed7aa; color: #7c2d12; }
+    .danger { background: var(--soft-red); border-color: #fecaca; color: #7f1d1d; }
+    .top-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .top-links a {
+      padding: 8px 10px;
+      background: var(--soft-blue);
+      border-radius: 8px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px;
+      background: #fff;
+    }
+    .card strong { display: block; color: #17428d; margin-bottom: 4px; }
+    .flow { display: grid; gap: 10px; counter-reset: step; }
+    .step {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .step::before {
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 9px 10px; vertical-align: top; }
+    th { background: #f8fafc; text-align: left; }
+    figure {
+      margin: 14px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption { padding: 10px 12px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
+    .mark-ok, .mark-warn, .mark-err {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .mark-ok { background: #dcfce7; color: #166534; }
+    .mark-warn { background: #fef3c7; color: #92400e; }
+    .mark-err { background: #fee2e2; color: #991b1b; }
+    @media (max-width: 640px) {
+      main { padding: 18px 12px 36px; }
+      header, section { padding: 16px; }
+      h1 { font-size: 24px; }
+      table, thead, tbody, tr, th, td { display: block; width: 100%; }
+      th { display: none; }
+      td { border-top: 0; }
+      tr { border-top: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>新規店舗オンボーディング 完全マニュアル</h1>
+      <p class="lead">2026-07-03版。初めての人向けに、お客様のInstagram確認からLINE Bot作成、楽スタへの登録、開通テストまでを全部まとめています。</p>
+      <div class="ok">
+        新しいやり方: 入力画面（オンボーディング画面）に店舗情報と契約プランを入力して<strong>「自動セットアップを実行」を1回押すだけ</strong>。店舗の作成、契約設定、ログインID発行、LINEのWebhook設定、Instagram連携URLの発行まで自動で終わります。
+      </div>
+      <div class="note">
+        Facebookページ、Meta Business Suite、Graph API Explorerは<strong>一切使いません</strong>。Instagramはお客様本人が連携URLを開いて「許可」を押すだけです（Instagramログイン連携方式）。
+      </div>
+      <div class="top-links">
+        <a href="#overview">全体の流れ</a>
+        <a href="#checklist">用意するもの</a>
+        <a href="#step1">STEP1 Instagram確認</a>
+        <a href="#step2">STEP2 LINE Bot作成</a>
+        <a href="#step3">STEP3 楽スタに入力</a>
+        <a href="#step4">STEP4 実行と結果</a>
+        <a href="#step5">STEP5 お客様へ案内</a>
+        <a href="#step6">STEP6 開通テスト</a>
+        <a href="#faq">よくある質問</a>
+        <a href="#trouble">困ったとき</a>
+        <a href="index.html">一覧へ戻る</a>
+      </div>
+    </header>
+
+    <section id="overview">
+      <h2>全体の流れ（この順番でやれば終わります）</h2>
+      <div class="flow">
+        <div class="step"><div><strong>お客様のInstagramを確認する</strong><br>アカウントがあるか、プロアカウントになっているかを確認します。なければ作ってもらいます。→ <a href="#step1">STEP1</a></div></div>
+        <div class="step"><div><strong>お客様用のLINE公式アカウントとMessaging APIチャネルを作る</strong><br>ここだけ手作業です。作成後に <code>Channel secret</code> と <code>Channel access token</code> の2つをコピーします。→ <a href="#step2">STEP2</a></div></div>
+        <div class="step"><div><strong>楽スタのオンボーディング画面に入力する</strong><br>契約プラン、店舗情報、Instagramユーザー名、LINEの2つの値を入力します。→ <a href="#step3">STEP3</a></div></div>
+        <div class="step"><div><strong>「自動セットアップを実行」を押す</strong><br>残りの設定は全部自動です。結果画面で緑のチェックを確認します。→ <a href="#step4">STEP4</a></div></div>
+        <div class="step"><div><strong>お客様に3つを案内する</strong><br>①Instagram連携URL（開いて許可を押してもらう）②LINE友だち追加URL ③店舗ダッシュボードURLとログインID。→ <a href="#step5">STEP5</a></div></div>
+        <div class="step"><div><strong>開通テストをする</strong><br>LINEに写真1枚とメモを送って、投稿案が返ってくることを確認します。→ <a href="#step6">STEP6</a></div></div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <h2>始める前に用意するもの</h2>
+      <table>
+        <thead><tr><th>用意するもの</th><th>だれが用意する</th><th>メモ</th></tr></thead>
+        <tbody>
+          <tr><td>お客様のInstagram（プロアカウント）</td><td>お客様</td><td>なければSTEP1の手順で作ってもらう。パスワードは預からない。</td></tr>
+          <tr><td>お客様用のLINE公式アカウント</td><td>BANTEX（またはお客様と一緒に）</td><td>STEP2で作成。既にLINE公式アカウントがある店舗はMessaging API有効化から。</td></tr>
+          <tr><td>契約内容（プランと開始日）</td><td>BANTEX</td><td>カジュアル（1日1投稿・月額9,900円税込）か通常（1日2投稿・月額16,500円税込）か。画像加工オプションの有無。</td></tr>
+          <tr><td>楽スタ管理画面のログイン</td><td>BANTEX</td><td><code>https://kokotomo-sns.bantex.jp/login</code> に運営側アカウントでログインできること。</td></tr>
+        </tbody>
+      </table>
+      <div class="danger">
+        <strong>絶対に守ること:</strong> Channel secret、Channel access token、パスワードは、スクショ・チャット・メール・このマニュアルサイトに残しません。コピーしたらそのまま楽スタの画面に貼り付けて使い切ります。お客様のInstagramのパスワードや2段階認証コードは聞きません。
+      </div>
+    </section>
+
+    <section id="step1">
+      <h2>STEP1: お客様のInstagramを確認する</h2>
+      <p class="lead">確認することは2つだけ。「アカウントがあるか」「プロアカウントになっているか」です。</p>
+
+      <h3>1-1. そもそもInstagramアカウントがない場合</h3>
+      <p>お客様に以下の公式手順でアカウントを作ってもらいます。スマホにInstagramアプリを入れて、店舗のメールアドレスか電話番号で登録します。</p>
+      <ul>
+        <li>公式ヘルプ: <a href="https://help.instagram.com/155940534568753" target="_blank" rel="noopener">Instagramアカウントを作成する（Instagramヘルプセンター）</a></li>
+        <li>ユーザー名は店舗名がわかるものにしてもらいます（例: <code>cafe_tanoshii</code>）。あとで楽スタに登録するのでメモしておきます。</li>
+      </ul>
+
+      <h3>1-2. プロアカウントかどうかを確認する方法</h3>
+      <p>お客様のスマホでInstagramの自分のプロフィール画面を開いてもらい、次のどちらかが見えればプロアカウントです。</p>
+      <ul>
+        <li>プロフィールに<strong>「プロフェッショナルダッシュボード」</strong>というボタンがある</li>
+        <li>カテゴリ表示（「カフェ」「美容室」など）が名前の下に出ている</li>
+      </ul>
+
+      <h3>1-3. プロアカウントになっていない場合（切り替えてもらう）</h3>
+      <p>切り替えは無料で、お客様のスマホで1〜2分で終わります。</p>
+      <div class="flow">
+        <div class="step"><div>Instagramで自分の<strong>プロフィール画面</strong>を開く</div></div>
+        <div class="step"><div>右上の<strong>メニュー（≡）</strong>→<strong>設定とプライバシー</strong>を開く</div></div>
+        <div class="step"><div><strong>アカウントの種類とツール</strong>→<strong>プロアカウントに切り替える</strong>を押す</div></div>
+        <div class="step"><div>カテゴリ（例: カフェ）を選び、<strong>ビジネス</strong>を選択して完了</div></div>
+      </div>
+      <ul>
+        <li>公式ヘルプ: <a href="https://help.instagram.com/502981923235522" target="_blank" rel="noopener">Instagramでビジネスアカウントを設定する（Instagramヘルプセンター）</a></li>
+      </ul>
+      <div class="note">
+        <strong>Facebookページは作りません。</strong>切り替えの途中で「Facebookにリンクしますか？」と出てもスキップでOKです。Meta Business Suiteへの追加作業もありません。
+      </div>
+    </section>
+
+    <section id="step2">
+      <h2>STEP2: お客様用のLINE公式アカウント（Bot）を作る</h2>
+      <p class="lead">全工程で唯一の手作業パートです。実例スクショ（kanjicompass）付きで順番に進めます。ゴールは「<code>Channel secret</code> と <code>Channel access token</code> の2つをコピーした状態」です。</p>
+
+      <h3>2-1. LINE公式アカウントを作成する</h3>
+      <ul>
+        <li>作成ページ: <a href="https://entry.line.biz/start/jp/" target="_blank" rel="noopener">LINE公式アカウントの開設（LINEヤフー for Business）</a></li>
+        <li>アカウント名は店舗のInstagram名に寄せるとあとで管理しやすいです（例: <code>カフェたのしい 岐阜店</code>）。</li>
+      </ul>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_manager_open.png" alt="LINE公式アカウント作成画面" loading="lazy">
+        <figcaption>LINE公式アカウントの作成画面。店舗名、業種、目的を入力します。LINE ID（@から始まるID）は作成後に自動で決まります。</figcaption>
+      </figure>
+
+      <h3>2-2. Messaging API（Bot機能）を有効にする</h3>
+      <p><a href="https://manager.line.biz/" target="_blank" rel="noopener">LINE Official Account Manager</a> にログインし、作ったアカウントの <strong>設定 → Messaging API</strong> を開いて、緑の「Messaging APIを利用する」ボタンを押します。</p>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_provider_selected_agree.png" alt="プロバイダー選択画面でココトモSNSを選ぶ" loading="lazy">
+        <figcaption><strong>ここが大事:</strong> プロバイダーを選ぶ画面では、必ず既存の <code>ココトモSNS</code> を選びます。新しいプロバイダーは作りません。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_messaging_api_confirm.png" alt="Messaging API利用確認画面" loading="lazy">
+        <figcaption>アカウント名とプロバイダー名（ココトモSNS）が正しいことを確認してOKを押します。</figcaption>
+      </figure>
+
+      <h3>2-3. LINE Developersでチャネルを開き、2つの値をコピーする</h3>
+      <p><a href="https://developers.line.biz/console/" target="_blank" rel="noopener">LINE Developersコンソール</a> を開くと、<code>ココトモSNS</code> プロバイダーの中に今作ったアカウントのチャネルができています。</p>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_developers_channel.png" alt="LINE Developersのチャネル画面" loading="lazy">
+        <figcaption>LINE Developersで対象チャネルを開いた画面です。</figcaption>
+      </figure>
+      <table>
+        <thead><tr><th>コピーするもの</th><th>どこにあるか</th><th>見た目</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Channel secret</strong></td><td>「チャネル基本設定（Basic settings）」タブの中</td><td>32桁の英数字</td></tr>
+          <tr><td><strong>Channel access token（長期）</strong></td><td>「Messaging API設定」タブの一番下。<strong>「発行（Issue）」ボタンを押すと表示</strong>されます</td><td>とても長い文字列</td></tr>
+        </tbody>
+      </table>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_channel_token_issue.png" alt="Channel access tokenの発行ボタン" loading="lazy">
+        <figcaption>Channel access tokenは「発行（Issue）」ボタンで発行します。発行された値が映った画面のスクショは撮りません。</figcaption>
+      </figure>
+
+      <h3>2-4. 「Webhookの利用」をONにする</h3>
+      <p>同じ「Messaging API設定」タブで <strong>Webhookの利用（Use webhook）</strong> をONにします。</p>
+      <figure>
+        <img src="assets/screenshots/kanjicompass_line_use_webhook_on.png" alt="Use webhookをONにした状態" loading="lazy">
+        <figcaption>Webhookの利用をONにした状態。<strong>Webhook URL自体は空欄のままでOK</strong>です。STEP4の自動セットアップが <code>https://kokotomo-toc-bot.onrender.com/callback</code> を自動で設定します。</figcaption>
+      </figure>
+      <div class="note">
+        LINE Official Account Manager側の「応答設定」で、あいさつメッセージや応答メッセージ（自動返信）はオフにしておくと、楽スタの返信とダブりません。
+      </div>
+    </section>
+
+    <section id="step3">
+      <h2>STEP3: 楽スタのオンボーディング画面に入力する</h2>
+      <p class="lead">ここからは1画面で終わります。<code>https://kokotomo-sns.bantex.jp/login</code> に運営側アカウントでログイン → SNS管理画面 → 右上の<strong>「新規店舗オンボーディング」</strong>ボタンを押します（直接URLは <code>/sns-admin/onboarding</code>）。</p>
+      <figure>
+        <img src="assets/screenshots/rakusta_onboarding_form_full.png" alt="新規店舗オンボーディング入力画面の全体（記入例入り）" loading="lazy">
+        <figcaption>入力画面の全体です（記入例入り）。上から「契約プラン」「店舗情報」「Instagram連携」「LINE公式アカウント」の4ブロックを埋めて、一番下のボタンを押します。</figcaption>
+      </figure>
+
+      <h3>各欄になにを入れるか</h3>
+      <table>
+        <thead><tr><th>欄</th><th>入れるもの</th><th>例</th></tr></thead>
+        <tbody>
+          <tr><td>契約プラン</td><td>契約したプランのカードをクリック。投稿時刻と月額は自動で入ります</td><td>通常プラン（1日2投稿）</td></tr>
+          <tr><td>画像加工オプション</td><td>契約している場合だけチェック。月額金額は料金案内に合わせて手で直します</td><td>チェックなし</td></tr>
+          <tr><td>契約ステータス</td><td>通常は「契約中」。お試し期間なら「テスト」</td><td>契約中</td></tr>
+          <tr><td>店舗名</td><td>契約書どおりの店舗名</td><td>カフェたのしい 岐阜店</td></tr>
+          <tr><td>本部（organization）</td><td><strong>触らなくてOK</strong>（初期選択のまま）</td><td>ココトモSNS</td></tr>
+          <tr><td>店舗URL（slug）</td><td>お客様ページのURLになる半角英数字。短くわかりやすく</td><td>cafe-tanoshii</td></tr>
+          <tr><td>業種カテゴリ</td><td>近いものを選ぶ</td><td>飲食店</td></tr>
+          <tr><td>所在地・担当者・業態・サービス</td><td>任意。<strong>書くほどAIの投稿文が良くなる</strong>ので、わかる範囲で埋める</td><td>岐阜県中津川市 / 田中 / 自家焙煎コーヒーのカフェ</td></tr>
+          <tr><td>店舗ログインID</td><td><strong>空欄でOK</strong>（Instagramユーザー名から自動で作られます）</td><td>（空欄）</td></tr>
+          <tr><td>Instagramユーザー名</td><td>お客様のInstagramのユーザー名。@は付けない。<strong>1文字も間違えないこと</strong></td><td>cafe_tanoshii</td></tr>
+          <tr><td>LINE Channel ID</td><td>任意（メモ用）。LINE Developersのチャネル画面に表示されている数字</td><td>2001234567</td></tr>
+          <tr><td>LINE Channel secret</td><td>STEP2-3でコピーした32桁の英数字を貼り付け</td><td>0123...cdef</td></tr>
+          <tr><td>LINE Channel access token</td><td>STEP2-3で発行した長い文字列を貼り付け</td><td>（長い文字列）</td></tr>
+        </tbody>
+      </table>
+      <div class="warn">
+        Instagramユーザー名を間違えると、別のアカウントと連携されるのを防ぐ安全チェックに引っかかって、お客様が「許可」を押しても連携が失敗します。お客様のプロフィール画面を見ながら正確に入力してください。
+      </div>
+    </section>
+
+    <section id="step4">
+      <h2>STEP4: 「自動セットアップを実行」を押して結果を見る</h2>
+      <p class="lead">ボタンを押すと最大1分ほどで結果画面が出ます。裏では「店舗作成 → 契約設定 → ログインID発行 → Instagram連携準備 → LINEのWebhook自動設定と疎通テスト」が順番に実行されています。</p>
+      <figure>
+        <img src="assets/screenshots/rakusta_onboarding_result_full.png" alt="セットアップ結果画面の全体" loading="lazy">
+        <figcaption>結果画面の例です。上の「実行結果」で各ステップの成否、下の「店舗への案内情報」にお客様へ送るものがまとまっています。</figcaption>
+      </figure>
+
+      <h3>印の見方</h3>
+      <table>
+        <thead><tr><th>印</th><th>意味</th><th>やること</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mark-ok">✓</span> 緑</td><td>成功</td><td>何もしなくてOK</td></tr>
+          <tr><td><span class="mark-warn">!</span> 黄</td><td>待ち・注意</td><td>表示された案内に従う。「Instagramログイン連携待ち」は正常です（STEP5でお客様に許可してもらうと完了）</td></tr>
+          <tr><td><span class="mark-err">×</span> 赤</td><td>失敗</td><td>表示された原因を直す。<strong>店舗の登録自体は残っている</strong>ので、SNS管理画面から続きを設定すればOK。最初からやり直す必要はありません</td></tr>
+        </tbody>
+      </table>
+      <div class="note">
+        「LINE Webhook疎通テスト」だけ黄色になることがあります。この場合も、実際にLINEへ写真を送ると直ることが多いです（Bot側が新店舗の設定を初回受信時に自動で読み込むため）。STEP6のテストまで進めて確認してください。
+      </div>
+    </section>
+
+    <section id="step5">
+      <h2>STEP5: お客様に3つを案内する</h2>
+      <p class="lead">結果画面の「店舗への案内情報」に全部表示されています。そのままお客様に伝えます。</p>
+
+      <h3>5-1. Instagram連携URL（一番大事）</h3>
+      <div class="flow">
+        <div class="step"><div>結果画面の<strong>「Instagram連携URL」をコピー</strong>して、お客様にLINEやメールで送る</div></div>
+        <div class="step"><div>お客様が<strong>店舗のInstagramにログインしているスマホ</strong>でURLを開く</div></div>
+        <div class="step"><div>許可画面でアカウント名が店舗のものであることを確認して<strong>「許可」を押す</strong></div></div>
+        <div class="step"><div>「連携が完了しました」の画面が出たら終わり。楽スタ側にも自動で反映されます</div></div>
+      </div>
+      <figure>
+        <img src="assets/screenshots/instagram_oauth_allow.png" alt="Instagramの許可画面" loading="lazy">
+        <figcaption>お客様側に出る許可画面です。表示されているアカウント名が対象店舗のものか確認してから「許可」を押してもらいます。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/screenshots/instagram_oauth_complete.png" alt="Instagram連携完了画面" loading="lazy">
+        <figcaption>この画面になれば連携完了です。画面は閉じてかまいません。</figcaption>
+      </figure>
+      <div class="warn">
+        <strong>Meta App Reviewが完了するまでの期間だけ</strong>、お客様のInstagramを事前にテスターとして招待し、Instagram側の「アプリとウェブサイト」で承認してもらう手順が追加で必要です。詳しくは <a href="instagram-login-onboarding.html#screens">Instagram Login方式マニュアルの承認スクショ手順</a> を見てください。本番化後は不要になります。
+      </div>
+
+      <h3>5-2. LINE友だち追加URL</h3>
+      <p>結果画面に表示される友だち追加URL（<code>https://line.me/R/ti/p/@...</code>）をお客様に送り、店舗のスマホで友だち追加してもらいます。このLINEが「写真を送ると投稿してくれる窓口」になります。</p>
+
+      <h3>5-3. 店舗ダッシュボードURLとログインID</h3>
+      <p>お客様が投稿予定や投稿履歴を見るページです。結果画面の「お客様ダッシュボード」URLと「店舗ログインID」を伝えます。<strong>初期パスワードはログインIDと同じ</strong>なので、初回ログイン後に変更してもらいます。</p>
+    </section>
+
+    <section id="step6">
+      <h2>STEP6: 開通テスト</h2>
+      <div class="flow">
+        <div class="step"><div>お客様のLINE公式アカウント（さっき友だち追加したもの）へ、<strong>テスト用の写真1枚と短いメモ</strong>（例: 「本日のケーキです」）を送る</div></div>
+        <div class="step"><div>楽スタから<strong>投稿案の返信</strong>が届くことを確認する</div></div>
+        <div class="step"><div>店舗ダッシュボードに投稿案が表示されることを確認する</div></div>
+        <div class="step"><div>投稿先のInstagramが<strong>その店舗のアカウント</strong>になっていることを確認する</div></div>
+        <div class="step"><div>実際にInstagramへ投稿する確認が必要な場合だけ、お客様の了承を取ってテスト投稿を1回行う</div></div>
+      </div>
+      <div class="ok">ここまで通れば開通完了です。以降、お客様は「LINEに写真を送るだけ」で運用が始まります。</div>
+    </section>
+
+    <section id="faq">
+      <h2>よくある質問</h2>
+      <h3>Q. Meta Business Suiteの作業は自動でやってくれるの？</h3>
+      <p>A. 自動化ではなく、<strong>そもそも不要になりました</strong>。以前のやり方（Facebookページを作ってMeta Business Suiteの「楽スタ管理」に資産追加する方式）は煩雑なため、新規店舗では使いません。Instagramログイン連携方式では、お客様が連携URLを開いて「許可」を押した瞬間に、必要な接続情報（token）が楽スタへ自動保存されます。</p>
+      <h3>Q. Facebookページを既に持っている店舗はどうする？</h3>
+      <p>A. 持っていても関係なく、新規店舗はこのマニュアルどおりInstagramログイン連携で進めます。Facebookページ側の設定は触りません。</p>
+      <h3>Q. 昔のやり方で動いている既存店舗はどうなる？</h3>
+      <p>A. そのまま動き続けます。既存店舗の設定変更はSNS管理画面から行い、このオンボーディング画面は新規店舗専用です。既存店舗の旧方式設定を外したり作り直したりしません。</p>
+      <h3>Q. LINE公式アカウントを既に持っている店舗は？</h3>
+      <p>A. STEP2-1（アカウント作成）を飛ばして、STEP2-2のMessaging API有効化から進めればOKです。</p>
+      <h3>Q. お客様のInstagramのパスワードを預かってもいい？</h3>
+      <p>A. 預かりません。連携URLの「許可」もパスワード入力も、必ずお客様本人に操作してもらいます。</p>
+    </section>
+
+    <section id="trouble">
+      <h2>困ったとき</h2>
+      <table>
+        <thead><tr><th>症状</th><th>原因と対処</th></tr></thead>
+        <tbody>
+          <tr><td>「店舗URL（slug）は既に使われています」と出る</td><td>他店舗と重複しています。別の英数字に変えて再実行します。</td></tr>
+          <tr><td>「LINE Webhook自動設定」が赤になる</td><td>ほぼChannel access tokenの貼り間違い（前後の空白、途中欠け）です。LINE Developersでコピーし直し、SNS管理画面の該当店舗に貼り直します。</td></tr>
+          <tr><td>「LINE Webhook疎通テスト」が黄色になる</td><td>慌てなくてOK。STEP6の実テスト（写真送信）で動けば問題ありません。動かない場合はLINE Developersの「Webhookの利用」がONか確認します。</td></tr>
+          <tr><td>お客様が許可を押したのに「別のアカウントでログインされています」と出る</td><td>入力したInstagramユーザー名と、お客様がログイン中のアカウントが違います。ユーザー名の綴りを確認し、お客様に店舗アカウントでログインし直してもらいます。</td></tr>
+          <tr><td>お客様の許可画面で「開発者の役割が不十分」などのエラーが出る</td><td>App Review完了前のテスター承認漏れです。<a href="instagram-login-onboarding.html#screens">テスター招待の承認手順</a>を先に済ませます。</td></tr>
+          <tr><td>LINEに写真を送っても返信がない</td><td>①友だち追加したアカウントが正しいか ②「Webhookの利用」がONか ③LINE Official Account Managerの応答設定で「チャット」がオフ（Bot利用）になっているか、の順に確認します。</td></tr>
+          <tr><td>オンボーディングのボタンが管理画面に見当たらない</td><td>ダッシュボードがまだ旧バージョンです。BANTEX開発担当（番野さん）に連絡してください。</td></tr>
+        </tbody>
+      </table>
+      <div class="danger">
+        どの対応でも、Graph API Explorerでのtoken生成、Render環境変数の変更、既存店舗の設定解除は行いません。それが必要に見える状況になったら、作業を止めて開発担当に相談します。
+      </div>
+    </section>
+  </main>
+</body>
+</html>
