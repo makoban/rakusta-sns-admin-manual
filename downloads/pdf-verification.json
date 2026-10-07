@@ -1,0 +1,20 @@
+{
+  "version": "2026-10-07",
+  "pdfs": [
+    {
+      "file": "admin.pdf",
+      "pages": 7,
+      "bytes": 123725
+    },
+    {
+      "file": "customer.pdf",
+      "pages": 2,
+      "bytes": 60714
+    },
+    {
+      "file": "complete.pdf",
+      "pages": 8,
+      "bytes": 127377
+    }
+  ]
+}

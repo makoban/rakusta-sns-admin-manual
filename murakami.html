@@ -1,247 +1,31 @@
-<!doctype html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>村上さん専用 Instagram Login方式 管理手順</title>
-  <style>
-    :root {
-      --ink: #172033;
-      --muted: #667085;
-      --line: #d7dce6;
-      --bg: #f4f7fb;
-      --paper: #fff;
-      --blue: #2364d2;
-      --green: #15803d;
-      --orange: #c2410c;
-      --red: #dc2626;
-      --soft-blue: #eaf2ff;
-      --soft-green: #eaf8ef;
-      --soft-orange: #fff3e8;
-      --soft-red: #fff1f1;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--bg);
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-      line-height: 1.75;
-      letter-spacing: 0;
-    }
-    main { max-width: 1060px; margin: 0 auto; padding: 28px 18px 52px; }
-    header, section {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 22px;
-      margin: 16px 0;
-    }
-    h1 { font-size: 30px; line-height: 1.3; margin: 0 0 8px; }
-    h2 { font-size: 22px; line-height: 1.4; margin: 0 0 12px; }
-    h3 { font-size: 17px; margin: 18px 0 8px; }
-    p { margin: 0 0 12px; }
-    a { color: var(--blue); text-decoration: none; }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      background: #eef2f7;
-      padding: 2px 5px;
-      border-radius: 5px;
-      overflow-wrap: anywhere;
-    }
-    .lead { color: var(--muted); }
-    .note, .ok, .warn, .danger {
-      border-radius: 8px;
-      padding: 12px 14px;
-      margin: 12px 0;
-      border: 1px solid;
-    }
-    .note { background: var(--soft-blue); border-color: #bad4ff; color: #15366f; }
-    .ok { background: var(--soft-green); border-color: #bbf7d0; color: #14532d; }
-    .warn { background: var(--soft-orange); border-color: #fed7aa; color: #7c2d12; }
-    .danger { background: var(--soft-red); border-color: #fecaca; color: #7f1d1d; }
-    .top-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .top-links a { padding: 8px 10px; background: var(--soft-blue); border-radius: 8px; font-weight: 700; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-      margin: 12px 0;
-    }
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 13px;
-      background: #fff;
-    }
-    .card strong { display: block; color: #17428d; margin-bottom: 4px; }
-    .flow { display: grid; gap: 10px; counter-reset: step; }
-    .step {
-      counter-increment: step;
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 10px;
-      align-items: start;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-    .step::before {
-      content: counter(step);
-      display: grid;
-      place-items: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--blue);
-      color: #fff;
-      font-weight: 800;
-    }
-    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
-    th, td { border: 1px solid var(--line); padding: 9px 10px; vertical-align: top; }
-    th { background: #f8fafc; text-align: left; }
-    figure {
-      margin: 14px 0;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #fff;
-    }
-    figure img { display: block; width: 100%; height: auto; }
-    figcaption { padding: 10px 12px; color: var(--muted); border-top: 1px solid var(--line); font-size: 13px; }
-    pre {
-      overflow-x: auto;
-      background: #111827;
-      color: #e5e7eb;
-      padding: 14px;
-      border-radius: 8px;
-      font-size: 13px;
-    }
-    @media (max-width: 640px) {
-      main { padding: 18px 12px 36px; }
-      header, section { padding: 16px; }
-      h1 { font-size: 24px; }
-      table, thead, tbody, tr, th, td { display: block; width: 100%; }
-      th { display: none; }
-      td { border-top: 0; }
-      tr { border-top: 1px solid var(--line); }
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <header>
-      <h1>村上さん専用 Instagram Login方式 管理手順</h1>
-      <p class="lead">村上さんが新規顧客のInstagram連携URLを作り、顧客に承認してもらい、接続確認まで進めるためのページです。</p>
-      <div class="ok">今回から、新規顧客の標準はFacebookページなしです。Facebookページ作成、ページ追加、System User、Render、Graph API Explorerは通常作業では使いません。</div>
-      <div class="top-links">
-        <a href="#first">最初に一度</a>
-        <a href="#customer">新規顧客ごと</a>
-        <a href="#tester">開発中だけ</a>
-        <a href="#approve">承認画面</a>
-        <a href="#admin">管理画面</a>
-        <a href="#message">送る文面</a>
-        <a href="instagram-login-onboarding.html">詳細版</a>
-        <a href="index.html">一覧</a>
-      </div>
-    </header>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>村上さんの新規顧客作成手順 | ココトモSNS</title><meta name="description" content="開く画面・押すボタン・入力内容・確認結果を、上から順に揃えます。"><link rel="stylesheet" href="assets/manual/style.css?v=2026-10-07"><script src="assets/manual/manual.js?v=2026-10-07" defer></script></head><body data-version="2026-10-07"><header class="site-head"><a class="brand" href="index.html">BANTEX <span>ココトモSNS マニュアル</span></a><nav><a href="murakami.html">村上さん用</a><a href="customer-approval.html">お客様の承認</a><a href="greeting-message.html">挨拶の標準文</a></nav></header><main class="page"><div class="hero"><p class="eyebrow">村上さん用 / 2026-10-07 更新</p><h1><span class="keep">村上さん</span>の<span class="keep">新規顧客</span>作成手順</h1><p class="intro">開く画面・押すボタン・入力内容・確認結果を、上から順に揃えます。</p><div class="hero-actions"><a class="button" href="new-store-onboarding.html">新規顧客の作成手順</a><a class="button secondary" href="downloads/admin.pdf">PDFで保存・印刷</a></div></div><ol class="flow"><li><b>1</b><span>店舗調査・専用BOT作成</span></li><li><b>2</b><span>全設定を保存・確認</span></li><li><b>3</b><span>お客様専用URLを案内</span></li><li><b>4</b><span>お客様が<span class="keep">Instagram</span>を承認</span></li><li><b>5</b><span><span class="keep">BANTEX</span>で接続確認</span></li><li><b>6</b><span>確認後に<span class="keep">LINE</span>を配布</span></li></ol><p class="note">この順序を全ての新規顧客BOTで使います。Instagramのログイン・承認はお客様の端末で行います。LINEを案内するのは、承認と接続確認が終わってからです。</p><div class="manual-layout"><aside class="toc"><details open><summary>このページの目次</summary><nav><a href="#research">01 店舗と<span class="keep">Instagram</span>を確認する</a><a href="#line-create">02 店舗専用<span class="keep">LINE</span>を新しく作る</a><a href="#line-api">03 <span class="keep">Messaging API</span>とWebhookを設定する</a><a href="#greeting">04 「<span class="keep">LINE</span>に送るだけ」の挨拶を登録する</a><a href="#line-profile">05 <span class="keep">LINE</span>の店舗プロフィールを公開する</a><a href="#registration">06 ココトモで新規契約を登録する</a><a href="#settings">07 投稿・通知・編集の初期値を揃える</a><a href="#business">08 店舗情報とAIのルールを全て入れる</a><a href="#invite">09 お客様には承認用URLだけを渡す</a><a href="#customer-approval">10 お客様が自分の端末で<span class="keep">Instagram</span>を承認する</a><a href="#connection">11 承認後に対象店舗の接続を確認する</a><a href="#distribute">12 接続確認後に専用<span class="keep">LINE</span>を配布する</a><a href="#checklist">作成・配布前の完了チェック</a><a href="#errors">止まった画面に合わせて確認する</a><a href="#sources">操作画面・公式資料</a></nav></details></aside><article><section id="research" class="manual-section"><header><span class="role">BANTEX</span><h2>01 店舗と<span class="keep">Instagram</span>を確認する</h2></header><ol class="actions"><li>店舗名、公式サイト、Instagramユーザー名を確認する。公開プロフィールと公式サイトが同じ店舗か照合する。</li><li>公式サイト・公開Instagram・お客様の説明から、所在地、公式電話、予約先、業種、商品・サービス、想定するお客様、文章の雰囲気を整理する。</li><li>営業時間・定休日・料金に表記差があれば、その項目は未確認として扱う。担当者名、食材、産地、数量、イベントの開催状況を推測しない。</li><li>Instagramがプロアカウントのビジネスであることをお客様に確認してもらう。</li></ol><p class="note">店舗ごとの設定は、その店舗の情報から作ります。他店の名前・住所・ハッシュタグをそのまま使いません。店舗Instagramのパスワードを預かる必要はありません。</p></section><section id="line-create" class="manual-section"><header><span class="role">BANTEX</span><h2>02 店舗専用<span class="keep">LINE</span>を新しく作る</h2></header><ol class="actions"><li><a href="https://manager.line.biz/" target="_blank" rel="noopener">LINE Official Account Manager</a>へBANTEX管理用アカウントでログインし、「作成」を開く。</li><li>表示名を「店舗名 インスタ連携」にする。20文字以内に収める。会社名は株式会社バンテックス、業種は店舗の実際の業種を選ぶ。</li><li>BANTEX管理用の既存ビジネスマネージャー組織を選ぶ。今回の作成例は「bantex」。</li><li>表示された規約と追加同意を担当者が確認し、同意して作成を完了する。アカウント名とLINE IDを確認する。</li></ol><p class="note">Instagramアカウント1つに、新しい専用LINE BOTを1つ作ります。既存の他店舗BOTを流用・共用しません。AIで作業する場合も、画面で必要な規約同意や権限付与の確認は省略しません。</p></section><section id="line-api" class="manual-section"><header><span class="role">BANTEX</span><h2>03 <span class="keep">Messaging API</span>とWebhookを設定する</h2></header><ol class="actions"><li>新しいLINEの「設定」→「Messaging API」→「Messaging APIを利用する」を開き、既存Provider「BANTEX」を選ぶ。</li><li><a href="https://developers.line.biz/console/" target="_blank" rel="noopener">LINE Developers</a>で「BANTEX」→今作った店舗のチャネルを開く。</li><li>「Messaging API設定」でWebhook URLを下の値にし、「Webhookの利用」「Webhookの再送」「エラーの統計情報」をONにする。</li><li>「検証」を押して「成功」を確認する。チャネル基本設定のChannel ID・Channel secretを新規契約フォームへ直接登録する。</li></ol><dl class="field-map"><div><dt>Provider</dt><dd>BANTEX</dd></div><div><dt>Webhook URL</dt><dd><code class="technical">https://kokotomo-toc-bot.onrender.com/callback</code></dd></div><div><dt>プライバシーポリシー</dt><dd><a class="technical" href="https://www.bantex.jp/privacy.html">https://www.bantex.jp/privacy.html</a></dd></div><div><dt>利用規約</dt><dd><a class="technical" href="https://www.bantex.jp/terms.html">https://www.bantex.jp/terms.html</a></dd></div></dl><p class="note">アクセストークンはココトモの新規契約登録時に自動発行されます。Channel secret・token・パスワード・認証コードは、マニュアル、チャット、メール、公開スクリーンショットへ載せません。Provider BANTEXが出ない場合は管理権限を確認します。</p></section><section id="greeting" class="manual-section"><header><span class="role">BANTEX</span><h2>04 「<span class="keep">LINE</span>に送るだけ」の挨拶を登録する</h2></header><ol class="actions"><li>LINE Official Account Managerの「あいさつメッセージ」を開く。LINE Developersの挨拶「編集」からも同じ設定画面へ進める。</li><li>初期の「最新情報を配信します」という定型文を、下の標準本文に置き換えて保存する。</li><li>「はじめて友だち追加されたときにのみ送信」をONにする。</li><li>「設定」→「応答設定」で下の状態に揃える。</li><li>ページを再読込し、本文・初回のみ送信・あいさつON・Webhook ONを確認する。</li></ol><div class="copy-box"><button type="button" class="copy-button">本文をコピー</button><pre>友だち追加ありがとうございます！
+ココトモSNSです😊
 
-    <section id="first">
-      <h2>最初に一度だけやること</h2>
-      <div class="grid">
-        <div class="card"><strong>Meta Developers</strong><code>楽スタSNS連携</code> の管理者または開発者に村上さんを追加します。</div>
-        <div class="card"><strong>楽スタSNS管理画面</strong>村上さんが店舗追加とSNS設定を保存できる運営側IDで入れるようにします。</div>
-        <div class="card"><strong>申請担当</strong>App Review、本番切替、差し戻し対応は番野さんと村上さんの二人で確認できる状態にします。</div>
-      </div>
-      <div class="danger">パスワード、Instagramの2段階認証コード、LINE token、Meta App Secretはチャットやマニュアルに書きません。</div>
-    </section>
+📷 写真・動画を、このLINEに送るだけ。
+AIが素材を編集し、投稿文とハッシュタグを作ってInstagramへ投稿します。
 
-    <section id="customer">
-      <h2>新規顧客ごとにやること</h2>
-      <div class="flow">
-        <div class="step"><div><strong>店舗Instagramを確認</strong><br>顧客のInstagramがプロアカウントになっているか確認します。Facebookページは標準では不要です。</div></div>
-        <div class="step"><div><strong>楽スタSNS管理画面で店舗を作る</strong><br>店舗名はInstagramアカウント名に寄せます。例: <code>label.totalsalon</code>。</div></div>
-        <div class="step"><div><strong>LINEと契約設定を保存</strong><br>LINE Channel情報、投稿回数、画像加工、投稿時刻を保存します。</div></div>
-        <div class="step"><div><strong>Instagram連携URLをコピー</strong><br>管理画面の <code>お客様へ送るInstagram連携URL</code> をコピーします。</div></div>
-        <div class="step"><div><strong>顧客へ送る</strong><br>対象Instagramにログインした状態でURLを開き、許可してもらいます。</div></div>
-        <div class="step"><div><strong>接続確認</strong><br>管理画面で <code>Instagramのみ連携</code>、接続有効、ユーザー名一致を確認します。</div></div>
-        <div class="step"><div><strong>LINEテスト</strong><br>写真1枚と短い文を送り、Instagram投稿まで確認します。</div></div>
-      </div>
-    </section>
+【使い方】
+① 写真・動画を送る
+② 紹介したい内容を続けて送る
+例：「今日のおすすめです」「この文字を入れて」
 
-    <section id="tester">
-      <h2>開発中だけ: Instagramテスター承認</h2>
-      <p>Meta App Reviewが通るまでは、対象Instagramを <code>楽スタSNS連携</code> のInstagramテスターとして追加し、Instagram側で承認する必要があります。</p>
-      <figure>
-        <img src="assets/screenshots/instagram_tester_invite_accept.png" alt="Instagramテスター招待を承認する画面">
-        <figcaption>顧客Instagramで <code>アプリとウェブサイト</code> を開き、<code>楽スタSNS連携-IG</code> の <strong>承認する</strong> を押します。</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/screenshots/instagram_tester_invite_accepted.png" alt="Instagramテスター承認済み画面">
-        <figcaption>承認済みになった状態です。本番申請後は通常顧客にこの作業をさせない運用に変えます。</figcaption>
-      </figure>
-    </section>
+「明るくして」「落ち着いた雰囲気で」など、編集の希望もこのLINEに送れます。
 
-    <section id="approve">
-      <h2>顧客に押してもらう承認画面</h2>
-      <figure>
-        <img src="assets/screenshots/instagram_oauth_allow.png" alt="Instagram OAuth許可画面">
-        <figcaption>アカウント名が顧客店舗のInstagramと一致していることを見てから <strong>許可</strong> を押します。</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/screenshots/instagram_oauth_complete.png" alt="Instagram連携完了画面">
-        <figcaption>この画面が出れば連携完了です。</figcaption>
-      </figure>
-      <div class="danger">違うInstagram名が出た場合は許可しません。いったんInstagramからログアウトし、正しい店舗Instagramでログインし直します。</div>
-    </section>
+すぐ投稿したい場合は「すぐ投稿して！」、予約したい場合は「定時投稿して！」を選べます。
 
-    <section id="admin">
-      <h2>管理画面で見るところ</h2>
-      <figure>
-        <img src="assets/screenshots/rakusta_admin_instagram_only_connected.png" alt="楽スタ管理画面 Instagramのみ連携">
-        <figcaption><code>Instagramのみ連携</code> と表示されます。labelのようにFacebookページなしで接続する店舗はこの表示です。</figcaption>
-      </figure>
-      <table>
-        <thead><tr><th>見る項目</th><th>OKの状態</th></tr></thead>
-        <tbody>
-          <tr><td>店舗名</td><td>Instagramアカウント名。例: <code>label.totalsalon</code></td></tr>
-          <tr><td>Instagram接続</td><td>有効 / Instagramのみ連携</td></tr>
-          <tr><td>Instagramユーザー名</td><td>顧客Instagramと同じ</td></tr>
-          <tr><td>LINE</td><td>設定済</td></tr>
-          <tr><td>契約設定</td><td>投稿回数、画像加工、投稿時刻が決まっている</td></tr>
-        </tbody>
-      </table>
-    </section>
+投稿内容の確認や修正も、LINEに届く案内から行えます。
+まずは写真を1枚送ってみてください✨</pre><span class="copy-status" aria-live="polite"></span></div><dl class="field-map"><div><dt>チャット</dt><dd><strong class="off">OFF</strong></dd></div><div><dt>あいさつメッセージ</dt><dd><strong class="on">ON</strong></dd></div><div><dt>あいさつの送信条件</dt><dd>初めて友だち追加された時のみ</dd></div><div><dt>応答メッセージ</dt><dd><strong class="off">OFF</strong></dd></div><div><dt>Webhook</dt><dd><strong class="on">ON</strong></dd></div><div><dt>Webhook再送・エラー統計</dt><dd>両方ON</dd></div><div><dt>グループ・複数人トーク参加</dt><dd>OFF</dd></div><div><dt>写真・動画の受信</dt><dd>ON</dd></div></dl><p class="note">本文を保存するだけでは配信されません。あいさつメッセージをONにするところまでが作成作業です。以前の「挨拶をOFF」は、新規顧客BOTでは使いません。</p></section><section id="line-profile" class="manual-section"><header><span class="role">BANTEX</span><h2>05 <span class="keep">LINE</span>の店舗プロフィールを公開する</h2></header><ol class="actions"><li>公式サイトや店舗提供の画像から、店舗が分かるアイコンを設定する。</li><li>ステータスメッセージは「写真・動画でInstagram投稿」を標準にする。紹介文は店舗の内容に合わせる。</li><li>確認済みの郵便番号、所在地、アクセス、公式電話、公式サイト・予約先、店舗Instagramを登録する。</li><li>不要な空のSNS欄を除き、店舗に合わせたブランド色を設定する。</li><li>「公開」を実行し、公開済みの表示を確認する。</li></ol><p class="note">責任者名、営業時間、定休日、支払方法、予算など、確認できていない情報を埋めるために推測しません。</p></section><section id="registration" class="manual-section"><header><span class="role">BANTEX</span><h2>06 ココトモで新規契約を登録する</h2></header><ol class="actions"><li><a href="https://kokotomo-sns.bantex.jp/sns-admin/onboarding" target="_blank" rel="noopener">ココトモの新規契約センター</a>をBANTEX管理者で開く。</li><li>予約投稿枠を1日1枠、月間総投稿上限を31回にする。新しく作った専用LINEであること、Provider BANTEXであることを確認してチェックする。</li><li>専用チャネルのChannel ID・Channel secretを保護された入力欄へ直接登録する。</li><li>作成を実行し、token発行・Webhook設定・疎通確認の成功、店舗ID、お客様専用画面の発行を確認する。</li><li>管理画面で店舗名、予定するInstagramユーザー名とプロフィールURLを登録し、次の店舗設定へ進む。</li></ol><p class="note">初期フォームにない項目は、登録後の店舗画面で保存します。「登録できた」だけで設定完了とはしません。料金・請求条件は顧客との合意に従い、投稿枠の設定から新たな支払いや有料契約を発生させません。</p></section><section id="settings" class="manual-section"><header><span class="role">BANTEX</span><h2>07 投稿・通知・編集の初期値を揃える</h2></header><p>お客様が別の条件を明確に指定していない場合、今回の作成と同じ初期値に揃えます。フォーム初期値のまま終了せず、登録後に保存してください。</p><dl class="field-map"><div><dt>予約投稿枠</dt><dd>1日1枠</dd></div><div><dt>月間の総投稿上限</dt><dd>31回。即時投稿と予約投稿の合計。</dd></div><div><dt>予約時刻</dt><dd>17:00。お客様の明確な指定がある場合だけ調整。</dd></div><div><dt>AI動画編集上限</dt><dd>月31回</dd></div><div><dt>画像加工・動画AI編集</dt><dd>ON</dd></div><div><dt>すぐ投稿</dt><dd>ON</dd></div><div><dt>投稿完了LINE通知</dt><dd>ON</dd></div><div><dt>顔ぼかし</dt><dd>ON</dd></div></dl><ol class="actions"><li>店舗画面の「設定」を開き、投稿時刻・通知・加工・顔ぼかしを保存する。</li><li>管理画面で月間総投稿上限・動画編集上限を確認する。</li><li>保存後にページを再読込し、1日1枠・17:00・月31回・通知ON・顔ぼかしONが一致することを確認する。</li></ol></section><section id="business" class="manual-section"><header><span class="role">BANTEX</span><h2>08 店舗情報とAIのルールを全て入れる</h2></header><dl class="field-map"><div><dt>店舗プロフィール</dt><dd>業種、店舗名、業態・紹介、所在地、責任者、必須表示情報、商品・サービス、店内・設備、想定するお客様。</dd></div><div><dt>投稿文の雰囲気</dt><dd>その店舗に合う丁寧な日本語。大げさな最上級を避け、写真や説明で確認できる魅力を具体的に伝える。</dd></div><div><dt>投稿文ルール</dt><dd>料理名・商品名・食材・産地・価格・数量・キャンペーンを推測しない。読みやすく改行し、最後に店舗名・所在地・公式予約先を案内する。</dd></div><div><dt>ハッシュタグ</dt><dd>本文末尾に5個。地域名と地域＋業種の2タグを店舗ごとに固定し、残り3タグは投稿内容に合わせる。飲食店なら地域グルメ、他業種ならその業種に合うタグにする。未確認のブランド・産地・食材タグは使わない。</dd></div><div><dt>画像加工</dt><dd>元の被写体・実物・数量・盛り付けを保ち、自然な明るさと色補正で見せる。文字入れは店舗から指定がある場合に行う。</dd></div><div><dt>動画編集</dt><dd>実際の素材と店舗らしさを保ち、短く分かりやすく伝える。料理名・価格・企画のテロップは確認済みの情報だけ使う。BGMは会話や調理音を妨げない音量にする。</dd></div><div><dt>避ける内容</dt><dd>未確認の営業情報、値引き、期間限定、在庫・空席、周年イベントを創作しない。顔・個人情報は判別できないよう配慮する。</dd></div></dl><p class="note">肉バルでの例：地域タグは #銀座 #銀座グルメ。料理の説明で黒毛和牛使用が確認できたハンバーグ投稿では #銀座ディナー #ハンバーグ #黒毛和牛 を組み合わせます。この地域・料理タグを他店舗にそのまま移しません。</p><ol class="actions"><li>公式情報から各欄を記入し、店舗設定を保存する。</li><li>保存後に再取得し、入力した文章・ルール・ON/OFFが残っていることを照合する。</li><li>公式情報とお客様の説明が違う場合は、未確認の点をお客様に確認する。</li></ol></section><section id="invite" class="manual-section"><header><span class="role">BANTEX</span><h2>09 お客様には承認用URLだけを渡す</h2></header><ol class="actions"><li>管理画面で、この店舗の「お客様URL」を取得する。店舗ごとの専用リンクを使う。</li><li>管理者としてログインしていない環境で専用URLを開き、正しい店舗画面が表示されることを確認する。</li><li>下の案内文へその店舗の専用URLを貼り、宛先と送信指示を確認してお客様へ案内する。</li><li>この段階では投稿用LINEの友だち追加URL・QRコードを渡さない。</li></ol><div class="copy-box"><button type="button" class="copy-button">本文をコピー</button><pre>ココトモSNSの店舗設定が完了しました。
+以下の店舗専用URLを開いてください。
 
-    <section id="message">
-      <h2>顧客へ送る文面</h2>
-      <pre><code>Instagram連携のお願いです。
-下のURLを、投稿先にしたいInstagramアカウントでログインした状態で開いてください。
+【発行されたお客様専用URLをここに貼る】
 
-表示された画面で、アカウント名が店舗のInstagramになっていることを確認し、「許可」を押してください。
+設定の「Instagram連携」から「Instagramを接続」を押し、店舗のInstagramでログインして連携を許可してください。
+Instagramの認証はお客様の端末で行います。パスワードを当社にお知らせいただく必要はありません。
 
-URL:
-（ここに楽スタ管理画面のInstagram連携URLを貼る）
+承認が終わりましたら、このLINEにご返信ください。こちらで接続を確認した後、写真・動画の送信用LINEをご案内します。</pre><span class="copy-status" aria-live="polite"></span></div><p class="note">使うのはID・パスワード不要のお客様専用URLです。通常の管理画面URLだけ、他店舗のリンク、期限付きのInstagram OAuth URLをそのまま渡さないでください。実顧客の専用URLはこの公開マニュアルに掲載しません。</p></section><section id="customer-approval" class="manual-section"><header><span class="role">お客様</span><h2>10 お客様が自分の端末で<span class="keep">Instagram</span>を承認する</h2></header><ol class="actions"><li>BANTEXから届いた店舗専用URLを開く。店舗名が自分のお店になっていることを確認する。</li><li>「設定」→「Instagram連携」→「Instagramを接続」を押す。</li><li>店舗のInstagramでログインする。表示されるユーザー名が予定する店舗アカウントと一致するか確認する。</li><li>必要な権限を確認して「許可」を押す。別のアカウントが表示された場合は、許可せず店舗アカウントに切り替える。</li><li>連携完了の表示を確認し、BANTEXへ「承認完了」と連絡する。</li></ol><p class="note">BANTEX側でお客様のInstagramへ代理ログイン・代理承認は行いません。認証コードやパスワードをメール・LINEへ送る必要もありません。</p></section><section id="connection" class="manual-section"><header><span class="role">BANTEX</span><h2>11 承認後に対象店舗の接続を確認する</h2></header><ol class="actions"><li>対象店舗の開通状況・管理画面を再読込する。</li><li>Instagramの接続済み表示とユーザー名を確認する。別店舗やテストアカウントが接続されていないか照合する。</li><li>投稿に必要なプロフィール参照・コンテンツ公開の権限が揃っていることと、投稿を開始できる状態を確認する。</li><li>保存済みの店舗設定、専用LINE、予定するInstagramが同じ店舗に紐づくことを確認する。</li></ol><p class="note">お客様が「承認した」と連絡しただけで開通完了にはしません。管理画面の実体で確認します。確認待ち・権限不足のままLINEを配布しません。</p></section><section id="distribute" class="manual-section"><header><span class="role">BANTEX</span><h2>12 接続確認後に専用<span class="keep">LINE</span>を配布する</h2></header><ol class="actions"><li>対象店舗専用のLINE友だち追加URLを取得する。別店舗のURLを混ぜない。</li><li>下の文面へその店舗のLINE URLを貼り、接続確認後にお客様へ案内する。</li><li>お客様の友だち追加時に「写真・動画を、このLINEに送るだけ」の挨拶が届くことを確認する。</li><li>公開してよい素材で初回投稿を行う場合は、お客様と内容・公開タイミングを確認してから実施する。</li></ol><div class="copy-box"><button type="button" class="copy-button">本文をコピー</button><pre>Instagramとの接続を確認できました。
+写真・動画の送信用LINEはこちらです。
 
-パスワードや2段階認証コードをこちらに送る必要はありません。
-画面上でご本人が操作してください。</code></pre>
-      <div class="warn">App Review完了前だけ、先にInstagramテスター招待の承認をお願いする文面を添えます。本番化後はこの一文を消します。</div>
-    </section>
+【この店舗専用のLINE友だち追加URLをここに貼る】
 
-    <section>
-      <h2>止める条件</h2>
-      <table>
-        <thead><tr><th>状態</th><th>対応</th></tr></thead>
-        <tbody>
-          <tr><td>顧客がInstagramにログインできない</td><td>顧客本人に復旧してもらう。パスワードや2段階認証コードは聞かない</td></tr>
-          <tr><td>開発者の役割が不十分</td><td>Instagramテスター追加・承認を確認する</td></tr>
-          <tr><td>OAuth画面のアカウント名が違う</td><td>許可せず、正しいInstagramへログインし直す</td></tr>
-          <tr><td>FacebookページやRenderを触りたくなる</td><td>新方式の通常作業では触らない。別作業として番野さんへ確認</td></tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
-</body>
-</html>
+友だち追加すると使い方が届きます。写真・動画と紹介したい内容を、このLINEに送ってください。
+「明るくして」「この文字を入れて」などの編集希望もLINEで伝えられます。</pre><span class="copy-status" aria-live="polite"></span></div><p class="note">投稿用LINEは店舗スタッフ用です。一般のお客様への宣伝用LINEや公開配布用QRとして案内しません。接続成功と、実際のInstagram投稿成功は分けて確認します。</p></section><section id="checklist" class="manual-section"><header><span class="role">BANTEX</span><h2>作成・配布前の完了チェック</h2></header><p>チェックはこの端末のブラウザにだけ保存されます。次の顧客ではリセットしてください。</p><div class="checklist"><label><input type="checkbox" data-check="0"><span>専用LINEが新規作成され、店舗Instagramと1対1である</span></label><label><input type="checkbox" data-check="1"><span>Provider BANTEXと既存組織を確認した</span></label><label><input type="checkbox" data-check="2"><span>挨拶本文を保存し、初回のみ送信と挨拶ONを再読込で確認した</span></label><label><input type="checkbox" data-check="3"><span>Webhook利用・再送・エラー統計ONと、検証「成功」を確認した</span></label><label><input type="checkbox" data-check="4"><span>LINEプロフィールを公開済み表示まで確認した</span></label><label><input type="checkbox" data-check="5"><span>1日1枠・17:00・月31投稿・月31動画編集を保存して照合した</span></label><label><input type="checkbox" data-check="6"><span>完了LINE通知・画像加工・動画編集・顔ぼかしONを確認した</span></label><label><input type="checkbox" data-check="7"><span>店舗情報・文章・ハッシュタグ・画像・動画・避ける内容を保存して照合した</span></label><label><input type="checkbox" data-check="8"><span>管理者ログインなしで、お客様専用URLから正しい店舗画面を開けた</span></label><label><input type="checkbox" data-check="9"><span>お客様自身がInstagramを承認した</span></label><label><input type="checkbox" data-check="10"><span>対象Instagram・必要権限・接続完了を管理画面で確認した</span></label><label><input type="checkbox" data-check="11"><span>接続確認後に専用LINEを配布した</span></label></div><button class="reset-checks" type="button">チェックをリセット</button><p class="note">承認前は上の9項目まで、承認後に残りを確認します。公開テスト投稿は、このチェックリストとは別にお客様の許可を得て実施します。</p></section><section id="errors" class="manual-section"><header><span class="role">BANTEX</span><h2>止まった画面に合わせて確認する</h2></header><dl class="field-map"><div><dt>専用URLでログインを求められる</dt><dd>管理画面の「お客様URL」か確認する。署名付きの店舗専用リンクを再案内する。</dd></div><div><dt>違うInstagramが表示される</dt><dd>お客様がアカウントを切り替える。BANTEXのテストアカウントで代理承認しない。</dd></div><div><dt>Instagramの権限が足りない</dt><dd>お客様へ専用URLを再案内し、必要な権限を含めて承認してもらう。承認後に管理画面で再確認する。</dd></div><div><dt>Webhook検証が失敗する</dt><dd>対象チャネル、URL、Webhookの利用ON、ココトモ登録時の結果を確認する。</dd></div><div><dt>友だち追加で説明が届かない</dt><dd>挨拶本文保存と、応答設定の挨拶ONを確認する。初回のみ送信の場合、ブロック解除では再送されない。</dd></div><div><dt>素材にLINEが応答しない</dt><dd>Webhook ON、専用LINEと店舗の紐づき、接続状態、処理結果を確認する。</dd></div><div><dt>公式の営業情報が食い違う</dt><dd>投稿ルールで断定を避け、お客様に現在の情報を確認する。</dd></div></dl><p class="note">お客様のパスワードを聞く、別店舗BOTを流用する、全店舗共通のInstagram tokenを上書きする、承認前にLINEを配布する、といった対処は行いません。</p></section><section id="sources" class="manual-section"><header><span class="role">BANTEX</span><h2>操作画面・公式資料</h2></header><ul class="links"><li><a href="https://manager.line.biz/" target="_blank" rel="noopener">LINE Official Account Manager</a></li><li><a href="https://developers.line.biz/console/" target="_blank" rel="noopener">LINE Developers</a></li><li><a href="https://kokotomo-sns.bantex.jp/sns-admin/onboarding" target="_blank" rel="noopener">ココトモ新規契約センター</a></li><li><a href="https://www.lycbiz.com/jp/manual/OfficialAccountManager/greeting-message/" target="_blank" rel="noopener">LINE公式：あいさつメッセージの設定</a></li><li><a href="https://developers.line.biz/ja/docs/messaging-api/building-bot/" target="_blank" rel="noopener">LINE公式：Messaging APIの設定</a></li></ul><p class="note">このページは操作手順だけを公開しています。実顧客の専用URL、LINE友だち追加URL、パスワード、Channel secret、tokenは掲載していません。</p></section></article></div></main><footer><p>標準ルール 2026-10-07。全ての新規顧客BOTに適用。</p><p><a href="index.html">マニュアル一覧</a> / <a href="greeting-message.html">挨拶全文</a> / <a href="downloads/complete.pdf">PDF一式</a></p></footer></body></html>

@@ -1,0 +1,101 @@
+{
+  "version": "2026-10-07",
+  "scope": "今後作成する全てのココトモSNS新規顧客専用BOT",
+  "workflow": [
+    "BANTEXが店舗を調査・専用LINE BOTを作成",
+    "BANTEXがLINE・店舗・投稿・編集の全設定を保存して再取得確認",
+    "お客様専用URLを発行して案内",
+    "お客様が自分の端末でInstagram連携を承認",
+    "BANTEXが対象アカウント・投稿権限・接続状態を確認",
+    "接続確認後に専用LINEをお客様へ配布"
+  ],
+  "line": {
+    "provider": "BANTEX",
+    "business_manager": "BANTEX管理用の既存組織（今回の作成ではbantex）",
+    "name_template": "店舗名 インスタ連携",
+    "name_max_characters": 20,
+    "greeting_enabled": true,
+    "greeting_first_add_only": true,
+    "greeting_text": "友だち追加ありがとうございます！\nココトモSNSです😊\n\n📷 写真・動画を、このLINEに送るだけ。\nAIが素材を編集し、投稿文とハッシュタグを作ってInstagramへ投稿します。\n\n【使い方】\n① 写真・動画を送る\n② 紹介したい内容を続けて送る\n例：「今日のおすすめです」「この文字を入れて」\n\n「明るくして」「落ち着いた雰囲気で」など、編集の希望もこのLINEに送れます。\n\nすぐ投稿したい場合は「すぐ投稿して！」、予約したい場合は「定時投稿して！」を選べます。\n\n投稿内容の確認や修正も、LINEに届く案内から行えます。\nまずは写真を1枚送ってみてください✨",
+    "chat_enabled": false,
+    "auto_response_enabled": false,
+    "webhook_enabled": true,
+    "webhook_url": "https://kokotomo-toc-bot.onrender.com/callback",
+    "webhook_redelivery_enabled": true,
+    "webhook_error_statistics_enabled": true,
+    "group_chat_enabled": false,
+    "receive_photo_video_enabled": true,
+    "profile_fields": [
+      "アイコン",
+      "ステータスメッセージ",
+      "紹介文",
+      "郵便番号",
+      "住所",
+      "アクセス",
+      "公式電話",
+      "公式サイト・予約先",
+      "店舗Instagram",
+      "ブランド色"
+    ]
+  },
+  "initial_settings": {
+    "daily_post_count": 1,
+    "publish_monthly_limit": 31,
+    "daily_post_times": [
+      "17:00"
+    ],
+    "video_edit_monthly_limit": 31,
+    "image_edit_enabled": true,
+    "video_edit_enabled": true,
+    "publish_now_enabled": true,
+    "line_completion_notification": true,
+    "face_blur_enabled": true
+  },
+  "business_profile_fields": [
+    "業種",
+    "店舗名",
+    "業態・紹介",
+    "所在地",
+    "責任者（未確認なら空欄）",
+    "必須表示情報",
+    "商品・サービス",
+    "店内・設備",
+    "想定するお客様",
+    "文章の雰囲気",
+    "投稿文・ハッシュタグルール",
+    "画像加工ルール",
+    "動画編集ルール",
+    "避ける内容"
+  ],
+  "research_rules": [
+    "公式サイトと公開Instagramを確認し、現在の公開情報で店舗を特定する",
+    "公開情報とお客様からの説明を優先する",
+    "営業時間・定休日・料金等に矛盾があれば断定しない",
+    "担当者名・食材・産地・価格・数量・キャンペーンを推測しない",
+    "他店の設定をそのままコピーしない"
+  ],
+  "hashtag_rules": {
+    "count": 5,
+    "fixed": "地域名と地域＋業種の2タグを店舗ごとに設定。飲食店は地域グルメ、他業種はその業種に合わせる",
+    "variable": "ランチ・ディナー・料理名・商品名など投稿内容に合わせて3タグ",
+    "evidence": "食材・産地・ブランド名は確認できる場合だけ使う"
+  },
+  "handoff": {
+    "customer_approval_url": "管理画面の「お客様URL」（/sns-店舗固有ID/access/店舗専用署名）。公開マニュアルには実URLを載せない",
+    "raw_oauth_url": "期限付きInstagram認証URLを固定の配布URLとして使用しない",
+    "first_message_contains_line_url": false,
+    "instagram_auth_by": "お客様本人。BANTEX側で代理ログイン・代理承認しない",
+    "line_distribution": "承認・接続確認後のみ",
+    "external_message": "宛先と送信指示がある場合に送信する"
+  },
+  "verification": [
+    "専用LINEと店舗Instagramが1対1である",
+    "LINE本文・初回のみ送信・挨拶ONを再読込で確認",
+    "Webhook利用・再送・エラー統計ONと疎通検証成功",
+    "ココトモ保存後に全設定を再取得して比較",
+    "管理者ログインを持たないセッションでお客様URLから正しい店舗画面を開ける",
+    "Instagram承認入口が正しい店舗IDを対象に生成される",
+    "お客様承認後に対象Instagramと必要権限を確認してからLINEを配布"
+  ],
+  "secrets": "Channel secret・token・パスワード・認証コード・Cookie・実顧客専用署名URLを公開資料や記憶に残さない。サービス登録は許可された保護経路で行う。"
+}

@@ -1,0 +1,19 @@
+{
+  "version": "2026-10-07",
+  "pages": [
+    "index.html",
+    "new-store-onboarding.html",
+    "murakami.html",
+    "simple-customer-onboarding.html",
+    "setup-admin.html",
+    "operator-full.html",
+    "instagram-login-onboarding.html",
+    "murakami-instagram-permission-error.html",
+    "store-settings-mobile.html",
+    "greeting-message.html",
+    "customer-approval.html",
+    "customer-line-use.html"
+  ],
+  "shared_rules": "manual-data.json",
+  "greeting_characters": 284
+}
